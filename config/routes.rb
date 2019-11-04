@@ -11,6 +11,6 @@ Rails.application.routes.draw do
   get '/dashboard/feed', to: 'dashboard#feed'
   get '/dashboard/explore', to: 'dashboard#explore'
   
-  get '/landing_page/how_it_works', to: 'landing_page#how_it_works'
-  get '/landing_page/pricing', to: '#landing_page#pricing'
+  get '/landing_page/how-it-works', to: 'landing_page#how_it_works'
+  get '/landing_page/pricing', to: 'landing_page#pricing'
 end
