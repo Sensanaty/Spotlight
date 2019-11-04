@@ -12,10 +12,12 @@
   </head>
   <body>
     <div id="wrapper">
-      <%= render 'shared/sidebar' %>
+
+
+      <%= render 'shared/sidebar' unless devise_controller? %>
       <!-- Content Wrapper -->
       <div id="content-wrapper" class="d-flex flex-column">
-        <%= render 'shared/top_bar' %>
+        <%= render 'shared/top_bar' unless devise_controller? %>
         <!-- Main Content -->
         <div id="content">
           <!-- Begin Page Content -->
