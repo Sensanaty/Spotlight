@@ -8,5 +8,9 @@ Rails.application.routes.draw do
   end
   root :to => 'landing_page#landing_page'
   
-  # resources :home, only: [:index, :show]
+  get '/dashboard/feed', to: 'dashboard#feed'
+  get '/dashboard/explore', to: 'dashboard#explore'
+  
+  get '/landing_page/how_it_works', to: 'landing_page#how_it_works'
+  get '/landing_page/pricing', to: '#landing_page#pricing'
 end
