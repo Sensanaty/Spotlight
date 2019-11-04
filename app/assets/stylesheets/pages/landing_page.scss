@@ -1,0 +1,19 @@
+.home-nav {
+  justify-content: space-between;
+  padding: 20px;
+}
+
+.home-nav .navbar-collapse {
+  flex-grow: 0;
+}
+
+.home-nav .navbar-brand img {
+  width: 40px;
+}
+
+.landing-section-1 {
+  height: 100vh;
+  background-size: cover;
+  background-position: center;
+  padding: 150px 0;
+}
