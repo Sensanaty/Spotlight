@@ -2,6 +2,7 @@
   "name": "Spotlight",
   "private": true,
   "dependencies": {
+    "@material/card": "^4.0.0",
     "@rails/webpacker": "^4.0.7",
     "bootstrap": "^4.3.1",
     "jquery": "^3.4.1",
