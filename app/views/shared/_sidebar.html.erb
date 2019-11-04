@@ -10,9 +10,10 @@
 
   <!-- Nav Item - Dashboard -->
   <li class="nav-item active">
-    <a class="nav-link" href="index.html">
-      <i class="fas fa-fw fa-tachometer-alt"></i>
-      <span>Dashboard</span></a>
+    <%= link_to root_path, class: 'nav-link' do %>
+        <i class="fas fa-fw fa-tachometer-alt"></i>
+        <span>Dashboard</span></a>
+    <% end %>
   </li>
   <li class="nav-item">
     <a class="nav-link" href="index.html">
