@@ -9,21 +9,23 @@
   </a>
 
   <!-- Nav Item - Dashboard -->
-  <li class="nav-item active">
+  <li class="nav-item <%= 'active' if action_name == "home" %>" id="dashboard-sidebar-link">
     <%= link_to root_path, class: 'nav-link' do %>
         <i class="fas fa-fw fa-tachometer-alt"></i>
         <span>Dashboard</span></a>
     <% end %>
   </li>
-  <li class="nav-item">
-    <a class="nav-link" href="index.html">
-      <i class="fas fa-fw fa-tachometer-alt"></i>
-      <span>Feed</span></a>
+  <li class="nav-item <%= 'active' if action_name == "feed" %>" id="feed-sidebar-link">
+    <%= link_to dashboard_feed_path, class: 'nav-link' do %>
+        <i class="fas fa-list"></i>
+        <span>Feed</span></a>
+    <% end %>
   </li>
-  <li class="nav-item">
-    <a class="nav-link" href="index.html">
-      <i class="fas fa-fw fa-tachometer-alt"></i>
-      <span>Explore</span></a>
+  <li class="nav-item <%= 'active' if action_name == "explore" %>" id="explore-sidebar-link">
+    <%= link_to dashboard_explore_path, class: 'nav-link' do %>
+        <i class="fas fa-globe-europe"></i>
+        <span>Explore</span></a>
+    <% end %>
   </li>
 
   <!-- Divider -->
