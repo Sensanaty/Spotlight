@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
-  devise_for :users
-
+  devise_for :users,
+    controllers: { omniauth_callbacks: 'users/omniauth_callbacks' }
   # Check whether the user is authenticated (logged in) or not, if not then take them to a landing page, otherwise take
   # them to the dashboard page
   authenticated do
@@ -17,7 +17,7 @@ Rails.application.routes.draw do
   get '/pages/components', to: 'pages#components'
   get '/pages/components_josh', to: 'pages#components_josh'
   get '/pages/dashboard', to: 'pages#dashboard'
-  
+
   # Temp route to view the themes dashboard
   get 'dashboard', to: 'pages#dashboard'
 end
