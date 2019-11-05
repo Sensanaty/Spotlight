@@ -1,0 +1,27 @@
+<!-- NOTE: Most of the code on this page is just for visual styling.
+  When taking the chart components, you only need the canvas line.
+  Also note the width/height variables on the canvas's don't seem to have effect,
+  the chart will fill whatever div it is inside -->
+
+<div class="container">
+  <h2>Joshs components page</h2>
+
+
+  <!-- Google Chart Components -->
+  <h4 class="mt-5">Google Charts</h4>
+  <div class="row">
+
+    <div class="google-chart-1 mr-5" style="width: 220px">
+      <!-- Google Chart 1 -->
+      <canvas id="googleReviewsCountChart" width="200" height="200"></canvas>
+    </div>
+
+    <div class="google-chart-2 ml-5" style="width: 220px">
+      <!-- Google Chart 2 -->
+      <canvas id="googleReviewsRatingsChart" width="200" height="200"></canvas>
+    </div>
+
+  </div>
+</div>
+
+<%= javascript_pack_tag 'charts' %>
