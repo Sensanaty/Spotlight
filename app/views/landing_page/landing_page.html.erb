@@ -1,44 +1,13 @@
-<!DOCTYPE html>
-<html>
-  <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <title>Spotlight - Shine a light on your performance</title>
-    <%= csrf_meta_tags %>
-    <%= action_cable_meta_tag %>
-    <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
-    <%#= stylesheet_pack_tag 'application', media: 'all' %>
-  </head>
-
-  <body>
-    <div class="landing-section-1" style="background-image: linear-gradient(rgba(0,0,0,0.4),rgba(0,0,0,0.4)), url(<%= asset_path 'landing-temporary.jpg' %>);">
-
-        <!-- Nav bar -->
-        <div class="container">
-          <div class="navbar navbar-expand-sm navbar-light home-nav">
-            <a class="navbar-brand" href="#">
-              <img src="https://raw.githubusercontent.com/lewagon/fullstack-images/master/uikit/logo.png" />
-          </a>
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-              <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarSupportedContent">
-              <ul class="navbar-nav mr-auto">
-                <li class="nav-item active">
-                  <%= link_to "Sign Up", new_user_registration_path, class: 'btn btn-flat' %>
-                </li>
-                <li class="nav-item">
-                  <%= link_to "Log in", new_user_session_path, class: 'nav-link' %>
-                </li>
-              </ul>
-            </div>
-          </div>
-        </div>
-      <!-- Landing Content -->
-      <div class="landing-content">
-      </div>
+<div class="container">
+  <%= render 'shared/landing_nav_bar' %>
+</div>
+<!-- Landing Content -->
+<div class="landing-content">
+  <div class="banner" style="background-image: linear-gradient(rgba(0,0,0,0.4),rgba(0,0,0,0.4)), url(<%= asset_path 'landing-temporary.jpg' %>);">
+    <div class="container">
+      <h1>Welcome to <strong>Spotlight</strong>.</h1>
+      <p>Shine a light on your restaurants performance.</p>
+      <a class="btn btn-flat" href="#">Apply now</a>
     </div>
-    <%= javascript_include_tag 'application' %>
-    <%= javascript_pack_tag 'application' %>
-  </body>
-</html>
+  </div>
+</div>
