@@ -1,6 +1,11 @@
 Rails.application.routes.draw do
-  devise_for :users
-
+  devise_for :users, controllers: {registrations: 'users/registrations'}
+  resources :users do
+    collection do
+      get :edit_profile
+      post :update_profile
+    end
+  end
   # Check whether the user is authenticated (logged in) or not, if not then take them to a landing page, otherwise take
   # them to the dashboard page
   authenticated do
