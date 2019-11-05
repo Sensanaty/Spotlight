@@ -14,11 +14,12 @@ Rails.application.routes.draw do
   get '/landing_page/how-it-works', to: 'landing_page#how_it_works'
   get '/landing_page/pricing', to: 'landing_page#pricing'
 
-
-  # Temp route to view the themes dashboard
-  get 'dashboard', to: 'pages#dashboard'
   get '/pages/components', to: 'pages#components'
   get '/pages/components_josh', to: 'pages#components_josh'
   get '/pages/dashboard', to: 'pages#dashboard'
+  
+  
+  # Temp route to view the themes dashboard
+  get 'dashboard', to: 'pages#dashboard'
 end
 
