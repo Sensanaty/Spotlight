@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_11_05_061713) do
+ActiveRecord::Schema.define(version: 2019_11_05_075626) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -39,30 +39,6 @@ ActiveRecord::Schema.define(version: 2019_11_05_061713) do
     t.index ["user_id"], name: "index_restaurants_on_user_id"
   end
 
-  create_table "reviews_googles", force: :cascade do |t|
-    t.bigint "restaurant_id"
-    t.string "review_user"
-    t.string "review_user_profile_image"
-    t.string "review_user_profile_url"
-    t.text "review_content"
-    t.float "review_rating"
-    t.integer "review_timestamp"
-    t.string "review_image"
-    t.string "review_url"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["restaurant_id"], name: "index_reviews_googles_on_restaurant_id"
-  end
-
-  create_table "reviews_zomatos", force: :cascade do |t|
-    t.bigint "restaurant_id"
-    t.text "review_content"
-    t.float "review_rating"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["restaurant_id"], name: "index_reviews_zomatos_on_restaurant_id"
-  end
-
   create_table "users", force: :cascade do |t|
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
@@ -80,8 +56,17 @@ ActiveRecord::Schema.define(version: 2019_11_05_061713) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  create_table "zomato_reviews", force: :cascade do |t|
+    t.string "review_title"
+    t.text "review_text"
+    t.integer "rating"
+    t.string "review_time"
+    t.string "reviewer"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.string "profile_image"
+  end
+
   add_foreign_key "orders", "users"
   add_foreign_key "restaurants", "users"
-  add_foreign_key "reviews_googles", "restaurants"
-  add_foreign_key "reviews_zomatos", "restaurants"
 end

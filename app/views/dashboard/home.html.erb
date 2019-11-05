@@ -2,9 +2,16 @@
 <div class="container">
   <!-- Summary box -->
   <div class="row pb-2">
-    <div class="card shadow h-200 p-2 d-flex flex-row dash-sum-box position-relative mx-auto"">
+  <div class="card shadow h-200 p-2 d-flex justify-content-around flex-row dash-sum-box mx-auto">
       <h1>Data Candy</h1>
       <h2><%= @restaurant.name %></h2>
+    <div class="google-chart-1" style="width: 220px">
+      <!-- Google Chart 1 -->
+      <canvas id="googleReviewsCountChart" width="200" height="200"></canvas>
+    </div>
+    <div class="google-chart-2" style="width: 220px">
+      <!-- Google Chart 2 -->
+      <canvas id="googleReviewsRatingsChart" width="200" height="200"></canvas>
     </div>
   </div>
 
@@ -12,13 +19,13 @@
    <!-- ROW 1 -->
   <div class="row d-flex justify-content-around py-2">
     <!-- Google card -->
-    <div class="card shadow h-200 p-2 d-flex flex-row dash-card position-relative"">
+    <div class="card shadow h-200 p-2 d-flex flex-row dash-card position-relative">
       <div class = "logo-button-white-lg top-left">
         <img src="http://pngimg.com/uploads/google/google_PNG19635.png" alt="">
       </div>
     </div>
     <!-- Zomato card -->
-    <div class="card shadow h-200 p-2 d-flex flex-row dash-card"">
+    <div class="card shadow h-200 p-2 d-flex flex-row dash-card">
       <div class = "logo-button-white shadow-sm">
         <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/ef/Zomato-flat-logo.png/200px-Zomato-flat-logo.png" alt="">
       </div>
@@ -28,13 +35,13 @@
   <!-- ROW 2 -->
   <div class="row d-flex justify-content-around py-2">
     <!-- Tripadvisor card -->
-    <div class="card shadow h-200 p-2 d-flex flex-row dash-card position-relative"">
+    <div class="card shadow h-200 p-2 d-flex flex-row dash-card position-relative">
       <div class = "logo-button-white shadow-sm">
         <img src="https://media.glassdoor.com/sqll/15276/tripadvisor-squarelogo-1496150455363.png" alt="">
       </div>
     </div>
     <!-- Yelp card -->
-    <div class="card shadow h-200 p-2 d-flex flex-row dash-card"">
+    <div class="card shadow h-200 p-2 d-flex flex-row dash-card">
       <div class = "logo-button-white-lg">
         <img src="https://dlpcapitalpartners.com/wp-content/uploads/2019/01/yelp-logo.png" alt="">
       </div>
@@ -44,13 +51,13 @@
    <!-- ROW 3 -->
   <div class="row d-flex justify-content-around py-2">
     <!-- FB card -->
-    <div class="card shadow h-200 p-2 d-flex flex-row dash-card position-relative"">
+    <div class="card shadow h-200 p-2 d-flex flex-row dash-card position-relative">
       <div class = "logo-button-white shadow-sm">
         <img src="https://image.flaticon.com/icons/png/512/124/124010.png" alt="">
       </div>
     </div>
     <!-- Insta card -->
-    <div class="card shadow h-200 p-2 d-flex flex-row dash-card"">
+    <div class="card shadow h-200 p-2 d-flex flex-row dash-card">
       <div class = "logo-button-white">
         <img src="http://pluspng.com/img-png/instagram-png-instagram-png-logo-1455.png" alt="">
       </div>
@@ -60,4 +67,4 @@
 </div>
 
 
-
+<%= javascript_pack_tag 'charts' %>
