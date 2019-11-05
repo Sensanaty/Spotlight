@@ -1,6 +1,6 @@
 require 'test_helper'
 
-class ReviewsZomatoTest < ActiveSupport::TestCase
+class ZomatoReviewTest < ActiveSupport::TestCase
   # test "the truth" do
   #   assert true
   # end
