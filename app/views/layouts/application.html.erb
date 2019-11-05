@@ -7,15 +7,16 @@
     <%= csrf_meta_tags %>
     <%= action_cable_meta_tag %>
     <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
-    <%= stylesheet_pack_tag 'application', media: 'all' %> 
+    <%= stylesheet_pack_tag 'application', media: 'all' %>
     <%#= stylesheet_pack_tag 'application', media: 'all' %> <!-- Uncomment if you import CSS in app/javascript/packs/application.js -->
   </head>
+
   <body>
     <div id="wrapper">
-      <%= render 'shared/sidebar' %>
+      <%= render 'shared/sidebar' unless devise_controller? %>
       <!-- Content Wrapper -->
       <div id="content-wrapper" class="d-flex flex-column">
-        <%= render 'shared/top_bar' %>
+        <%= render 'shared/top_bar' unless devise_controller? %>
         <!-- Main Content -->
         <div id="content">
           <!-- Begin Page Content -->
@@ -32,5 +33,6 @@
     <%= render 'shared/logout_modal' %>
     <%= javascript_include_tag 'application' %>
     <%= javascript_pack_tag 'application' %>
+    <%= javascript_pack_tag 'sidebar' %>
   </body>
 </html>
