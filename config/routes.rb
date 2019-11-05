@@ -6,6 +6,9 @@ Rails.application.routes.draw do
   authenticated do
     root :to => 'dashboard#home', as: :authenticated
   end
+
+  resources :restaurants, only: [:new, :edit, :create]
+
   root :to => 'landing_page#landing_page'
 
   get '/dashboard/feed', to: 'dashboard#feed'
@@ -17,8 +20,7 @@ Rails.application.routes.draw do
   get '/pages/components', to: 'pages#components'
   get '/pages/components_josh', to: 'pages#components_josh'
   get '/pages/dashboard', to: 'pages#dashboard'
-  
+
   # Temp route to view the themes dashboard
   get 'dashboard', to: 'pages#dashboard'
 end
-
