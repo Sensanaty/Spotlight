@@ -7,32 +7,37 @@
     <%= csrf_meta_tags %>
     <%= action_cable_meta_tag %>
     <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
-    <%= stylesheet_pack_tag 'application', media: 'all' %>
-    <%#= stylesheet_pack_tag 'application', media: 'all' %> <!-- Uncomment if you import CSS in app/javascript/packs/application.js -->
+    <%#= stylesheet_pack_tag 'application', media: 'all' %>
   </head>
+
   <body>
-    <div class="landing-section-1" style="background-image: linear-gradient(rgba(0,0,0,0.4),rgba(0,0,0,0.4)), url('landing-temporary.jpg');">
-      <div class="container">
-        <div class="navbar navbar-expand-sm navbar-light home-nav">
-          <a class="navbar-brand" href="#">
-            <img src="https://raw.githubusercontent.com/lewagon/fullstack-images/master/uikit/logo.png" />
-        </a>
-          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-          </button>
+    <div class="landing-section-1" style="background-image: linear-gradient(rgba(0,0,0,0.4),rgba(0,0,0,0.4)), url(<%= asset_path 'landing-temporary.jpg' %>);">
 
-
-          <div class="collapse navbar-collapse" id="navbarSupportedContent">
-            <ul class="navbar-nav mr-auto">
-              <li class="nav-item active">
-                <a class="btn btn-flat" href="#">Sign Up</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="#">Log In</a>
-              </li>
-            </ul>
+        <!-- Nav bar -->
+        <div class="container">
+          <div class="navbar navbar-expand-sm navbar-light home-nav">
+            <a class="navbar-brand" href="#">
+              <img src="https://raw.githubusercontent.com/lewagon/fullstack-images/master/uikit/logo.png" />
+          </a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+              <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+              <ul class="navbar-nav mr-auto">
+                <li class="nav-item active">
+                  <%= link_to "Sign Up", new_user_registration_path, class: 'btn btn-flat' %>
+                </li>
+                <li class="nav-item">
+                  <%= link_to "Log in", new_user_session_path, class: 'nav-link' %>
+                </li>
+              </ul>
+            </div>
           </div>
         </div>
+      <!-- Landing Content -->
+      <div class="landing-content">
+
+>>>>>>> fe7792d26a774427d77a450212af858cca4dc0a2
       </div>
     </div>
     <%= javascript_include_tag 'application' %>
