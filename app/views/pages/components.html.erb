@@ -33,15 +33,23 @@
 <h1>Cards</h1>
 
 
+
 <div class="col-xl-10 col-md-6 mb-4">
-  <div class="card border-left-primary shadow h-200 py-2 d-flex flex-row">
+  <div class="card border-left-primary shadow h-200 py-2 pl-4 d-flex flex-row">
 <!--     left-side
  -->
-    <h1>YYYY</h1>
     <div>
-      <div class="d-flex">
-        <p>Info one</p>
-        <p>Info two</p>
+      <div class="d-flex position pb-1">
+        <img class = 'avatar' src="https://images.pexels.com/photos/736716/pexels-photo-736716.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500" alt="">
+        <div class = "px-2 my-auto">
+          <% 2.times do  %>
+          <span class="fa fa-star checked" style="color: #F5A431"></span>
+          <% end %>
+          <% (5 - 2).times do %>
+          <span class="fa fa-star" style="color: #CDCDCD"></span>
+          <% end %>
+        </div>
+        <p>NEW</p>
       </div>
       <div>
         Life is a mystery, everyone must stand alone I hear you call my name And it feels like home When you call my name it's like a little prayer I'm down on my knees, I wanna take you there In the midnight hour I can feel your power Just like a prayer you know I'll take you there
@@ -49,39 +57,16 @@
     </div>
 <!--     right side
  -->
-    <div>
-      Right SIDE
-    </div>
-
-
-  </div>
-</div>
-
-<div class="col-xl-10 col-md-6 mb-4">
-  <div class="card border-left-primary shadow h-200 py-2">
-    <div class="card-body position-relative">
-      <div class="row no-gutters">
-        <div class="col mr-2">
-          <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">Earnings (Monthly)</div>
-          <div class="p mb-0 text-gray-800">Life is a mystery, everyone must stand alone I hear you call my name And it feels like home When you call my name it's like a little prayer I'm down on my knees, I wanna take you there In the midnight hour I can feel your power Just like a prayer you know I'll take you there
-          </div>
-          <div class="col-auto">
-            <div class = "logo-button-white shadow-sm">
-              <img src="https://dlpcapitalpartners.com/wp-content/uploads/2019/01/yelp-logo.png" alt="">
-            </div>
-          </div>
-        </div>
+    <div class="d-flex flex-column pl-2 justify-content-between">
+      <i class="fas fa-external-link-square-alt open-link"></i>
+      <div class = "logo-button-white">
+        <img src="http://pngimg.com/uploads/google/google_PNG19635.png" alt="">
       </div>
     </div>
   </div>
 </div>
 
 
-<% 2.times do  %>
-<span class="fa fa-star checked" style="color: yellow"></span>
-<% end %>
-<% (5 - 2).times do %>
-<span class="fa fa-star"></span>
-<% end %>
+
 
 
