@@ -4,6 +4,9 @@
   height: 100vh;
   position: sticky;
   top: 0;
+  background: white;
+  box-shadow: 2px 0px 10px rgba(0,0,0,0.2);
+  z-index: 1;
 
   .nav-item {
     position: relative;
@@ -25,9 +28,14 @@
     }
     &.active {
       .nav-link {
+        color: white !important;
         background: $green;
         border-radius: 40px 0 0 40px;
         font-weight: 700;
+
+        i {
+          color: white !important;
+        }
       }
     }
     // Accordion
