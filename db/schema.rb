@@ -39,6 +39,30 @@ ActiveRecord::Schema.define(version: 2019_11_05_075626) do
     t.index ["user_id"], name: "index_restaurants_on_user_id"
   end
 
+  create_table "reviews_googles", force: :cascade do |t|
+    t.bigint "restaurant_id"
+    t.string "review_user"
+    t.string "review_user_profile_image"
+    t.string "review_user_profile_url"
+    t.text "review_content"
+    t.float "review_rating"
+    t.integer "review_timestamp"
+    t.string "review_image"
+    t.string "review_url"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["restaurant_id"], name: "index_reviews_googles_on_restaurant_id"
+  end
+
+  create_table "reviews_zomatos", force: :cascade do |t|
+    t.bigint "restaurant_id"
+    t.text "review_content"
+    t.float "review_rating"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["restaurant_id"], name: "index_reviews_zomatos_on_restaurant_id"
+  end
+
   create_table "users", force: :cascade do |t|
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
@@ -52,6 +76,11 @@ ActiveRecord::Schema.define(version: 2019_11_05_075626) do
     t.text "google_account_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "provider"
+    t.string "uid"
+    t.string "facebook_picture_url"
+    t.string "token"
+    t.datetime "token_expiry"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
@@ -69,4 +98,6 @@ ActiveRecord::Schema.define(version: 2019_11_05_075626) do
 
   add_foreign_key "orders", "users"
   add_foreign_key "restaurants", "users"
+  add_foreign_key "reviews_googles", "restaurants"
+  add_foreign_key "reviews_zomatos", "restaurants"
 end
