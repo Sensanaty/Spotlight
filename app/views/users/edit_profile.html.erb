@@ -1,12 +1,26 @@
 <div class="container">
-  <row>
-    <div class="col-6 mx-auto">
-      <h1>Edit profile</h1>
-    </div>
-  </row>
   <div class="row">
-    <div class="col-6 mx-auto">
+    <div class="col-md-12 col-lg-6">
+      <div class="d-flex justify-content-between">
+        <h1>Edit profile</h1>
+        <%= link_to "Change Password", edit_user_registration_path, class: 'btn-flat' %>
+      </div>
+      <%= simple_form_for @user do |f| %>
+        <%= f.input :email %>
+        <%= f.input :first_name %>
+        <%= f.input :last_name %>
+        <%= f.button :submit %>
+      <% end %>
+    </div>
+    <div class="col-md-12 col-lg-6">
       <h1>Edit restaurant</h1>
+       <%= simple_form_for @restaurant do |f| %>
+        <%= f.input :name %>
+        <%= f.input :address %>
+        <%= f.input :cuisine %>
+        <%= f.input :price_level %>
+        <%= f.button :submit %>
+      <% end %>
     </div>
   </div>
 </div>

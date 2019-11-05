@@ -12,7 +12,7 @@ Rails.application.routes.draw do
     root :to => 'dashboard#home', as: :authenticated
   end
 
-  resources :restaurants, only: [:new, :edit, :create]
+  resources :restaurants, only: [:new, :update, :create]
 
   root :to => 'landing_page#landing_page'
 
