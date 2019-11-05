@@ -2,11 +2,13 @@
 <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
 
   <!-- Sidebar - Brand -->
-  <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.html">
+  <%= link_to root_path, class: 'sidebar-brand d-flex align-items-center justify-content-center' do %>
     <div class="sidebar-brand-icon rotate-n-15">
     </div>
-    <div class="sidebar-brand-text mx-3">Spotlight</div>
-  </a>
+    <div class="mx-3">
+      <%= image_tag 'temp-restaurant-logo', class: 'sidebar-brand-image' %>
+    </div>
+  <% end %>
   <!-- Nav Item - Dashboard -->
   <li class="nav-item <%= 'active' if action_name == "home" %>" id="dashboard-sidebar-link">
     <%= link_to root_path, class: 'nav-link' do %>
@@ -34,6 +36,13 @@
   <div class="text-center d-none d-md-inline">
     <button class="rounded-circle border-0" id="sidebarToggle"></button>
   </div>
+
+  <!-- Sidebar - Brand -->
+  <a class="sidebar-brand d-flex align-items-center justify-content-center mt-auto" href="index.html">
+    <div class="sidebar-brand-icon rotate-n-15">
+    </div>
+    <div class="sidebar-brand-text mx-3">SPOTLIGHT</div>
+  </a>
 
 </ul>
 <!-- End of Sidebar -->
