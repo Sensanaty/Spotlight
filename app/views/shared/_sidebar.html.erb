@@ -6,7 +6,7 @@
     <div class="sidebar-brand-icon rotate-n-15">
     </div>
     <div class="mx-3">
-      <%= image_tag 'temp-restaurant-logo', class: 'sidebar-brand-image' %>
+      <%= cl_image_tag current_user.restaurant.photo, class: 'sidebar-brand-image' %>
     </div>
   <% end %>
   <!-- Nav Item - Dashboard -->
