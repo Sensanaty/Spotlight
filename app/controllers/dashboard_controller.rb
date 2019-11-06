@@ -29,3 +29,6 @@ def api_zomato
 end
 
 # Rails generate Model Zomato_Review review_title:string review_text:string rating:integer review_time:string reviewer:string
+def api_yelp
+
+end
