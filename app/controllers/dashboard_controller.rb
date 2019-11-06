@@ -12,4 +12,20 @@ class DashboardController < ApplicationController
 
   def explore
   end
+  
+  def scrape_tripadvisor
+    url = params[:url]
+    serialized = open(url).read
+    parsed = Nokogiri.parse(serialized)
+    for counter  in  1..10 do
+      review = TaReview.new
+      review.rating_date = parsed.search('.ratingDate')[counter].attributes['title']
+      review.title = parsed.search('.noQuotes')[counter].text.strip
+      review.review_link = parsed.search('.ui_column.is-9 div a')[counter].attributes['href'].value
+      review.reviewer = parsed.search('.memberOverlayLink > .info_text.pointer_cursor')[counter].children.first.text
+      rate = parsed.search('.ui_column.is-9')[0].children.first.attributes['class'].value
+      # this returns a string like "ui_bubble_rating bubble_10" / 20 / 30 / 40 / 50 depending on the star rating
+      review.rating = rate[-2].to_i
+      review.save
+    end
 end
