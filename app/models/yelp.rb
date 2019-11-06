@@ -32,8 +32,5 @@ reviews["reviews"].each do |key|
 
 end
 
-# #2 gettherestaurantid
-# #3 saveit in an array
-# #4 loop through it with review API call
 
 
