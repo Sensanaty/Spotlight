@@ -5,6 +5,14 @@ class RestaurantsController < ApplicationController
   end
 
   def create
+    @restaurant = Restaurant.new(restaurant_params)
+    @restaurant.user = current_user
+
+    if @restaurant.save!
+      redirect_to root_path
+    else
+      render :new
+    end
   end
 
   def edit

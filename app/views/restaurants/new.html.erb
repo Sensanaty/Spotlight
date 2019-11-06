@@ -14,9 +14,9 @@
       <%= simple_form_for @restaurant do |f| %>
         <%= f.input :name %>
         <%= f.input :address %>
-        <%= f.input :cuisine %>
-        <%= f.input :price_level %>
-        <%= f.input :photo %>
+        <%= f.input :cuisine, collection: Restaurant::CUISINES.sort %>
+        <%= f.input :price_level, label: "Price Level (1-3, 1 being cheap, 3 being high-end" %>
+        <%= f.input :photo, label: "Restaurant Logo" %>
         <%= f.input :photo_cache, as: :hidden %>
         <%= f.button :submit %>
       <% end %>

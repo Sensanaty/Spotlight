@@ -10,8 +10,11 @@ function autocomplete() {
 
     if (restaurantLocatorDisplay) {
       var autocomplete = new google.maps.places.Autocomplete(restaurantLocatorDisplay, { types: [ 'establishment' ] });
-      autocomplete.setFields(['name', 'formatted_address', 'price_level']);
+      // autocomplete.setFields(['name', 'formatted_address', 'price_level']);
       autocomplete.addListener('place_changed', function(e) {
+        // if (e.key === "Enter") {
+        //   e.preventDefault(); // Do not submit the form on Enter.
+        // }
         var place = autocomplete.getPlace();
         console.log(place);
 
