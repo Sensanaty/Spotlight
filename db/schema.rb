@@ -39,30 +39,6 @@ ActiveRecord::Schema.define(version: 2019_11_06_025041) do
     t.index ["user_id"], name: "index_restaurants_on_user_id"
   end
 
-  create_table "reviews_googles", force: :cascade do |t|
-    t.bigint "restaurant_id"
-    t.string "review_user"
-    t.string "review_user_profile_image"
-    t.string "review_user_profile_url"
-    t.text "review_content"
-    t.float "review_rating"
-    t.integer "review_timestamp"
-    t.string "review_image"
-    t.string "review_url"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["restaurant_id"], name: "index_reviews_googles_on_restaurant_id"
-  end
-
-  create_table "reviews_zomatos", force: :cascade do |t|
-    t.bigint "restaurant_id"
-    t.text "review_content"
-    t.float "review_rating"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["restaurant_id"], name: "index_reviews_zomatos_on_restaurant_id"
-  end
-
   create_table "users", force: :cascade do |t|
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
@@ -91,7 +67,7 @@ ActiveRecord::Schema.define(version: 2019_11_06_025041) do
     t.float "rating"
     t.text "review"
     t.string "user_image"
-    t.string "profil_url"
+    t.string "profile_url"
     t.bigint "restaurant_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -111,7 +87,5 @@ ActiveRecord::Schema.define(version: 2019_11_06_025041) do
 
   add_foreign_key "orders", "users"
   add_foreign_key "restaurants", "users"
-  add_foreign_key "reviews_googles", "restaurants"
-  add_foreign_key "reviews_zomatos", "restaurants"
   add_foreign_key "yelp_reviews", "restaurants"
 end
