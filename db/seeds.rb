@@ -35,3 +35,4 @@ new_restaurant.remote_photo_url = restaurant_logo_url
 
 new_user.save!
 new_restaurant.save!
+GoogleFetcherService.new(new_restaurant.name).grab_place(new_restaurant.id)
