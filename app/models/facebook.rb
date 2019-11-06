@@ -12,5 +12,4 @@ p tablevibe = @graph.get_object("104485937669806")
 
 # user_graph.get_connections('me','accounts')
 
-byebug
 something = 2
