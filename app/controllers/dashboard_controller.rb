@@ -55,7 +55,7 @@ def scrape_tripadvisor
   serialized = open(url).read
   parsed = Nokogiri.parse(serialized)
   for counter  in  1..10 do
-    review = TAReview.new
+    review = TaReview.new
     review.rating_date = parsed.search('.ratingDate')[counter].attributes['title']
     review.title = parsed.search('.noQuotes')[counter].text.strip
     review.review_link = parsed.search('.ui_column.is-9 div a')[counter].attributes['href'].value
