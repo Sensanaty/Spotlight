@@ -15,6 +15,21 @@ ActiveRecord::Schema.define(version: 2019_11_06_080029) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
+  create_table "google_reviews", force: :cascade do |t|
+    t.string "formatted_address"
+    t.float "latitude"
+    t.float "longitude"
+    t.string "name"
+    t.float "rating"
+    t.string "reviews"
+    t.string "types"
+    t.integer "user_ratings_total"
+    t.bigint "restaurant_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["restaurant_id"], name: "index_google_reviews_on_restaurant_id"
+  end
+
   create_table "orders", force: :cascade do |t|
     t.bigint "user_id"
     t.datetime "date"
@@ -49,7 +64,7 @@ ActiveRecord::Schema.define(version: 2019_11_06_080029) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
-
+  
   create_table "users", force: :cascade do |t|
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
@@ -74,11 +89,11 @@ ActiveRecord::Schema.define(version: 2019_11_06_080029) do
 
   create_table "yelp_reviews", force: :cascade do |t|
     t.string "user_name"
-    t.string "review_timestamp"
+    t.datetime "review_timestamp"
     t.float "rating"
     t.text "review"
     t.string "user_image"
-    t.string "profil_url"
+    t.string "profile_url"
     t.bigint "restaurant_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -96,6 +111,7 @@ ActiveRecord::Schema.define(version: 2019_11_06_080029) do
     t.string "profile_image"
   end
 
+  add_foreign_key "google_reviews", "restaurants"
   add_foreign_key "orders", "users"
   add_foreign_key "restaurants", "users"
   add_foreign_key "yelp_reviews", "restaurants"
