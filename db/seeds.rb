@@ -32,7 +32,7 @@ puts "Creating restaurant - Pizza East, assigned to Joe Bloggs"
 new_restaurant = Restaurant.new(restaurant_info)
 new_restaurant.user = new_user
 new_restaurant.remote_photo_url = restaurant_logo_url
-
-new_user.save!
-new_restaurant.save!
-GoogleFetcherService.new(new_restaurant.name).grab_place(new_restaurant.id)
+byebug
+new_user.save
+new_restaurant.save
+# GoogleFetcherService.new(new_restaurant.name).grab_place(new_restaurant.id)
