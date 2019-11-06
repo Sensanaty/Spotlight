@@ -1,0 +1,24 @@
+<div class="navbar navbar-expand-sm navbar-light home-nav">
+  <%= link_to root_path, class: 'navbar-brand' do %>
+    <%= image_tag 'temp-logo.svg' %>
+  <% end %>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item mr-3">
+        <%= link_to "How it works", landing_page_how_it_works_path, class: 'nav-link' %>
+      </li>
+      <li class="nav-item mr-3">
+        <%= link_to "Pricing", landing_page_pricing_path, class: 'nav-link' %>
+      </li>
+      <li class="nav-item mr-3">
+        <%= link_to "Log in", new_user_session_path, class: 'nav-link' %>
+      </li>
+      <li class="nav-item">
+        <%= link_to "Sign Up", new_user_registration_path, class: 'btn btn-flat ml-3' %>
+      </li>
+    </ul>
+  </div>
+</div>

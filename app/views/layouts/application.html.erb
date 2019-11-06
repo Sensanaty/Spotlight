@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <title>TODO</title>
+    <title>Spotlight - <%= current_user.present? ? current_user.restaurant.name : "Shine a light on your restaurant performance" %></title>
     <%= csrf_meta_tags %>
     <%= action_cable_meta_tag %>
     <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
@@ -13,6 +13,7 @@
 
   <body>
     <div id="wrapper">
+
       <%= render 'shared/sidebar' unless !current_user.present? || devise_controller? %>
       <!-- Content Wrapper -->
       <div id="content-wrapper" class="d-flex flex-column">
@@ -20,15 +21,15 @@
         <!-- Main Content -->
         <div id="content">
           <!-- Begin Page Content -->
-          <div class="container-fluid">
+          <div>
             <%= yield %>
           </div>
         </div>
       </div>
     </div>
 
-    <p class="notice"><%= notice %></p>
-    <p class="alert"><%= alert %></p>
+    <!-- <p class="notice"><%#= notice %></p> -->
+    <!-- <p class="alert"><%#= alert %></p> -->
 
     <%= render 'shared/logout_modal' %>
     <%= javascript_include_tag 'application' %>

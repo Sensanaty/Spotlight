@@ -5,3 +5,33 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
+
+
+Restaurant.destroy_all
+User.destroy_all
+
+user_info = {
+  first_name: "Joe",
+  last_name: "Bloggs",
+  email: "jb@gmail.com",
+  password: 'password',
+}
+
+restaurant_logo_url = "http://www.pizzaeast.com/assets/logo-black.png"
+restaurant_info = {
+  name: "Pizza East",
+  address: "310 Portobello Rd, London W10 5TA, United Kingdom",
+  cuisine: 'Pizza',
+  price_level: 2
+}
+
+puts "Creating user - Joe Bloggs, jb@gmail.com"
+new_user = User.new(user_info)
+
+puts "Creating restaurant - Pizza East, assigned to Joe Bloggs"
+new_restaurant = Restaurant.new(restaurant_info)
+new_restaurant.user = new_user
+new_restaurant.remote_photo_url = restaurant_logo_url
+
+new_user.save!
+new_restaurant.save!
