@@ -1,0 +1,2 @@
+class TaReview < ApplicationRecord
+end

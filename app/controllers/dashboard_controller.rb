@@ -49,3 +49,32 @@ def api_yelp
     new_review.save
   end
 end
+
+def scrape_tripadvisor
+  url = params[:url]
+  serialized = open(url).read
+  parsed = Nokogiri.parse(serialized)
+  counter = 0
+  10.times do
+    review = TA_Review.new
+    review.rating_date = parsed.search('.ratingDate')[counter].attributes['title']
+    review.title = parsed.search('.noQuotes')[counter].text.strip
+    review.review_link = parsed.search('.ui_column.is-9 div a')[counter].attributes['href'].value
+    review.reviewer = parsed.search('.memberOverlayLink > .info_text.pointer_cursor')[counter].children.first.text
+    rate = parsed.search('.ui_column.is-9')[0].children.first.attributes['class'].value
+    case rate
+    when "ui_bubble_rating bubble_10"
+      review.rating = 1
+    when "ui_bubble_rating bubble_20"
+      review.rating = 2
+    when "ui_bubble_rating bubble_30"
+      review.rating = 3
+    when "ui_bubble_rating bubble_40"
+      review.rating = 4
+    when "ui_bubble_rating bubble_50"
+      review.rating = 5
+    review.save
+    counter += 1
+  end
+
+end

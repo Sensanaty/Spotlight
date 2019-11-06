@@ -20,6 +20,7 @@ gem 'omniauth-facebook'
 gem 'cloudinary', '~> 1.9.1'
 gem 'carrierwave', '~> 1.2'
 gem 'rest-client'
+gem 'nokogiri'
 
 
 group :development do

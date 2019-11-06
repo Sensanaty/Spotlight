@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_11_06_025041) do
+ActiveRecord::Schema.define(version: 2019_11_06_080029) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -39,28 +39,15 @@ ActiveRecord::Schema.define(version: 2019_11_06_025041) do
     t.index ["user_id"], name: "index_restaurants_on_user_id"
   end
 
-  create_table "reviews_googles", force: :cascade do |t|
-    t.bigint "restaurant_id"
-    t.string "review_user"
-    t.string "review_user_profile_image"
-    t.string "review_user_profile_url"
-    t.text "review_content"
-    t.float "review_rating"
-    t.integer "review_timestamp"
-    t.string "review_image"
-    t.string "review_url"
+  create_table "ta_reviews", force: :cascade do |t|
+    t.integer "rating"
+    t.string "review_date"
+    t.string "reviewer"
+    t.string "review_title"
+    t.string "review_link"
+    t.text "review"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["restaurant_id"], name: "index_reviews_googles_on_restaurant_id"
-  end
-
-  create_table "reviews_zomatos", force: :cascade do |t|
-    t.bigint "restaurant_id"
-    t.text "review_content"
-    t.float "review_rating"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["restaurant_id"], name: "index_reviews_zomatos_on_restaurant_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -111,7 +98,5 @@ ActiveRecord::Schema.define(version: 2019_11_06_025041) do
 
   add_foreign_key "orders", "users"
   add_foreign_key "restaurants", "users"
-  add_foreign_key "reviews_googles", "restaurants"
-  add_foreign_key "reviews_zomatos", "restaurants"
   add_foreign_key "yelp_reviews", "restaurants"
 end
