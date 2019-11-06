@@ -62,17 +62,8 @@ def scrape_tripadvisor
     review.review_link = parsed.search('.ui_column.is-9 div a')[counter].attributes['href'].value
     review.reviewer = parsed.search('.memberOverlayLink > .info_text.pointer_cursor')[counter].children.first.text
     rate = parsed.search('.ui_column.is-9')[0].children.first.attributes['class'].value
-    case rate
-    when "ui_bubble_rating bubble_10"
-      review.rating = 1
-    when "ui_bubble_rating bubble_20"
-      review.rating = 2
-    when "ui_bubble_rating bubble_30"
-      review.rating = 3
-    when "ui_bubble_rating bubble_40"
-      review.rating = 4
-    when "ui_bubble_rating bubble_50"
-      review.rating = 5
+    # this returns a string like "ui_bubble_rating bubble_10" / 20 / 30 / 40 / 50 depending on the star rating
+    review.rating = rate[-2].to_i
     review.save
     counter += 1
   end
