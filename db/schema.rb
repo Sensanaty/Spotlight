@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_11_05_075626) do
+ActiveRecord::Schema.define(version: 2019_11_06_025041) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -85,6 +85,19 @@ ActiveRecord::Schema.define(version: 2019_11_05_075626) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  create_table "yelp_reviews", force: :cascade do |t|
+    t.string "user_name"
+    t.string "review_timestamp"
+    t.float "rating"
+    t.text "review"
+    t.string "user_image"
+    t.string "profil_url"
+    t.bigint "restaurant_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["restaurant_id"], name: "index_yelp_reviews_on_restaurant_id"
+  end
+
   create_table "zomato_reviews", force: :cascade do |t|
     t.string "review_title"
     t.text "review_text"
@@ -100,4 +113,5 @@ ActiveRecord::Schema.define(version: 2019_11_05_075626) do
   add_foreign_key "restaurants", "users"
   add_foreign_key "reviews_googles", "restaurants"
   add_foreign_key "reviews_zomatos", "restaurants"
+  add_foreign_key "yelp_reviews", "restaurants"
 end

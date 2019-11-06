@@ -1,20 +1,22 @@
-<div class="container">
-  <!-- Summary box -->
-  <div class="row pb-2">
-    <div class="card shadow h-200 p-2 d-flex justify-content-around flex-row dash-sum-box mx-auto">
-        <h1>Data Candy</h1>
-        <h2><%= @restaurant.name %></h2>
-      <div class="google-chart-1" style="width: 220px">
+<div class="h-200 d-flex justify-content-around flex-row mx-auto dash-sum-box">
+  <div class="container">
+    <h3>Performance Overview</h3>
+    <h5><strong><%= @restaurant.name.upcase %></strong></h5>
+    <div class="d-flex">
+      <div class="google-chart-1" style="width: 200px">
         <!-- Google Chart 1 -->
-        <canvas id="googleReviewsCountChart" width="200" height="200"></canvas>
+        <canvas id="googleReviewsCountChart" width="180" height="200"></canvas>
       </div>
-      <div class="google-chart-2" style="width: 220px">
+      <div class="google-chart-2" style="width: 200px">
         <!-- Google Chart 2 -->
         <canvas id="googleReviewsRatingsChart" width="200" height="200"></canvas>
       </div>
     </div>
   </div>
+</div>
 
+<div class="container">
+  <!-- Summary box -->
 
    <!-- ROW 1 -->
   <div class="row d-flex justify-content-around py-2">
