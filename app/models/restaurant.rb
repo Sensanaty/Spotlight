@@ -6,4 +6,5 @@ class Restaurant < ApplicationRecord
   validates :price_level, inclusion: { in: [1, 2, 3] }
   belongs_to :user
   mount_uploader :photo, PhotoUploader
+  #add has_many?
 end

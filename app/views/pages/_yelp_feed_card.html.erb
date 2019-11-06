@@ -1,16 +1,16 @@
 <!-- Zomato CARD -->
 <div class="col-xl-12 col-md-12 mb-2">
-  <div class="card border-left-danger shadow h-200 py-2 pl-4 d-flex flex-row card-touchup">
+  <div class="card border-left-warning shadow h-200 py-2 pl-4 d-flex flex-row card-touchup">
 <!--     left-side-->
     <div>
       <div class="d-flex position pb-1">
         <img class = 'avatar' src="https://images.pexels.com/photos/736716/pexels-photo-736716.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500" alt=""> <!-- Replace with review.user_image-->
         <div class = 'namebox my-auto'>Johannes longname <!-- Replace with: review.user_name--></div>
         <div class = "px-2 my-auto">
-          <% 3.times do  %> <!-- Replace 3 with review.rating-->
+          <% 5.times do  %> <!-- Replace 3 with review.rating-->
           <span class="fa fa-star checked" style="color: #F5A431"></span>
           <% end %>
-          <% (5 - 3).times do %> <!-- Replace 3 with review.rating-->
+          <% (5 - 5).times do %> <!-- Replace 3 with review.rating-->
           <span class="fa fa-star" style="color: #CDCDCD"></span>
           <% end %>
         </div>
@@ -24,8 +24,8 @@
 <!--     right side-->
     <div class="d-flex flex-column px-2 justify-content-between">
       <i class="fas fa-external-link-square-alt open-link"></i>
-      <div class = "logo-button-white">
-        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/ef/Zomato-flat-logo.png/200px-Zomato-flat-logo.png" alt="">
+      <div class = "logo-button-white-lg">
+        <img src="https://dlpcapitalpartners.com/wp-content/uploads/2019/01/yelp-logo.png" alt="">
       </div>
     </div>
   </div>
