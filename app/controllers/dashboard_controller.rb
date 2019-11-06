@@ -54,8 +54,7 @@ def scrape_tripadvisor
   url = params[:url]
   serialized = open(url).read
   parsed = Nokogiri.parse(serialized)
-  counter = 0
-  10.times do
+  for counter  in  1..10 do
     review = TA_Review.new
     review.rating_date = parsed.search('.ratingDate')[counter].attributes['title']
     review.title = parsed.search('.noQuotes')[counter].text.strip
@@ -65,7 +64,6 @@ def scrape_tripadvisor
     # this returns a string like "ui_bubble_rating bubble_10" / 20 / 30 / 40 / 50 depending on the star rating
     review.rating = rate[-2].to_i
     review.save
-    counter += 1
   end
 
 end
