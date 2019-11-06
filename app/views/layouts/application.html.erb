@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <title>Spotlight - <%= current_user.present? ? current_user.restaurant.name : "Shine a light on your restaurant performance" %></title>
+    <title>Spotlight - <%#= current_user.present? ? current_user.restaurant.name : "Shine a light on your restaurant performance" %></title>
     <%= csrf_meta_tags %>
     <%= action_cable_meta_tag %>
     <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
@@ -14,10 +14,10 @@
   <body>
     <div id="wrapper">
 
-      <%= render 'shared/sidebar' unless !current_user.present? || devise_controller? %>
+      <%= render 'shared/sidebar' unless !current_user.present? || devise_controller? || controller.controller_name == "landing_page" || controller.controller_name == "restaurants" %>
       <!-- Content Wrapper -->
       <div id="content-wrapper" class="d-flex flex-column">
-        <%= render 'shared/top_bar' unless !current_user.present? || devise_controller? %>
+        <%= render 'shared/top_bar' unless !current_user.present? || devise_controller? || controller.controller_name == "landing_page" || controller.controller_name == "restaurants" %>
         <!-- Main Content -->
         <div id="content">
           <!-- Begin Page Content -->
@@ -34,6 +34,7 @@
     <%= render 'shared/logout_modal' %>
     <%= javascript_include_tag 'application' %>
     <%= javascript_pack_tag 'application' %>
-    <%= javascript_pack_tag 'sidebar' %>
+    <%= javascript_include_tag "https://maps.googleapis.com/maps/api/js?libraries=places&key=#{ENV['GOOGLE_API_KEY']}" %>
+    <%= javascript_pack_tag 'sidebar' unless !current_user.present? || devise_controller? || controller.controller_name == "landing_page" || controller.controller_name == "restaurants" %>
   </body>
 </html>

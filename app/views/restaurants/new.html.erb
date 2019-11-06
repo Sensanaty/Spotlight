@@ -1,0 +1,25 @@
+<div class="container">
+  <%= render 'shared/landing_nav_bar' %>
+</div>
+<div class="container">
+  <div class="row">
+    <div class="col-6 mx-auto">
+      <h2>Find your restaurant</h2>
+      <p>We use Google Maps to find your restaurant, make sure it's listed there!</p>
+      <form action="" class="my-4">
+      <label for="restaurant_selector">Find your restaurant</label>
+      <input type="text" id="restaurant_selector" placeholder="Find your restaurant" class="form-control">
+      </form>
+
+      <%= simple_form_for @restaurant do |f| %>
+        <%= f.input :name %>
+        <%= f.input :address %>
+        <%= f.input :cuisine %>
+        <%= f.input :price_level %>
+        <%= f.input :photo %>
+        <%= f.input :photo_cache, as: :hidden %>
+        <%= f.button :submit %>
+      <% end %>
+    </div>
+  </div>
+</div>
