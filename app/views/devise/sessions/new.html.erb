@@ -1,4 +1,7 @@
 <div class="container">
+  <%= render 'shared/landing_nav_bar' %>
+</div>
+<div class="container">
   <div class="row">
     <div class="col-6 mx-auto">
       <h2>Log in</h2>
@@ -16,7 +19,7 @@
         </div>
 
         <div class="form-actions">
-          <%= f.button :submit, "Log in" %>
+          <%= f.button :submit, "Log in", class: 'btn-flat' %>
         </div>
       <% end %>
 
