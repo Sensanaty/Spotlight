@@ -63,7 +63,7 @@
           </div>
           <div>
             <div class="small text-gray-500">December 12, 2019</div>
-            <span class="font-weight-bold">A new monthly report is ready to download!</span>
+            <span class="font-weight-bold">You got a new 5 star review!</span>
           </div>
         </a>
         <a class="dropdown-item d-flex align-items-center" href="#">
@@ -74,7 +74,7 @@
           </div>
           <div>
             <div class="small text-gray-500">December 7, 2019</div>
-            $290.29 has been deposited into your account!
+              Your account is due for renewal in 30 days.
           </div>
         </a>
         <a class="dropdown-item d-flex align-items-center" href="#">
@@ -85,7 +85,7 @@
           </div>
           <div>
             <div class="small text-gray-500">December 2, 2019</div>
-            Spending Alert: We've noticed unusually high spending for your account.
+              Check your performance for November now.
           </div>
         </a>
         <a class="dropdown-item text-center small text-gray-500" href="#">Show All Alerts</a>
@@ -98,7 +98,13 @@
     <li class="nav-item dropdown no-arrow">
       <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
         <span class="mr-2 d-none d-lg-inline text-gray-600 small"><%= current_user.first_name %> <%= current_user.last_name %></span>
-        <img class="img-profile rounded-circle" src="https://source.unsplash.com/QAB-WJcbgJk/60x60">
+        <% if current_user.photo.blank? %>
+          <%= image_tag 'default_user_icon.png', class: 'img-profile rounded-circle' %>
+        <% else %>
+          <%= cl_image_tag current_user.photo, class: 'img-profile rounded-circle' %>
+        <% end %>
+
+        <!-- <img class="img-profile rounded-circle" src="https://source.unsplash.com/QAB-WJcbgJk/60x60"> -->
       </a>
       <!-- Dropdown - User Information -->
       <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">
