@@ -6,5 +6,5 @@ class Restaurant < ApplicationRecord
   validates :cuisine, inclusion: { in: CUISINES }
   validates :price_level, inclusion: { in: [1, 2, 3] }
   belongs_to :user
-  #add has_many?
+  has_many :google_reviews
 end

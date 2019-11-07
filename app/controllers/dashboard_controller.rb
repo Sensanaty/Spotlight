@@ -1,18 +1,20 @@
+
 class DashboardController < ApplicationController
   def home
     @restaurant = Restaurant.find_by(user_id: current_user)
   end
 
   def feed
-    # @restaurant = Restaurant.find_by(user_id: current_user)
+    @restaurant = Restaurant.find_by(user_id: current_user)
     # @yelp_reviews = @restaurant.yelp_reviews.all.sort_by(&:rating)
-    # @reviews_google = @restaurant.reviews_google.all
+    @google_reviews = @restaurant.google_reviews.all
     # @reviews_zomato = @restaurant.reviews_zomato.all
+
   end
 
   def explore
   end
-  
+
   def scrape_tripadvisor
     url = params[:url]
     serialized = open(url).read
@@ -28,4 +30,5 @@ class DashboardController < ApplicationController
       review.rating = rate[-2].to_i
       review.save
     end
+  end
 end

@@ -19,8 +19,8 @@ user_info = {
 
 restaurant_logo_url = "http://www.pizzaeast.com/assets/logo-black.png"
 restaurant_info = {
-  name: "Pizza East",
-  address: "310 Portobello Rd, London W10 5TA, United Kingdom",
+  name: "Square One",
+  address: "Danau Tamblingan No.51, Sanur, Kec. Denpasar Sel., Kota Denpasar, Bali 80228",
   cuisine: 'Pizza',
   price_level: 2
 }
