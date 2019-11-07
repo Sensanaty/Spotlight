@@ -1,16 +1,14 @@
 <!-- @restaurant -->
 
 
-<%# @reviews_google.each do |review| %>
-  <%#= render 'pages/googlecard', review: review %>
-<%# end %>
+<% @google_reviews.each do |review| %>
+  <%= render 'pages/googlecard', review: review %>
+<% end %>
 
 
 <%= render "pages/zomato_feed_card" %>
-<%= render "pages/googlecard" %>
 <%= render "pages/yelp_feed_card" %>
 <%= render "pages/zomato_feed_card" %>
-<%= render "pages/googlecard" %>
 <%= render "pages/yelp_feed_card" %>
 
 
