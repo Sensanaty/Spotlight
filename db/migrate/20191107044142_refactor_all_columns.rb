@@ -8,7 +8,7 @@ class RefactorAllColumns < ActiveRecord::Migration[5.2]
       t.string :reviewer_profile_url
       t.string :review_text
       t.float :rating
-      t.datetime :review_time
+      t.integer :review_time
       
       t.references :restaurant, foreign_key: true
       t.timestamps
@@ -21,7 +21,7 @@ class RefactorAllColumns < ActiveRecord::Migration[5.2]
       t.string :reviewer_profile_url
       t.string :review_text
       t.float :rating
-      t.datetime :review_time
+      t.integer :review_time
   
       t.references :restaurant, foreign_key: true
       t.timestamps
@@ -34,7 +34,7 @@ class RefactorAllColumns < ActiveRecord::Migration[5.2]
       t.string :reviewer_profile_url
       t.string :review_text
       t.float :rating
-      t.datetime :review_time
+      t.integer :review_time
   
       t.references :restaurant, foreign_key: true
       t.timestamps
