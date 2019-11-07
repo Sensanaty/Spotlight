@@ -5,10 +5,13 @@
   <%= render 'pages/googlecard', review: review %>
 <% end %>
 
+<% @yelp_reviews.each do |review| %>
+  <%= render 'pages/yelp_feed_card', review: review %>
+<% end %>
+
 
 <%= render "pages/zomato_feed_card" %>
-<%= render "pages/yelp_feed_card" %>
 <%= render "pages/zomato_feed_card" %>
-<%= render "pages/yelp_feed_card" %>
+
 
 

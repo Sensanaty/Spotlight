@@ -7,4 +7,5 @@ class Restaurant < ApplicationRecord
   validates :price_level, inclusion: { in: [1, 2, 3] }
   belongs_to :user
   has_many :google_reviews
+  has_many :yelp_reviews
 end

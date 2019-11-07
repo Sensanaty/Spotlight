@@ -29,8 +29,14 @@ yelp_review_info = {
   user_name: "Johannes",
   review_timestamp: "19-03-1987",
   rating: 4,
-  review: "super awesome place",
-  user_image: "https://i.pinimg.com/236x/93/ec/45/93ec4564a02cbbc3b64aad49dbb183f6.jpg",
+  review: "We've been there yesterday. Nice cocktails (mojito) and
+  very kind waiters. We didn't have luck with the bill though. Sign at
+  the entry says 2 for 1 including cocktails. At the end we were told
+  this is not applicable for mojitos...don't get me wrong, still
+  reasonable prices but we left with a bad gut feeling. Would go there
+  again, but would make sure to ask for prices right from the start.",
+  user_image:
+  "https://i.pinimg.com/236x/93/ec/45/93ec4564a02cbbc3b64aad49dbb183f6.jpg",
   #profile_url: "https://www.google.com"
 }
 
