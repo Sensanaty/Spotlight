@@ -1,0 +1,16 @@
+<!-- Sign up card start -->
+<div class="sign-up-card mb-5">
+  <div class="sign-up-header">
+    <h3>Get started with Spotlight</h3>
+  </div>
+  <div class="sign-up-progress">
+    <div class="row h-100">
+      <div class="col-4 sign-up-progress-element"><div class="sign-up-stage <%= 'current-stage' if controller_name == "registrations" %>">1</div>Create Account</div>
+      <div class="col-4 sign-up-progress-element"><div class="sign-up-stage <%= 'current-stage' if controller_name == "restaurants" %>">2</div>Find Your Restaurant</div>
+      <div class="col-4 sign-up-progress-element"><div class="sign-up-stage <%= 'current-stage' if action_name == "payment" %>">3</div>Setup Payment</div>
+    </div>
+  </div>
+  <div class="sign-up-content p-5">
+      <%= render form_to_show, item: item  %>
+  </div>
+</div>
