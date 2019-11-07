@@ -12,18 +12,20 @@
         <%= f.button :submit %>
       <% end %>
     </div>
-    <div class="col-md-12 col-lg-6">
-      <h1>Edit restaurant</h1>
-       <%= simple_form_for @restaurant do |f| %>
-        <%= f.input :name %>
-        <%= f.input :address %>
-        <%= f.input :cuisine %>
-        <%= f.input :price_level %>
-        <%= f.input :photo %>
-        <%= f.input :photo_cache, as: :hidden %>
-        <%= f.button :submit %>
-      <% end %>
-    </div>
+    <% unless !@restaurant %>
+      <div class="col-md-12 col-lg-6">
+        <h1>Edit restaurant</h1>
+         <%= simple_form_for @restaurant do |f| %>
+          <%= f.input :name %>
+          <%= f.input :address %>
+          <%= f.input :cuisine %>
+          <%= f.input :price_level %>
+          <%= f.input :photo %>
+          <%= f.input :photo_cache, as: :hidden %>
+          <%= f.button :submit %>
+        <% end %>
+      </div>
+    <% end %>
   </div>
 </div>
 
