@@ -1,0 +1,16 @@
+<div class="card shadow h-200 dash-card add-channel-card">
+  <div class="add-channel-card-inner card shadow h-200 dash-card add-channel-card">
+    <div class="add-channel-card-front dash-card">
+      <div class="text-center">
+        <i class="fas fa-plus-circle add-channel-icon"></i>
+        <div class="d-flex">
+          <%= image_tag channel_logo, class: 'logo-button-white shadow-sm' %>
+          <h5>&nbsp;&nbsp;Add <%= channel_name %></h5>
+        </div>
+      </div>
+    </div>
+    <div class="add-channel-card-back dash-card" style='background-color: <%= channel_color %>'">
+      <h5>Add <%= channel_name %> to your Spotlight</h5>
+    </div>
+  </div>
+</div>

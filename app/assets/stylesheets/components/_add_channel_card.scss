@@ -1,0 +1,40 @@
+.add-channel-card {
+  background-color: transparent;
+  perspective: 1000px;
+
+  &:hover .add-channel-card-inner { transform: rotateY(180deg); }
+
+  .add-channel-icon {
+    font-size: 100px;
+    margin: 20px;
+    color: rgba(0,0,50,0.2)
+  }
+
+  .add-channel-card-inner {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    text-align: center;
+    transition: transform 0.8s;
+    transform-style: preserve-3d;
+    }
+
+  .add-channel-card-front, .add-channel-card-back {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    backface-visibility: hidden;
+    }
+
+  .add-channel-card-front {
+    background-color: $light-pale-blue;
+  }
+
+  .add-channel-card-back {
+    background-color: $light-pale-blue;
+    transform: rotateY(180deg);
+  }
+}
