@@ -1,6 +1,7 @@
 # rubocop:disable Lint/UselessAssignment
 require 'open-uri'
 require 'json'
+require 'pry-byebug'
 
 class YelpFetcherService
   def initialize(name, location)
@@ -18,7 +19,8 @@ class YelpFetcherService
     review_uri = "https://api.yelp.com/v3/businesses/#{restaurant_id}/reviews"
     serialized_reviews = RestClient.get(review_uri, headers = { 'Authorization': "Bearer #{ENV['YELP_API_KEY']}" })
     parsed_places = JSON.parse(serialized_reviews)
-
+  
+    # p parsed_places
     parsed_places["reviews"].each do |review|
       YelpReview.create(reviewer_image: review["user"]["image_url"],
                         reviewer_username: review["user"]["name"],
@@ -28,6 +30,7 @@ class YelpFetcherService
                         review_time: Time.new(review["time_created"]).to_i, # Convert to UNIX time for better storage
                         restaurant_id: relate_restaurant_id)
     end
+
   end
 
 end
