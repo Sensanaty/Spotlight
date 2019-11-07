@@ -16,14 +16,19 @@
   width: 200px;
 }
 
-.landing-section-1 {
-  height: 100vh;
-  background-size: cover;
-  background-position: center;
+.landing-section {
+  color: white;
+  padding: 80px 0;
+  min-height: 200px;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .landing-content {
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
 }
@@ -48,4 +53,8 @@
   color: white;
   opacity: .7;
   text-shadow: 1px 1px 3px rgba(0,0,0,0.2);
+}
+
+.landing-section-image {
+  width: 80%
 }

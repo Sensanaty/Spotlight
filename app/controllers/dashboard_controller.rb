@@ -1,5 +1,7 @@
 
 class DashboardController < ApplicationController
+  before_action :authenticate_user!
+
   def home
     @restaurant = Restaurant.find_by(user_id: current_user)
   end
@@ -13,8 +15,9 @@ class DashboardController < ApplicationController
   end
 
   def explore
+    @restaurant = Restaurant.find_by(user_id: current_user)
   end
-
+  
   def scrape_tripadvisor
     url = params[:url]
     serialized = open(url).read
@@ -31,4 +34,5 @@ class DashboardController < ApplicationController
       review.save
     end
   end
+  
 end
