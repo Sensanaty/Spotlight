@@ -17,7 +17,7 @@ class DashboardController < ApplicationController
   def explore
     @restaurant = Restaurant.find_by(user_id: current_user)
   end
-  
+
   def scrape_tripadvisor
     url = params[:url]
     serialized = open(url).read
@@ -34,5 +34,50 @@ class DashboardController < ApplicationController
       review.save
     end
   end
-  
+
+  def acquire_all_review_urls
+    # url here is the first page of the restaurant, which contains reviews, starting from the first ten
+    pages = []
+    url = params[:url]
+    serialized = open(url).read
+    parsed = Nokogiri.parse(serialized)
+    # this for...end acquires the first 6 urls
+    for page in 0..7 do
+    if parsed.search('.pageNumbers > a')[page].attributes['href'] != nil
+      next_page = parsed.search('.pageNumbers > a')[page].attributes['href'].value
+      new_url = "https://www.tripadvisor.com/#{next_page}"
+      pages << new_url
+    end
+    end
+
+    finished = false
+
+    while finished == false do
+      url = pages[-1]
+      serialized = open(url).read
+      parsed = Nokogiri.parse(serialized)
+      if parsed.search('.pageNumbers > a').size < 9
+        finished = true
+        next_page = parsed.search('.pageNumbers > a')[-3].attributes['href'].value
+        new_url = "https://www.tripadvisor.com/#{next_page}"
+        next_page2 = parsed.search('.pageNumbers > a')[-2].attributes['href'].value
+        new_url2 = "https://www.tripadvisor.com/#{next_page2}"
+        next_page3 = parsed.search('.pageNumbers > a')[-1].attributes['href'].value
+        new_url3 = "https://www.tripadvisor.com/#{next_page3}"
+        pages << new_url
+        pages << new_url2
+        pages << new_url3
+      else
+        next_page = parsed.search('.pageNumbers > a')[-4].attributes['href'].value
+        new_url = "https://www.tripadvisor.com/#{next_page}"
+        next_page2 = parsed.search('.pageNumbers > a')[-3].attributes['href'].value
+        new_url2 = "https://www.tripadvisor.com/#{next_page2}"
+        pages << new_url
+        pages << new_url2
+      end
+  end
+
 end
+
+acquire_all_review_urls
+# scraperapi
