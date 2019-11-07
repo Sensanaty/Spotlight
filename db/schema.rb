@@ -21,7 +21,7 @@ ActiveRecord::Schema.define(version: 2019_11_07_070630) do
     t.string "reviewer_profile_url"
     t.string "review_text"
     t.float "rating"
-    t.datetime "review_time"
+    t.integer "review_time"
     t.bigint "restaurant_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -104,7 +104,7 @@ ActiveRecord::Schema.define(version: 2019_11_07_070630) do
     t.string "reviewer_profile_url"
     t.string "review_text"
     t.float "rating"
-    t.datetime "review_time"
+    t.integer "review_time"
     t.bigint "restaurant_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -117,7 +117,7 @@ ActiveRecord::Schema.define(version: 2019_11_07_070630) do
     t.string "reviewer_profile_url"
     t.string "review_text"
     t.float "rating"
-    t.datetime "review_time"
+    t.integer "review_time"
     t.bigint "restaurant_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
