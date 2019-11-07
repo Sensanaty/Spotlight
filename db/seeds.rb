@@ -1,12 +1,3 @@
-# This file should contain all the record creation needed to seed the database with its default values.
-# The data can then be loaded with the rails db:seed command (or created alongside the database with db:setup).
-#
-# Examples:
-#
-#   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
-#   Character.create(name: 'Luke', movie: movies.first)
-
-
 Restaurant.destroy_all
 User.destroy_all
 
@@ -19,8 +10,8 @@ user_info = {
 
 restaurant_logo_url = "http://www.pizzaeast.com/assets/logo-black.png"
 restaurant_info = {
-  name: "Square One",
-  address: "Danau Tamblingan No.51, Sanur, Kec. Denpasar Sel., Kota Denpasar, Bali 80228",
+  name: "Merci Marcel",
+  address: "56 Eng Hoon St, #01-68, Singapore 160056",
   cuisine: 'Pizza',
   price_level: 2
 }
@@ -36,3 +27,4 @@ new_restaurant.remote_photo_url = restaurant_logo_url
 new_user.save
 new_restaurant.save
 GoogleFetcherService.new(new_restaurant.name).grab_place(new_restaurant.id)
+YelpFetcherService.new(new_restaurant.name, new_restaurant.address).grab_place(new_restaurant.id)

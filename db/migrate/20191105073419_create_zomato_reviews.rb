@@ -4,8 +4,9 @@ class CreateZomatoReviews < ActiveRecord::Migration[5.2]
       t.string :review_title
       t.text :review_text
       t.integer :rating
-      t.string :review_time
+      t.datetime :review_time
       t.string :reviewer
+      t.references :restaurant, foreign_key: true
 
       t.timestamps
     end

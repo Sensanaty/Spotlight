@@ -1,14 +1,17 @@
 <!-- @restaurant -->
 
 
-<% @google_reviews.each do |review| %>
-  <%= render 'pages/googlecard', review: review %>
+<% @all_reviews.each do |review| %>
+    <% if review.review_type == "GoogleReview" %>
+      <%= render 'pages/googlecard', review: review %>
+    <% elsif review.review_type == "YelpReview" %>
+      <%= render 'pages/yelp_feed_card', review: review %>
+    <% end %>
 <% end %>
 
 
 <%= render "pages/zomato_feed_card" %>
-<%= render "pages/yelp_feed_card" %>
 <%= render "pages/zomato_feed_card" %>
-<%= render "pages/yelp_feed_card" %>
+
 
 
