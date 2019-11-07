@@ -33,6 +33,11 @@
               <%= f.input :last_name,
                           required: true,
                           input_html: { autocomplete: "last_name" }%>
+              <%= f.input :photo,
+                          label: 'Profile Photo',
+                          required: false,
+                          autofocus: false %>
+              <%= f.input :photo_cache, as: :hidden %>
               <%= f.input :password,
                           required: true,
                           hint: ("#{@minimum_password_length} characters minimum" if @minimum_password_length),

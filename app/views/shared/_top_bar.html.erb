@@ -98,7 +98,13 @@
     <li class="nav-item dropdown no-arrow">
       <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
         <span class="mr-2 d-none d-lg-inline text-gray-600 small"><%= current_user.first_name %> <%= current_user.last_name %></span>
-        <img class="img-profile rounded-circle" src="https://source.unsplash.com/QAB-WJcbgJk/60x60">
+        <% if current_user.photo.blank? %>
+          <%= image_tag 'default_user_icon.png', class: 'img-profile rounded-circle' %>
+        <% else %>
+          <%= cl_image_tag current_user.photo, class: 'img-profile rounded-circle' %>
+        <% end %>
+
+        <!-- <img class="img-profile rounded-circle" src="https://source.unsplash.com/QAB-WJcbgJk/60x60"> -->
       </a>
       <!-- Dropdown - User Information -->
       <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">
