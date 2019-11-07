@@ -8,7 +8,7 @@ class GoogleReview < ApplicationRecord
     RestaurantReview.create(
       restaurant_id: self.restaurant_id,
       review: self,
-      date: self.review_date, #check with Luca on new date name for google review
+      datetime: self.review_time, #check with Luca on new date name for google review
       rating: self.rating #check for naming/type of rating in google review
       )
   end
