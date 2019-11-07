@@ -3,6 +3,8 @@
   <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="google-signin-client_id" content="493780729821-g64e09391nrmli9egd0hb518kp8dh4qt.apps.googleusercontent.com">
+
     <title>Spotlight - <%= current_user.present? && current_user.restaurant.present? ? current_user.restaurant.name : "Shine a light on your restaurant performance" %></title>
     <%= csrf_meta_tags %>
     <%= action_cable_meta_tag %>
@@ -33,6 +35,7 @@
     <%= javascript_include_tag 'application' %>
     <%= javascript_pack_tag 'application' %>
     <%= javascript_include_tag "https://maps.googleapis.com/maps/api/js?libraries=places&key=#{ENV['GOOGLE_API_KEY']}" %>
+    <%= javascript_include_tag "https://apis.google.com/js/platform.js" %>
     <%= javascript_pack_tag 'sidebar' unless !current_user.present? || devise_controller? || controller.controller_name == "landing_page" || controller.controller_name == "restaurants" || controller.action_name == "payment" %>
   </body>
 </html>

@@ -11,7 +11,7 @@ class RestaurantsController < ApplicationController
     @restaurant.user = current_user
 
     if @restaurant.save!
-      redirect_to payment_users
+      redirect_to payment_users_path
     else
       render :new
     end
