@@ -1,1 +1,11 @@
-<h1>Add your restaurant to get started!</h1>
+<div class="container h-100">
+  <div class="row h-100 align-items-center">
+    <div class="col-12 text-center">
+      <%= image_tag 'undraw_not_found.svg', class: "mb-5", style: 'width: 35%' %>
+      <h2>Oops, looks like you haven't added your restaurant yet!</h2>
+      <h5 class="mb-4">Add yours to get started now.</h5>
+      <%= link_to "Add restaurant", new_restaurant_path, class: 'btn-flat' %>
+    </div>
+  </div>
+</div>
+
