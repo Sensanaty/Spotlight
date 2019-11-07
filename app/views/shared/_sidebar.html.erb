@@ -24,21 +24,25 @@
         <span>Dashboard</span></a>
     <% end %>
   </li>
-  <li class="nav-item <%= 'active' if action_name == "feed" %>" id="feed-sidebar-link">
-    <%= link_to dashboard_feed_path, class: 'nav-link' do %>
-        <i class="fas fa-list"></i>
-        <span>Feed</span></a>
-    <% end %>
-  </li>
-  <li class="nav-item <%= 'active' if action_name == "explore" %>" id="explore-sidebar-link">
-    <%= link_to dashboard_explore_path, class: 'nav-link' do %>
-        <i class="fas fa-globe-europe"></i>
-        <span>Explore</span></a>
-    <% end %>
-  </li>
+  <% unless !@restaurant %>
+    <li class="nav-item <%= 'active' if action_name == "feed" %>" id="feed-sidebar-link">
+      <%= link_to dashboard_feed_path, class: 'nav-link' do %>
+          <i class="fas fa-list"></i>
+          <span>Feed</span></a>
+      <% end %>
+    </li>
+  <% end %>
+  <% unless !@restaurant %>
+    <li class="nav-item <%= 'active' if action_name == "explore" %>" id="explore-sidebar-link">
+      <%= link_to dashboard_explore_path, class: 'nav-link' do %>
+          <i class="fas fa-globe-europe"></i>
+          <span>Explore</span></a>
+      <% end %>
+    </li>
+  <% end %>
 
   <!-- Divider -->
-  <hr class="sidebar-divider d-none d-md-block">
+  <hr class="sidebar-divider d-none d-md-block mt-4">
 
   <!-- Sidebar Toggler (Sidebar) -->
   <div class="text-center d-none d-md-inline">
