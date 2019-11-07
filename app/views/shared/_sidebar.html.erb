@@ -7,10 +7,10 @@
     </div>
     <div class="mx-3 my-4">
       <%= if current_user.restaurant
-            if current_user.restaurant.photo
-              cl_image_tag current_user.restaurant.photo, class: 'sidebar-brand-image'
+            if current_user.restaurant.photo.blank?
+              "#{current_user.restaurant.name}"
             else
-              current_user.restaurant.name
+              cl_image_tag current_user.restaurant.photo, class: 'sidebar-brand-image'
             end
           else
             "SPOTLIGHT"
