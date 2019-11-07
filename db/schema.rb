@@ -38,6 +38,16 @@ ActiveRecord::Schema.define(version: 2019_11_07_044142) do
     t.index ["user_id"], name: "index_orders_on_user_id"
   end
 
+  create_table "restaurant_reviews", force: :cascade do |t|
+    t.bigint "restaurant_id"
+    t.string "review_type"
+    t.bigint "review_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["restaurant_id"], name: "index_restaurant_reviews_on_restaurant_id"
+    t.index ["review_type", "review_id"], name: "index_restaurant_reviews_on_review_type_and_review_id"
+  end
+
   create_table "restaurants", force: :cascade do |t|
     t.string "name"
     t.string "address"
@@ -113,6 +123,7 @@ ActiveRecord::Schema.define(version: 2019_11_07_044142) do
 
   add_foreign_key "google_reviews", "restaurants"
   add_foreign_key "orders", "users"
+  add_foreign_key "restaurant_reviews", "restaurants"
   add_foreign_key "restaurants", "users"
   add_foreign_key "yelp_reviews", "restaurants"
   add_foreign_key "zomato_reviews", "restaurants"
