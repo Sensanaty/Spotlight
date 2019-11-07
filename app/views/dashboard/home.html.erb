@@ -1,7 +1,7 @@
 <div class="h-200 d-flex justify-content-around flex-row mx-auto dash-sum-box">
   <div class="container">
     <h3>Performance Overview</h3>
-    <h5><strong><%= @restaurant.name.upcase %></strong></h5>
+    <h5><strong><%= @restaurant.name.upcase if @restaurant %></strong></h5>
     <div class="d-flex">
       <div class="google-chart-1" style="width: 200px">
         <!-- Google Chart 1 -->

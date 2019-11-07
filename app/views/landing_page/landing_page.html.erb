@@ -5,13 +5,31 @@
 <div class="landing-content">
   <div class="banner" style="background-image: linear-gradient(rgba(0,0,0,0.4),rgba(0,0,0,0.4)), url(<%= asset_path 'landing-temporary.jpg' %>);">
     <div class="container">
-      <h1>Welcome to <strong>Spotlight</strong>.</h1>
+      <h1><strong>Spotlight</strong>.</h1>
       <p>Shine a light on your restaurants performance.</p>
       <a class="btn btn-flat" href="#">Apply now</a>
     </div>
   </div>
-
-    <%= javascript_include_tag 'application' %>
-    <%= javascript_pack_tag 'application' %>
+  <div class="landing-section" id="what-is-spotlight" style="background-color: #023436">
+    <div class="container">
+      <div class="row">
+        <div class="col-6">
+          <%= image_tag 'undraw_chef.svg', class: 'landing-section-image' %>
+        </div>
+        <div class="col-6">
+          <h3>What's Spotlight?</h3>
+        </div>
+      </div>
+    </div>
   </div>
-</html>
+  <div class="landing-section" id="how-it-works" style="background-color: #3DD6D0">
+    <div class="container text-center">
+      <h3>How it works</h3>
+    </div>
+  </div>
+  <div class="landing-section" id="pricing" style="background-color: #3DD6D0">
+    <div class="container text-center">
+      <h3>Pricing</h3>
+    </div>
+  </div>
+</div>

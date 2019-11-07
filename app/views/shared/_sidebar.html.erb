@@ -6,7 +6,15 @@
     <div class="sidebar-brand-icon rotate-n-15">
     </div>
     <div class="mx-3 my-4">
-      <%= cl_image_tag current_user.restaurant.photo, class: 'sidebar-brand-image' %>
+      <%= if current_user.restaurant
+            if current_user.restaurant.photo
+              cl_image_tag current_user.restaurant.photo, class: 'sidebar-brand-image'
+            else
+              current_user.restaurant.name
+            end
+          else
+            "SPOTLIGHT"
+          end %>
     </div>
   <% end %>
   <!-- Nav Item - Dashboard -->
