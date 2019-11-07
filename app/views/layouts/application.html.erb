@@ -3,7 +3,9 @@
   <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <title>Spotlight - <%#= current_user.present? ? current_user.restaurant.name : "Shine a light on your restaurant performance" %></title>
+    <meta name="google-signin-client_id" content="493780729821-g64e09391nrmli9egd0hb518kp8dh4qt.apps.googleusercontent.com">
+
+    <title>Spotlight - <%= current_user.present? && current_user.restaurant.present? ? current_user.restaurant.name : "Shine a light on your restaurant performance" %></title>
     <%= csrf_meta_tags %>
     <%= action_cable_meta_tag %>
     <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
@@ -14,10 +16,10 @@
   <body>
     <div id="wrapper">
 
-      <%= render 'shared/sidebar' unless !current_user.present? || devise_controller? || controller.controller_name == "landing_page" || controller.controller_name == "restaurants" %>
+      <%= render 'shared/sidebar' unless !current_user.present? || devise_controller? || controller.controller_name == "landing_page" || controller.controller_name == "restaurants" || controller.action_name == "payment" %>
       <!-- Content Wrapper -->
       <div id="content-wrapper" class="d-flex flex-column">
-        <%= render 'shared/top_bar' unless !current_user.present? || devise_controller? || controller.controller_name == "landing_page" || controller.controller_name == "restaurants" %>
+        <%= render 'shared/top_bar' unless !current_user.present? || devise_controller? || controller.controller_name == "landing_page" || controller.controller_name == "restaurants" || controller.action_name == "payment" %>
         <!-- Main Content -->
         <div id="content">
           <!-- Begin Page Content -->
@@ -33,6 +35,7 @@
     <%= javascript_include_tag 'application' %>
     <%= javascript_pack_tag 'application' %>
     <%= javascript_include_tag "https://maps.googleapis.com/maps/api/js?libraries=places&key=#{ENV['GOOGLE_API_KEY']}" %>
-    <%= javascript_pack_tag 'sidebar' unless !current_user.present? || devise_controller? || controller.controller_name == "landing_page" || controller.controller_name == "restaurants" %>
+    <%= javascript_include_tag "https://apis.google.com/js/platform.js" %>
+    <%= javascript_pack_tag 'sidebar' unless !current_user.present? || devise_controller? || controller.controller_name == "landing_page" || controller.controller_name == "restaurants" || controller.action_name == "payment" %>
   </body>
 </html>

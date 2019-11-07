@@ -10,20 +10,18 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_11_07_032356) do
+ActiveRecord::Schema.define(version: 2019_11_07_070630) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
   create_table "google_reviews", force: :cascade do |t|
-    t.string "formatted_address"
-    t.float "latitude"
-    t.float "longitude"
-    t.string "name"
+    t.string "reviewer_image"
+    t.string "reviewer_username"
+    t.string "reviewer_profile_url"
+    t.string "review_text"
     t.float "rating"
-    t.string "reviews"
-    t.string "types"
-    t.integer "user_ratings_total"
+    t.datetime "review_time"
     t.bigint "restaurant_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -47,6 +45,7 @@ ActiveRecord::Schema.define(version: 2019_11_07_032356) do
     t.datetime "review_time"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.float "rating"
     t.index ["restaurant_id"], name: "index_restaurant_reviews_on_restaurant_id"
     t.index ["review_type", "review_id"], name: "index_restaurant_reviews_on_review_type_and_review_id"
   end
@@ -94,17 +93,18 @@ ActiveRecord::Schema.define(version: 2019_11_07_032356) do
     t.string "facebook_picture_url"
     t.string "token"
     t.datetime "token_expiry"
+    t.string "photo"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
   create_table "yelp_reviews", force: :cascade do |t|
-    t.string "user_name"
-    t.datetime "review_timestamp"
+    t.string "reviewer_image"
+    t.string "reviewer_username"
+    t.string "reviewer_profile_url"
+    t.string "review_text"
     t.float "rating"
-    t.text "review"
-    t.string "user_image"
-    t.string "profile_url"
+    t.datetime "review_time"
     t.bigint "restaurant_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -112,14 +112,16 @@ ActiveRecord::Schema.define(version: 2019_11_07_032356) do
   end
 
   create_table "zomato_reviews", force: :cascade do |t|
-    t.string "review_title"
-    t.text "review_text"
-    t.integer "rating"
-    t.string "review_time"
-    t.string "reviewer"
+    t.string "reviewer_image"
+    t.string "reviewer_username"
+    t.string "reviewer_profile_url"
+    t.string "review_text"
+    t.float "rating"
+    t.datetime "review_time"
+    t.bigint "restaurant_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.string "profile_image"
+    t.index ["restaurant_id"], name: "index_zomato_reviews_on_restaurant_id"
   end
 
   add_foreign_key "google_reviews", "restaurants"
@@ -127,4 +129,5 @@ ActiveRecord::Schema.define(version: 2019_11_07_032356) do
   add_foreign_key "restaurant_reviews", "restaurants"
   add_foreign_key "restaurants", "users"
   add_foreign_key "yelp_reviews", "restaurants"
+  add_foreign_key "zomato_reviews", "restaurants"
 end
