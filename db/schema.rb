@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_11_06_080029) do
+ActiveRecord::Schema.define(version: 2019_11_07_032034) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -88,12 +88,12 @@ ActiveRecord::Schema.define(version: 2019_11_06_080029) do
   end
 
   create_table "yelp_reviews", force: :cascade do |t|
-    t.string "user_name"
+    t.string "reviewer_username"
     t.datetime "review_timestamp"
     t.float "rating"
     t.text "review"
-    t.string "user_image"
-    t.string "profile_url"
+    t.string "reviewer_image"
+    t.string "reviewer_profile_url"
     t.bigint "restaurant_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -104,15 +104,18 @@ ActiveRecord::Schema.define(version: 2019_11_06_080029) do
     t.string "review_title"
     t.text "review_text"
     t.integer "rating"
-    t.string "review_time"
-    t.string "reviewer"
+    t.datetime "review_time"
+    t.string "reviewer_username"
+    t.bigint "restaurant_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.string "profile_image"
+    t.string "reviewer_image"
+    t.index ["restaurant_id"], name: "index_zomato_reviews_on_restaurant_id"
   end
 
   add_foreign_key "google_reviews", "restaurants"
   add_foreign_key "orders", "users"
   add_foreign_key "restaurants", "users"
   add_foreign_key "yelp_reviews", "restaurants"
+  add_foreign_key "zomato_reviews", "restaurants"
 end
