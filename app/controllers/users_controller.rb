@@ -1,4 +1,6 @@
 class UsersController < ApplicationController
+  before_action :authenticate_user!, exclude: [:new, :create]
+
   def edit_profile
     @user = current_user
     @restaurant = Restaurant.find_by(user_id: current_user)
@@ -12,6 +14,9 @@ class UsersController < ApplicationController
     else
       render :edit_profile
     end
+  end
+
+  def payment
   end
 
   private

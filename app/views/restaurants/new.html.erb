@@ -1,7 +1,7 @@
 <div class="container">
   <%= render 'shared/landing_nav_bar' %>
 </div>
-<div class="container">
+<div class="container" style="min-height: calc(100vh - 122px)"">
   <div class="row">
     <div class="col-10 mx-auto">
 
@@ -12,14 +12,14 @@
         </div>
         <div class="sign-up-progress">
           <div class="row h-100">
-            <div class="col-4 sign-up-progress-element"><div class="sign-up-stage">1</div>Create Account</div>
+            <div class="col-4 sign-up-progress-element"><div class="sign-up-stage complete-stage">1</div>Create Account</div>
             <div class="col-4 sign-up-progress-element"><div class="sign-up-stage current-stage">2</div>Find Your Restaurant</div>
             <div class="col-4 sign-up-progress-element"><div class="sign-up-stage">3</div>Setup Payment</div>
           </div>
         </div>
         <div class="sign-up-content p-5">
           <!-- Sign up card content here: -->
-          <h2>Welcome, <strong class="spotlight-green"><%= current_user.first_name %></strong>! Find your restaurant</h2>
+          <h2>Hi <strong class="spotlight-green"><%= current_user.first_name %></strong>, let's find your restaurant</h2>
           <p>We use Google Maps to find your restaurant, make sure it's listed there!</p>
           <form action="" class="my-4">
           <label for="restaurant_selector">Find your restaurant</label>

@@ -14,10 +14,10 @@
   <body>
     <div id="wrapper">
 
-      <%= render 'shared/sidebar' unless !current_user.present? || devise_controller? || controller.controller_name == "landing_page" || controller.controller_name == "restaurants" %>
+      <%= render 'shared/sidebar' unless !current_user.present? || devise_controller? || controller.controller_name == "landing_page" || controller.controller_name == "restaurants" || controller.action_name == "payment" %>
       <!-- Content Wrapper -->
       <div id="content-wrapper" class="d-flex flex-column">
-        <%= render 'shared/top_bar' unless !current_user.present? || devise_controller? || controller.controller_name == "landing_page" || controller.controller_name == "restaurants" %>
+        <%= render 'shared/top_bar' unless !current_user.present? || devise_controller? || controller.controller_name == "landing_page" || controller.controller_name == "restaurants" || controller.action_name == "payment" %>
         <!-- Main Content -->
         <div id="content">
           <!-- Begin Page Content -->
@@ -33,6 +33,6 @@
     <%= javascript_include_tag 'application' %>
     <%= javascript_pack_tag 'application' %>
     <%= javascript_include_tag "https://maps.googleapis.com/maps/api/js?libraries=places&key=#{ENV['GOOGLE_API_KEY']}" %>
-    <%= javascript_pack_tag 'sidebar' unless !current_user.present? || devise_controller? || controller.controller_name == "landing_page" || controller.controller_name == "restaurants" %>
+    <%= javascript_pack_tag 'sidebar' unless !current_user.present? || devise_controller? || controller.controller_name == "landing_page" || controller.controller_name == "restaurants" || controller.action_name == "payment" %>
   </body>
 </html>
