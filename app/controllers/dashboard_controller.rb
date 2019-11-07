@@ -9,12 +9,7 @@ class DashboardController < ApplicationController
   def feed
     @restaurant = Restaurant.find_by(user_id: current_user)
     @all_reviews = @restaurant.restaurant_reviews
-    @yelp_reviews = @restaurant.yelp_reviews
-    @google_reviews = @restaurant.google_reviews
-    #@all_reviews_sorted = @all_reviews.sort_by {|r| r.rating}
-
-    # @reviews_zomato = @restaurant.reviews_zomato.all
-
+    @all_reviews_sorted = @all_reviews.sort_by {|obj| obj.review_time}.reverse
   end
 
   def explore

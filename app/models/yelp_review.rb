@@ -5,7 +5,7 @@ class YelpReview < ApplicationRecord
   after_create :generate_restaurant_review
 
   def generate_restaurant_review
-    RestaurantReview.create(
+    resto = RestaurantReview.create!(
       restaurant_id: self.restaurant_id,
       review: self,
       review_time: self.review_time, # check with Luca on new date name for google review

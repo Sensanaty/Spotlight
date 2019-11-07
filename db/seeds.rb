@@ -33,9 +33,14 @@ puts "\nFetching from Google"
 GoogleFetcherService.new(new_restaurant.name).grab_place(new_restaurant.id)
 puts "Google Fetched!"
 
+puts GoogleReview.last.restaurant_review.review_time
+
 puts "\nFetching from Yelp"
 YelpFetcherService.new(new_restaurant.name, new_restaurant.address).grab_place(new_restaurant.id)
 puts "Yelp Fetched!"
+
+puts YelpReview.last.restaurant_review.review_time
+
 
 puts "\nFetching from Zomato"
 ZomatoFetcherService.new(new_restaurant.name, new_restaurant.address).grab_place(new_restaurant.id)
