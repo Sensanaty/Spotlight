@@ -4,8 +4,8 @@
 <!--     left-side-->
     <div>
       <div class="d-flex position pb-1">
-        <img class = 'avatar' src=<%= review.user_image %> alt=""> <!-- Replace with review.user_image-->
-        <div class = 'namebox my-auto'><%=review.user_name%>  <!-- Replace with: review.user_name--></div>
+        <img class = 'avatar' src=<%= review.review.reviewer_image %> alt="">
+        <div class = 'namebox my-auto'><%=review.review.reviewer_username%></div>
         <div class = "px-2 my-auto">
           <% review.rating.to_i.times do  %> <!-- Replace 3 with -->
           <span class="fa fa-star checked" style="color: #F5A431"></span>
@@ -14,10 +14,11 @@
           <span class="fa fa-star" style="color: #CDCDCD"></span>
           <% end %>
         </div>
+        <p class = "my-auto timebox mx-2"><%#= review.review.review_time %></p>
         <p class = "my-auto" style="color: #E34444">NEW</p>
       </div>
       <div>
-        <%= review.review %>
+        <%= review.review.review_text %>
       </div>
     </div>
 <!--     right side-->
