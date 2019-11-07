@@ -3,21 +3,21 @@
 <!--     left-side-->
     <div>
       <div class="d-flex position pb-1">
-        <img class = 'avatar' src="https://images.pexels.com/photos/736716/pexels-photo-736716.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500" alt="">
-        <div class = 'namebox my-auto'>Johannes longname</div>
+        <img class = 'avatar' src=<%= review.review.reviewer_image %> alt="">
+        <div class = 'namebox my-auto'><%=review.review.reviewer_username%></div>
         <div class = "px-2 my-auto">
-          <% 2.times do  %>
+          <% review.rating.to_i.times do  %>
           <span class="fa fa-star checked" style="color: #F5A431"></span>
           <% end %>
-          <% (5 - 2).times do %>
+          <% (5 - review.rating.to_i).times do %>
           <span class="fa fa-star" style="color: #CDCDCD"></span>
           <% end %>
         </div>
+        <p class = "my-auto timebox mx-2"><%#= Date.strptime(review.review.review_time, '%s') %></p>
         <p class = "my-auto" style="color: #E34444">NEW</p>
       </div>
       <div>
-        <%= review.rating %>
-        Life is a mystery, everyone must stand alone I hear you call my name And it feels like home When you call my name it's like a little prayer I'm down on my knees, I wanna take you there In the midnight hour I can feel your power Just like a prayer you know I'll take you there
+        <%= review.review.review_text %>
       </div>
     </div>
 <!--     right side-->
