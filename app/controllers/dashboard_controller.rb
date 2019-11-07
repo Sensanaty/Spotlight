@@ -8,8 +8,12 @@ class DashboardController < ApplicationController
 
   def feed
     @restaurant = Restaurant.find_by(user_id: current_user)
-    # @yelp_reviews = @restaurant.yelp_reviews.all.sort_by(&:rating)
-    @google_reviews = @restaurant.google_reviews.all
+    @all_reviews = @restaurant.restaurant_reviews
+    @yelp_reviews = @restaurant.yelp_reviews
+    @google_reviews = @restaurant.google_reviews
+    @all_reviews = @yelp_reviews + @google_reviews
+    @all_reviews_sorted = @all_reviews.sort_by {|r| r.rating}
+
     # @reviews_zomato = @restaurant.reviews_zomato.all
 
   end

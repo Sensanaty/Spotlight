@@ -4,21 +4,20 @@
 <!--     left-side-->
     <div>
       <div class="d-flex position pb-1">
-        <img class = 'avatar' src="https://images.pexels.com/photos/736716/pexels-photo-736716.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500" alt=""> <!-- Replace with review.user_image-->
-        <div class = 'namebox my-auto'>Johannes longname <!-- Replace with: review.user_name--></div>
+        <img class = 'avatar' src=<%= review.user_image %> alt=""> <!-- Replace with review.user_image-->
+        <div class = 'namebox my-auto'><%=review.user_name%>  <!-- Replace with: review.user_name--></div>
         <div class = "px-2 my-auto">
-          <% 5.times do  %> <!-- Replace 3 with review.rating-->
+          <% review.rating.to_i.times do  %> <!-- Replace 3 with -->
           <span class="fa fa-star checked" style="color: #F5A431"></span>
           <% end %>
-          <% (5 - 5).times do %> <!-- Replace 3 with review.rating-->
+          <% (5 - review.rating.to_i).times do %> <!-- Replace 3 with review.rating-->
           <span class="fa fa-star" style="color: #CDCDCD"></span>
           <% end %>
         </div>
         <p class = "my-auto" style="color: #E34444">NEW</p>
       </div>
       <div>
-        <!-- Replace with: review.review-->
-        Life is a mystery, everyone must stand alone I hear you call my name And it feels like home When you call my name it's like a little prayer I'm down on my knees, I wanna take you there In the midnight hour I can feel your power Just like a prayer you know I'll take you thereLife is a mystery, everyone must stand alone I hear you call my name And it feels like home When you call my name it's like a little prayer I'm down on my knees, I wanna take you there In the midnight hour I can feel your power Just like a prayer you know I'll take you there
+        <%= review.review %>
       </div>
     </div>
 <!--     right side-->
