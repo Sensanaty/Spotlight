@@ -2,10 +2,10 @@ Restaurant.destroy_all
 User.destroy_all
 
 user_info = {
-  first_name: "Joe",
-  last_name: "Bloggs",
-  email: "jb@gmail.com",
-  password: 'password',
+    first_name: "Joe",
+    last_name: "Bloggs",
+    email: "jb@gmail.com",
+    password: 'password',
 }
 
 restaurant_logo_url = "http://www.pizzaeast.com/assets/logo-black.png"
@@ -42,6 +42,10 @@ puts "\e[92mYelp Fetched!\e[0m"
 puts "\n\e[34mFetching from Zomato\e[0m"
 ZomatoFetcherService.new(new_restaurant.name, new_restaurant.latitude, new_restaurant.longitude).grab_place(new_restaurant.id)
 puts "\e[92mZomato Fetched!\e[0m"
+
+puts "\n\e[34mFetching from FourSquare\e[0m"
+FoursquareFetcherService.new(new_restaurant.name, new_restaurant.latitude, new_restaurant.longitude).grab_place(new_restaurant.id)
+puts "\e[92mFourSquare Fetched!\e[0m"
 
 puts "\n\e[32m+=+=+=+=+=+=+=+=+=+=+=+=+=+\e[0m"
 puts "\e[32m|| \e[42;97mSEEDING DATABASE DONE\e[0m \e[32m||"
