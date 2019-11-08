@@ -20,6 +20,30 @@ class RestaurantsController < ApplicationController
   def edit
   end
 
+  def find_yelp_restaurant
+    puts "yelp"
+  end
+
+  def find_zomato_restaurant
+    puts "zomato"
+  end
+
+  def find_tripadvisor_restaurant
+    puts "tripadvisor"
+  end
+
+  def find_foursquare_restaurant
+    puts "foursquare"
+  end
+
+  def find_facebook_restaurant
+    puts "foursquare"
+  end
+
+  def find_instagram_restaurant
+    puts "foursquare"
+  end
+
   private
 
   def restaurant_params

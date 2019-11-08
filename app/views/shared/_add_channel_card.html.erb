@@ -1,16 +1,18 @@
 <div class="card shadow h-200 dash-card add-channel-card">
   <div class="add-channel-card-inner card shadow h-200 dash-card add-channel-card" id="add-channel-inner-<%= channel_name.downcase.gsub(" ","") %>">
-    <div class="add-channel-card-front dash-card id="add-channel-front-<%= channel_name.downcase.gsub(" ","") %>"">
-      <div class="text-center">
-        <i class="fas fa-plus-circle add-channel-icon"></i>
-        <div class="d-flex">
-          <%= image_tag channel_logo, class: 'logo-button-white shadow-sm' %>
-          <h5>&nbsp;&nbsp;Add <%= channel_name %></h5>
+    <%= link_to "/restaurants/find_#{channel_name.downcase.gsub(' ','')}_restaurant", remote: true do %>
+      <div class="add-channel-card-front dash-card" id="add-channel-front-<%= channel_name.downcase.gsub(' ','') %>">
+        <div class="text-center">
+          <i class="fas fa-plus-circle add-channel-icon"></i>
+          <div class="d-flex">
+            <%= image_tag channel_logo, class: 'logo-button-white shadow-sm' %>
+            <h5>&nbsp;&nbsp;Add <%= channel_name %></h5>
+          </div>
         </div>
       </div>
-    </div>
-    <div class="add-channel-card-back dash-card" style='background-color: <%= channel_color %>'">
-      <h5>Add <%= channel_name %> to your Spotlight</h5>
+    <% end %>
+    <div class="add-channel-card-back dash-card" style='background-color: <%= channel_color %>'>
+      <h6>Looking for <strong><%= restaurant_name %></strong> on <strong><%= channel_name %></strong>...</h6>
     </div>
   </div>
 </div>
