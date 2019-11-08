@@ -42,7 +42,7 @@ ActiveRecord::Schema.define(version: 2019_11_07_070630) do
     t.bigint "restaurant_id"
     t.string "review_type"
     t.bigint "review_id"
-    t.datetime "review_time"
+    t.integer "review_time"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.float "rating"
