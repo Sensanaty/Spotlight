@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_11_08_043228) do
+ActiveRecord::Schema.define(version: 2019_11_08_055025) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -23,6 +23,7 @@ ActiveRecord::Schema.define(version: 2019_11_08_043228) do
     t.bigint "restaurant_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "meal_image"
     t.index ["restaurant_id"], name: "index_foursquare_reviews_on_restaurant_id"
   end
 
