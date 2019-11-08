@@ -16,36 +16,31 @@ restaurant_info = {
   price_level: 2
 }
 
-puts "Creating user - Joe Bloggs, jb@gmail.com"
+puts "\e[34mCreating user - Joe Bloggs, jb@gmail.com"
 new_user = User.new(user_info)
-puts "Joe Bloggs created!\n\n"
+puts "\e[92mJoe Bloggs created!\n\n"
 
-puts "Creating restaurant - Carmines Italian New York, assigned to Joe Bloggs"
+puts "\e[34mCreating restaurant - Carmines Italian New York, assigned to Joe Bloggs"
 new_restaurant = Restaurant.new(restaurant_info)
 new_restaurant.user = new_user
 new_restaurant.remote_photo_url = restaurant_logo_url
-puts "Created restaurant!\n\n"
+puts "\e[92mCreated restaurant!\n\n"
 
 new_user.save
 new_restaurant.save
 
-puts "\nFetching from Google"
+puts "\n\e[34mFetching from Google"
 GoogleFetcherService.new(new_restaurant.name).grab_place(new_restaurant.id)
-puts "Google Fetched!"
+puts "\e[92mGoogle Fetched!"
 
-puts GoogleReview.last.restaurant_review.review_time
-
-puts "\nFetching from Yelp"
+puts "\n\e[34mFetching from Yelp"
 YelpFetcherService.new(new_restaurant.name, new_restaurant.address).grab_place(new_restaurant.id)
-puts "Yelp Fetched!"
+puts "\e[92mYelp Fetched!"
 
-puts YelpReview.last.restaurant_review.review_time
-
-
-puts "\nFetching from Zomato"
+puts "\n\e[34mFetching from Zomato"
 ZomatoFetcherService.new(new_restaurant.name, new_restaurant.address).grab_place(new_restaurant.id)
-puts "Zomato Fetched!"
+puts "\e[92mZomato Fetched!"
 
-puts "\n+=+=+=+=+=+=+=+=+=+=+=+=+=+"
-puts "|| SEEDING DATABASE DONE ||"
-puts "+=+=+=+=+=+=+=+=+=+=+=+=+=+\n"
+puts "\n\e[32m+=+=+=+=+=+=+=+=+=+=+=+=+=+\e[0m"
+puts "\e[32m|| \e[42;97mSEEDING DATABASE DONE\e[0m \e[32m||"
+puts "\e[32m+=+=+=+=+=+=+=+=+=+=+=+=+=+\e[0m\n"
