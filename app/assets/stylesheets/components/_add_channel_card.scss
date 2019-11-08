@@ -2,7 +2,10 @@
   background-color: transparent;
   perspective: 1000px;
 
-  &:hover .add-channel-card-inner { transform: rotateY(180deg); }
+  .rotate {
+    transition: transform 0.8s;
+    transform-style: preserve-3d;
+    transform: rotateY(180deg); }
 
   .add-channel-icon {
     font-size: 100px;
@@ -15,8 +18,6 @@
     width: 100%;
     height: 100%;
     text-align: center;
-    transition: transform 0.8s;
-    transform-style: preserve-3d;
     }
 
   .add-channel-card-front, .add-channel-card-back {
@@ -27,14 +28,16 @@
     width: 100%;
     height: 100%;
     backface-visibility: hidden;
+    background-color: $light-pale-blue;
     }
 
   .add-channel-card-front {
-    background-color: $light-pale-blue;
+    &:hover {
+      background-color: #e8eaea;
+    }
   }
 
   .add-channel-card-back {
-    background-color: $light-pale-blue;
     transform: rotateY(180deg);
   }
 }
