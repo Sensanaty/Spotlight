@@ -6,7 +6,7 @@
 
 ## Specifications
 
-Built on Ruby on Rails `v5.2.0` and Ruby `v2.6.0`
+Built on Ruby on Rails `v5.2.0` and Ruby `v2.6.0`. Deployed on a Heroku Hobby instance.
 
 ## Contribution
 
