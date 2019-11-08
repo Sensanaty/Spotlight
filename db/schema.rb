@@ -10,10 +10,21 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_11_07_070630) do
+ActiveRecord::Schema.define(version: 2019_11_08_043228) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "foursquare_reviews", force: :cascade do |t|
+    t.string "reviewer_image"
+    t.text "review_text"
+    t.integer "review_time"
+    t.string "reviewer_username"
+    t.bigint "restaurant_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["restaurant_id"], name: "index_foursquare_reviews_on_restaurant_id"
+  end
 
   create_table "google_reviews", force: :cascade do |t|
     t.string "reviewer_image"
@@ -124,6 +135,7 @@ ActiveRecord::Schema.define(version: 2019_11_07_070630) do
     t.index ["restaurant_id"], name: "index_zomato_reviews_on_restaurant_id"
   end
 
+  add_foreign_key "foursquare_reviews", "restaurants"
   add_foreign_key "google_reviews", "restaurants"
   add_foreign_key "orders", "users"
   add_foreign_key "restaurant_reviews", "restaurants"

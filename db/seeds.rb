@@ -46,6 +46,10 @@ puts "\nFetching from Zomato"
 ZomatoFetcherService.new(new_restaurant.name, new_restaurant.address).grab_place(new_restaurant.id)
 puts "Zomato Fetched!"
 
+puts "\nFetching from Foursquare"
+ZomatoFetcherService.new(new_restaurant.name, new_restaurant.address).grab_place(new_restaurant.id)
+puts "Zomato Fetched!"
+
 puts "\n+=+=+=+=+=+=+=+=+=+=+=+=+=+"
 puts "|| SEEDING DATABASE DONE ||"
 puts "+=+=+=+=+=+=+=+=+=+=+=+=+=+\n"
