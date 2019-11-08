@@ -2,7 +2,7 @@
 
 ## Your one-stop shop to manage your online reputation
 
-*Spotlight* is a platform with the goal of making the lives of venue owners easier, by collating and displaying, in one convenient place,all the reviews that their customers have left, anywhere online.
+*Spotlight* is a platform with the goal of making the lives of venue owners easier, by collating and displaying, in one convenient place, all the reviews that their customers have left anywhere online.
 
 ## Specifications
 
