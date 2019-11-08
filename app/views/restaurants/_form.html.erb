@@ -1,0 +1,19 @@
+<!-- Sign up card content here: -->
+<h2>Hi <strong class="spotlight-green"><%= current_user.first_name %></strong>, let's find your restaurant</h2>
+<p>We use Google Maps to find your restaurant, make sure it's listed there!</p>
+<form action="" class="my-4">
+<label for="restaurant_selector">Find your restaurant</label>
+<input type="text" id="restaurant_selector" placeholder="Find your restaurant" class="form-control">
+</form>
+
+<%= simple_form_for item do |f| %>
+  <%= f.input :name %>
+  <%= f.input :address %>
+  <%= f.input :cuisine, collection: Restaurant::CUISINES.sort %>
+  <%= f.input :price_level, label: "Price Level (1-3, 1 being cheap, 3 being high-end" %>
+  <%= f.input :photo, label: "Restaurant Logo" %>
+  <%= f.input :photo_cache, as: :hidden %>
+  <%= f.button :submit, class: 'btn-flat' %>
+<% end %>
+<!-- End of sign up content -->
+<%= link_to "I'll do this later", root_path %>

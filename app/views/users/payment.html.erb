@@ -7,27 +7,7 @@
 
       <!-- Sign up card start -->
       <div class="sign-up-card mb-5">
-        <div class="sign-up-header">
-          <h3>Get started with Spotlight</h3>
-        </div>
-        <div class="sign-up-progress">
-          <div class="row h-100">
-            <div class="col-4 sign-up-progress-element"><div class="sign-up-stage complete-stage">1</div>Create Account</div>
-            <div class="col-4 sign-up-progress-element"><div class="sign-up-stage complete-stage">2</div>Find Your Restaurant</div>
-            <div class="col-4 sign-up-progress-element"><div class="sign-up-stage current-stage">3</div>Setup Payment</div>
-          </div>
-        </div>
-        <div class="sign-up-content p-5">
-          <!-- Sign up card content here: -->
-          <h2><strong class="spotlight-green"><%= current_user.first_name %></strong>,
-              you're a beta user.
-          </h2>
-          <p>While we gear ourselves ready for launch you're in for free! Thank you for
-            being a part of shaping Spotlight.</p>
-            <div class="text-center mt-5 mb-3">
-              <%= link_to "Continue to Dashboard", root_path, class: 'btn-flat' %>
-            </div>
-        </div>
+        <%= render 'shared/form_wrapper', form_to_show: 'users/form', item:nil %>
       </div>
       <!-- Sign up card end -->
     </div>
