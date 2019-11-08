@@ -4,7 +4,7 @@ class Restaurant < ApplicationRecord
 
   validates :name, :address, :cuisine, :price_level, presence: :true
   validates :cuisine, inclusion: { in: CUISINES }
-  validates :price_level, inclusion: { in: [1, 2, 3] }
+  validates :price_level, inclusion: { in: [1, 2, 3, 4] }
   belongs_to :user
   has_many :restaurant_reviews
   has_many :google_reviews, through: :restaurant_reviews, source: :review, source_type: 'GoogleReview'
