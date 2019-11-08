@@ -1,5 +1,5 @@
 require 'koala'
-require 'pry-byebug'
+# require 'pry-byebug'
 
 
 @graph = Koala::Facebook::API.new("EAAkVB5flX3cBABPZCzfHkJFYefRHjEcurAvCQR70Ty9YbdLQYeVzQx3gOLXCt3hg4hQo2Fsi5M2PEab9tuoEI7UqZAZC20S4Re5KBmolo78WjiVZBn0oZARhvZBc8JjUgPNXBZBzJ6KEUjwthLw0qfnEm1ECAHJ8uAVVeADZAi2L6wZDZD")
