@@ -10,12 +10,12 @@ user_info = {
 
 restaurant_logo_url = "http://www.pizzaeast.com/assets/logo-black.png"
 restaurant_info = {
-    name: "Peter Luger",
-    address: "Brooklyn",
-    cuisine: 'Pizza',
-    price_level: 2,
-    latitude: 40.7085126197085,
-    longitude: -73.9638020302915
+  name: "Peter Luger",
+  address: "Brooklyn",
+  cuisine: 'Pizza',
+  price_level: 2,
+  latitude: 40.7085126197085,
+  longitude: -73.9638020302915
 }
 
 puts "\e[34mCreating user - Joe Bloggs, jb@gmail.com\e[0m"
