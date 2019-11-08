@@ -22,9 +22,8 @@ class FoursquareFetcherService
 
     returned_reviews.each do |review|
       FoursquareReview.create(reviewer_image: "https://image.flaticon.com/icons/svg/145/145843.svg",
-                              review_picture: review["photourl"],
+                              meal_image: review["photourl"],
                               reviewer_username: review["user"]["firstName"],
-                              reviewer_profile_url: review["photourl"],
                               review_text: review["text"],
                               review_time: review["createdAt"],
                               restaurant_id: relate_restaurant_id)
