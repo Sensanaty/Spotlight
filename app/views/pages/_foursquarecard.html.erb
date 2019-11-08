@@ -1,17 +1,12 @@
 <div class="col-xl-12 col-md-6 mb-2">
-  <div class="card border-left-primary googlecard shadow h-200 py-2 pl-4 d-flex flex-row card-touchup">
+  <div class="card border-left-info foursquarecard shadow h-200 py-2 pl-4 d-flex flex-row card-touchup">
 <!--     left-side-->
     <div>
       <div class="d-flex position pb-1">
         <img class = 'avatar' src=<%= review.review.reviewer_image %> alt="">
         <div class = 'namebox my-auto'><%=review.review.reviewer_username%></div>
-        <div class = "px-2 my-auto">
-          <% review.rating.to_i.times do  %>
-          <span class="fa fa-star checked" style="color: #F5A431"></span>
-          <% end %>
-          <% (5 - review.rating.to_i).times do %>
-          <span class="fa fa-star" style="color: #CDCDCD"></span>
-          <% end %>
+        <div class = "px-2 my-auto" style = "width:123px; text-align: center; font-size: 14px;">
+          No rating
         </div>
         <p class = "my-auto timebox mx-2"><%= DateTime.strptime(review.review.review_time.to_s, '%s').strftime('%d-%m-%Y %H:%M') %></p>
         <p class = "my-auto" style="color: #E34444">NEW</p>
@@ -19,12 +14,15 @@
       <div>
         <%= review.review.review_text %>
       </div>
+      <div class = "imagediv">
+        <img class = "my-2 img-responsive" src=<%= review.review.meal_image %>>
+      </div>
     </div>
 <!--     right side-->
     <div class="d-flex flex-column px-2 justify-content-between">
       <i class="fas fa-external-link-square-alt open-link"></i>
-      <div class = "logo-button-white-lg d-flex justify-content-center">
-        <img src="http://pngimg.com/uploads/google/google_PNG19635.png" alt="">
+      <div class = "logo-white-lg d-flex justify-content-center">
+        <img src="https://cdn4.iconfinder.com/data/icons/social-media-logos-6/512/73-foursquare-512.png" alt="">
       </div>
     </div>
   </div>

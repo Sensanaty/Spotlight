@@ -77,4 +77,29 @@
   font-size:14px;
 }
 
+.foursquarecard {
+  border-left: 0.25rem solid #EC5289 !important;
+}
+
+.imagediv{
+  display: flex;
+  img {
+    height: 400px;
+    margin-left: auto;
+    margin-right: auto;
+    border-radius: 10px;
+    width: 60%;
+    object-fit: cover;
+  }
+}
+
+
+.googlecard {
+  border-left: 0.25rem solid #F8BC32 !important;
+}
+
+.yelpcard {
+  border-left: 0.25rem solid black !important;
+}
+
 
