@@ -90,6 +90,20 @@
   </div>
 </div> -->
 
+<div class="pb-5">
+  <%= form_tag dashboard_feed_path, method: :get do %>
+    <%#= check_box_tag "query[]", 1 %>
+    <%#= check_box_tag "query[]", 2 %>
+    <%#= check_box_tag "query[]", 3 %>
+    <%#= check_box_tag "query[]", 4 %>
+    <%#= check_box_tag "query[]", 5 %>
+    <%= select_tag :query, options_for_select(["1", "2", "3", "4", "5"], params[:query]),
+      class: "form-control"
+    %>
+    <%= submit_tag "Search", class: "btn btn-primary" %>
+  <% end %>
+
+</div>
 
 <%= render 'pages/nav_items_feedpage'%>
 
