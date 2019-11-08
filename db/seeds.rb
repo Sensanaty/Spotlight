@@ -10,36 +10,38 @@ user_info = {
 
 restaurant_logo_url = "http://www.pizzaeast.com/assets/logo-black.png"
 restaurant_info = {
-  name: "Carmines Italian New York",
-  address: "New York",
+  name: "Peter Luger",
+  address: "Brooklyn",
   cuisine: 'Pizza',
-  price_level: 2
+  price_level: 2,
+  latitude: 40.7085126197085,
+  longitude: -73.9638020302915
 }
 
-puts "\e[34mCreating user - Joe Bloggs, jb@gmail.com"
+puts "\e[34mCreating user - Joe Bloggs, jb@gmail.com\e[0m"
 new_user = User.new(user_info)
-puts "\e[92mJoe Bloggs created!\n\n"
+puts "\e[92mJoe Bloggs created!\e[0m\n\n"
 
-puts "\e[34mCreating restaurant - Carmines Italian New York, assigned to Joe Bloggs"
+puts "\e[34mCreating restaurant - Peter Luger New York, assigned to Joe Bloggs\e[0m"
 new_restaurant = Restaurant.new(restaurant_info)
 new_restaurant.user = new_user
 new_restaurant.remote_photo_url = restaurant_logo_url
-puts "\e[92mCreated restaurant!\n\n"
+puts "\e[92mCreated restaurant!\e[0m\n\n"
 
 new_user.save
 new_restaurant.save
 
-puts "\n\e[34mFetching from Google"
+puts "\n\e[34mFetching from Google\e[0m"
 GoogleFetcherService.new(new_restaurant.name).grab_place(new_restaurant.id)
-puts "\e[92mGoogle Fetched!"
+puts "\e[92mGoogle Fetched!\e[0m"
 
-puts "\n\e[34mFetching from Yelp"
-YelpFetcherService.new(new_restaurant.name, new_restaurant.address).grab_place(new_restaurant.id)
-puts "\e[92mYelp Fetched!"
+puts "\n\e[34mFetching from Yelp\e[0m"
+YelpFetcherService.new(new_restaurant.latitude, new_restaurant.longitude).grab_place(new_restaurant.id)
+puts "\e[92mYelp Fetched!\e[0m"
 
-puts "\n\e[34mFetching from Zomato"
-ZomatoFetcherService.new(new_restaurant.name, new_restaurant.address).grab_place(new_restaurant.id)
-puts "\e[92mZomato Fetched!"
+# puts "\n\e[34mFetching from Zomato"
+# ZomatoFetcherService.new(new_restaurant.name, new_restaurant.address).grab_place(new_restaurant.id)
+# puts "\e[92mZomato Fetched!"
 
 puts "\n\e[32m+=+=+=+=+=+=+=+=+=+=+=+=+=+\e[0m"
 puts "\e[32m|| \e[42;97mSEEDING DATABASE DONE\e[0m \e[32m||"

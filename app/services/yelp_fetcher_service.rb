@@ -4,14 +4,14 @@ require 'json'
 require 'pry-byebug'
 
 class YelpFetcherService
-  def initialize(name, location)
-    @name = name
-    @location = location
+  def initialize(latitude, longitude)
+    @latitude = latitude
+    @longitude = longitude
   end
 
   def grab_place(relate_restaurant_id) # rubocop:disable Metrics/MethodLength
     # 1st API call
-    id_uri = "https://api.yelp.com/v3/businesses/search?term=#{@name.gsub(/\s/, "%20")}&location=#{@location.gsub(/\s/, "%20")}"
+    id_uri = "https://api.yelp.com/v3/businesses/search?latitude=#{@latitude}&longitude=#{@longitude}"
     serialized_restaurants = RestClient.get(id_uri, headers = { 'Authorization': "Bearer #{ENV['YELP_API_KEY']}" })
     restaurant_id = JSON.parse(serialized_restaurants)['businesses'][0]['id']
 
@@ -30,7 +30,6 @@ class YelpFetcherService
                         review_time: DateTime.parse(review["time_created"]).to_i, # Convert to UNIX time for better storage
                         restaurant_id: relate_restaurant_id)
     end
-
   end
 
 end
