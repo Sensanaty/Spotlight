@@ -9,4 +9,5 @@ class Restaurant < ApplicationRecord
   has_many :restaurant_reviews
   has_many :google_reviews, through: :restaurant_reviews, source: :review, source_type: 'GoogleReview'
   has_many :yelp_reviews, through: :restaurant_reviews, source: :review, source_type: 'YelpReview'
+  has_many :four_square_reviews, through: :restaurant_reviews, source: :review, source_type: 'FourSquareReview'
 end
