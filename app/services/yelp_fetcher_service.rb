@@ -1,7 +1,7 @@
 # rubocop:disable Lint/UselessAssignment
 require 'open-uri'
 require 'json'
-require 'pry-byebug'
+# require 'pry-byebug'
 
 class YelpFetcherService
   def initialize(latitude, longitude)
