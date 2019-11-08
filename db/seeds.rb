@@ -44,7 +44,7 @@ ZomatoFetcherService.new(new_restaurant.name, new_restaurant.latitude, new_resta
 puts "\e[92mZomato Fetched!\e[0m"
 
 puts "\n\e[34mFetching from FourSquare\e[0m"
-FoursquareFetcherService.new(new_restaurant.name, new_restaurant.latitude, new_restaurant.longitude)
+FoursquareFetcherService.new(new_restaurant.name, new_restaurant.latitude, new_restaurant.longitude).grab_place(new_restaurant.id)
 puts "\e[92mFourSquare Fetched!\e[0m"
 
 puts "\n\e[32m+=+=+=+=+=+=+=+=+=+=+=+=+=+\e[0m"
