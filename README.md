@@ -2,11 +2,11 @@
 
 ## Your one-stop shop to manage your online reputation
 
-*Spotlight* is a platform with the goal of making the lives of venue owners easier, by collating and displaying, in one convenient place,all the reviews that their customers have left, anywhere online.
+*Spotlight* is a platform with the goal of making the lives of venue owners easier, by collating and displaying, in one convenient place, all the reviews that their customers have left anywhere online.
 
 ## Specifications
 
-Built on Ruby on Rails `v5.2.0` and Ruby `v2.6.0`
+Built on Ruby on Rails `v5.2.0` and Ruby `v2.6.0`. Deployed on a Heroku Hobby instance.
 
 ## Contribution
 
