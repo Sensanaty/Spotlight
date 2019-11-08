@@ -78,6 +78,3 @@ class DashboardController < ApplicationController
   end
 
 end
-
-acquire_all_review_urls
-# scraperapi
