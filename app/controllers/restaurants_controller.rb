@@ -32,8 +32,19 @@ class RestaurantsController < ApplicationController
   end
 
   def find_yelp_restaurant
-    puts "Fetching Yelp Restaurants"
-    YelpFetcherService.new(Restaurant.last.longitude, Restaurant.last.latitude).grab_place(Restaurant.last.id)
+    @restaurant = current_user.restaurant
+    # The 'grab_place' method returns false if restaurant is not found on Yelp, or true if it is.
+    # This boolean is saved to @search_match.
+    @search_match = YelpFetcherService.new(@restaurant.longitude, @restaurant.latitude).grab_place(@restaurant.id)
+
+    # Logic to display whether
+    if @search_match
+      respond_to do |format|
+        byebug
+        format.html { redirect_to root_path }
+        format.js  # <-- will render `app/views/reviews/create.js.erb`
+      end
+    end
   end
 
   def find_zomato_restaurant

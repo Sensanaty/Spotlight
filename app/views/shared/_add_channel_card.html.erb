@@ -13,6 +13,11 @@
     <% end %>
     <div class="add-channel-card-back dash-card" style='background-color: <%= channel_color %>'>
       <h6>Looking for <strong><%= restaurant_name %></strong> on <strong><%= channel_name %></strong>...</h6>
+      <% if @search_match %>
+        <h6>We found you on Zomato!</h6>
+      <% else %>
+        <h6>We couldn't find you on Zomato :(</h6>
+      <% end %>
     </div>
   </div>
 </div>
