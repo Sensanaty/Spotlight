@@ -21,6 +21,16 @@ class RestaurantsController < ApplicationController
   def edit
   end
 
+  def update
+    @restaurant = Restaurant.find(params[:id])
+
+    if @restaurant.update(restaurant_params)
+      redirect_to root_path
+    else
+      render :edit_profile
+    end
+  end
+
   def find_yelp_restaurant
     puts "Fetching Yelp Restaurants"
     YelpFetcherService.new(Restaurant.last.longitude, Restaurant.last.latitude).grab_place(Restaurant.last.id)

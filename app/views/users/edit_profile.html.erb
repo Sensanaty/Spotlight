@@ -23,8 +23,8 @@
          <%= simple_form_for @restaurant do |f| %>
           <%= f.input :name %>
           <%= f.input :address %>
-          <%= f.input :cuisine %>
-          <%= f.input :price_level %>
+          <%= f.input :cuisine, collection: Restaurant::CUISINES.sort %>
+          <%= f.input :price_level, label: "Price Level (1-4, 1 being cheap, 4 being high-end" %>
           <%= f.input :photo %>
           <%= f.input :photo_cache, as: :hidden %>
           <%= f.button :submit, class: 'btn-flat' %>
