@@ -7,9 +7,16 @@ class DashboardController < ApplicationController
   end
 
   def feed
+    @review = RestaurantReview.first
     @restaurant = Restaurant.find_by(user_id: current_user)
-    @all_reviews = @restaurant.restaurant_reviews
-    @all_reviews_sorted = @all_reviews.sort_by {|obj| obj.review_time}.reverse
+    if params[:query]
+      ratings = params[:query]
+      @all_reviews = @restaurant.restaurant_reviews.select { |e| e.rating == ratings.to_f }
+      @all_reviews_sorted = @all_reviews.sort_by {|obj| obj.review_time}.reverse
+    else
+      @all_reviews = @restaurant.restaurant_reviews
+      @all_reviews_sorted = @all_reviews.sort_by {|obj| obj.review_time}.reverse
+    end
   end
 
   def explore
@@ -32,5 +39,19 @@ class DashboardController < ApplicationController
       review.save
     end
   end
+
+  # def feed
+  #   @review = RestaurantReview.first
+  #   @restaurant = Restaurant.find_by(user_id: current_user)
+  #   if params[:query]
+  #     ratings = params[:query]
+  #     ratings = ratings.map { |v| v.to_f }
+  #     @all_reviews = @restaurant.restaurant_reviews.select { |e| ratings.include?(e.rating) }
+  #     @all_reviews_sorted = @all_reviews.sort_by {|obj| obj.review_time}.reverse
+  #   else
+  #     @all_reviews = @restaurant.restaurant_reviews
+  #     @all_reviews_sorted = @all_reviews.sort_by {|obj| obj.review_time}.reverse
+  #   end
+  # end
 
 end
