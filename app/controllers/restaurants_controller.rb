@@ -9,10 +9,13 @@ class RestaurantsController < ApplicationController
   def create
     @restaurant = Restaurant.new(restaurant_params)
     @restaurant.user = current_user
+    @restaurant.linked_channels = []
 
-    if @restaurant.save!
+    if @restaurant.save
       redirect_to payment_users_path
       GoogleFetcherService.new(Restaurant.last.name).grab_place(Restaurant.last.id)
+      @restaurant.linked_channels.push("Google")
+      @restaurant.save
     else
       render :new
     end
@@ -37,10 +40,16 @@ class RestaurantsController < ApplicationController
     # This boolean is saved to @search_match.
     @search_match = YelpFetcherService.new(@restaurant.longitude, @restaurant.latitude).grab_place(@restaurant.id)
 
-    # Logic to display whether
+    if @search_match
+      @restaurant.linked_channels.push("Yelp")
+      @restaurant.save
+      byebug
+    end
+
+    # Runs javascript file 'find_yelp_restaurant.js.erb' when fetcher is finished.
     respond_to do |format|
       format.html { redirect_to root_path }
-      format.js  # <-- will render `app/views/reviews/create.js.erb`
+      format.js  # <-- will run `find_yelp_restaurant.js.erb`
     end
   end
 

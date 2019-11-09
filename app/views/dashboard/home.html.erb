@@ -34,7 +34,17 @@
     <!-- ROW 2 -->
     <div class="row d-flex justify-content-around py-2">
       <!-- Yelp card -->
-      <%= render 'shared/add_channel_card', channel_name: 'Yelp', channel_logo: 'yelp-logo.png', channel_color: '#f5d5d5', restaurant_name: @restaurant.name %>
+      <% if @restaurant.linked_channels.include?('Yelp') %>
+        <div class="card shadow h-200 p-2 d-flex flex-row dash-card position-relative">
+            <%= image_tag 'yelp-logo.png', class: 'logo-button-white-lg' %>
+            <div class="google-chart-2" style="width: 300px">
+              <!-- Google Chart 2 -->
+              <h6>You've already added Yelp :)</h6>
+            </div>
+        </div>
+      <% else %>
+        <%= render 'shared/add_channel_card', channel_name: 'Yelp', channel_logo: 'yelp-logo.png', channel_color: '#f5d5d5', restaurant_name: @restaurant.name %>
+      <% end %>
       <!-- Tripadvisor card -->
       <%= render 'shared/add_channel_card', channel_name: 'Trip Advisor', channel_logo: 'trip-advisor-logo.png', channel_color: '#dcf0da', restaurant_name: @restaurant.name %>
     </div>
