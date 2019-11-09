@@ -43,7 +43,6 @@ class RestaurantsController < ApplicationController
     if @search_match
       @restaurant.linked_channels.push("Yelp")
       @restaurant.save
-      byebug
     end
 
     # Runs javascript file 'find_yelp_restaurant.js.erb' when fetcher is finished.
