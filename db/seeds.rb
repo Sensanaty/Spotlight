@@ -16,7 +16,7 @@ restaurant_info = {
   price_level: 2,
   latitude: 40.7085126197085,
   longitude: -73.9638020302915,
-  linked_channels: = [],
+  linked_channels: [],
 }
 
 puts "\e[34mCreating user - Joe Bloggs, jb@gmail.com\e[0m"
@@ -33,8 +33,8 @@ new_user.save
 new_restaurant.save
 
 puts "\n\e[34mFetching from Google\e[0m"
-google_fetch? = GoogleFetcherService.new(new_restaurant.name).grab_place(new_restaurant.id)
-new_restaurant.linked_channels.push('Google') if google_fetch?
+google_fetch_status = GoogleFetcherService.new(new_restaurant.name).grab_place(new_restaurant.id)
+new_restaurant.linked_channels.push('Google') if google_fetch_status
 puts "\e[92mGoogle Fetched!\e[0m"
 
 puts "\n\e[34mFetching from Yelp\e[0m"
