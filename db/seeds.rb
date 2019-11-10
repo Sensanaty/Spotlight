@@ -15,7 +15,8 @@ restaurant_info = {
   cuisine: 'Pizza',
   price_level: 2,
   latitude: 40.7085126197085,
-  longitude: -73.9638020302915
+  longitude: -73.9638020302915,
+  linked_channels: ['Google']
 }
 
 puts "\e[34mCreating user - Joe Bloggs, jb@gmail.com\e[0m"
