@@ -82,13 +82,13 @@ new_user.save
 new_user_2.save
 
 puts "\n\e[34mFetching from Google for Peter Luger New York\e[0m"
-google_fetch_status = GoogleFetcherService.new.grab_place(new_restaurant)
+google_fetch_status = GoogleFetcherService.new.grab_place_id(new_restaurant)
 new_restaurant.linked_channels.push('Google') if google_fetch_status
 
 puts "\e[92mGoogle Fetched for Peter Luger New York!\e[0m"
 
 puts "\n\e[34mFetching from Google for Hard Rock Cafe London\e[0m"
-google_fetch_status = GoogleFetcherService.new.grab_place(new_restaurant_2)
+google_fetch_status = GoogleFetcherService.new.grab_place_id(new_restaurant_2)
 new_restaurant_2.linked_channels.push('Google') if google_fetch_status
 
 puts "\e[92mGoogle Fetched for Hard Rock Cafe London!\e[0m"
@@ -104,7 +104,7 @@ new_restaurant.linked_channels.push('Zomato') if zomato_fetch_status
 puts "\e[92mZomato Fetched!\e[0m"
 
 puts "\n\e[34mFetching from FourSquare\e[0m"
-FoursquareFetcherService.new.grab_place(new_restaurant)
+FoursquareFetcherService.new.grab_place_id(new_restaurant)
 new_restaurant.linked_channels.push('Foursquare')
 puts "\e[92mFourSquare Fetched!\e[0m"
 
