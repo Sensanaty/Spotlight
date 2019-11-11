@@ -13,15 +13,20 @@ const buildMap = () => {
 
 //Tetststs
 const addMarkersToMap = (map, markers) => {
-  const center = JSON.parse(mapElement.dataset.center)
+  const center = JSON.parse(mapElement.dataset.center)[0]
 
   markers.forEach((marker) => {
+    const popup = new mapboxgl.Popup().setHTML(marker.infoWindow);
     new mapboxgl.Marker()
       .setLngLat([ marker.lng, marker.lat ])
+      .setPopup(popup)
       .addTo(map);
   });
-    new mapboxgl.Marker({color: 'red'})
-      .setLngLat(center)
+
+  const centerPopup = new mapboxgl.Popup().setHTML(center.infoWindow);
+  new mapboxgl.Marker({color: 'red'})
+      .setLngLat([ center.lng, center.lat ])
+      .setPopup(centerPopup)
       .addTo(map);
 
 };
@@ -40,5 +45,7 @@ const initMapbox = () => {
     fitMapToMarkers(map, markers);
   }
 };
+
+
 
 export { initMapbox };

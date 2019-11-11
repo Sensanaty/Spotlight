@@ -28,5 +28,6 @@ class DashboardController < ApplicationController
     @markers.each do |marker|
       marker[:infoWindow] = render_to_string(partial: "restaurants/info_window", locals: { restaurant: marker })
     end
+    @my_resto = [ {lat:@restaurant.latitude, lng: @restaurant.longitude, infoWindow: render_to_string(partial: "restaurants/info_window", locals: { restaurant: @restaurant })} ]
   end
 end
