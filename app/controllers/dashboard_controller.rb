@@ -21,13 +21,10 @@ class DashboardController < ApplicationController
   end
 
   def explore
-    @restaurant = Restaurant.where(user_id: current_user)
-    @markers = @restaurant.map do |flat|
-      {
-        lat: flat.latitude,
-        lng: flat.longitude
-      }
-    end
+    @restaurant = Restaurant.find_by(user_id: current_user)
+    puts @restaurant.latitude
+    puts @restaurant.longitude
+    @markers = MapBoxCompetitionFetcherService.new(@restaurant.cuisine, @restaurant.latitude, @restaurant.longitude).grab_place
   end
 end
 
