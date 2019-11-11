@@ -1,6 +1,7 @@
 class YelpReview < ApplicationRecord
   has_one :restaurant_review, as: :review
   has_one :restaurant, through: :restaurant_review
+  validates :review_time, uniqueness: :true
 
   after_create :generate_restaurant_review
 
