@@ -1,10 +1,10 @@
 # rubocop:disable Metrics/LineLength
+# rubocop:disable Metrics/MethodLength
 
 require 'open-uri'
 require 'json'
 
 class GoogleFetcherService
-
   def grab_place_id(restaurant)
     formatted_name = restaurant.name.strip.gsub(/\s/, "%20") # All whitespace must be converted into %20 for the API to respond
     parsed_id = URI.open("#{ENV['GOOGLE_BASE_URL']}#{formatted_name}&inputtype=textquery&locationbias=point:#{restaurant.latitude},#{restaurant.longitude}&fields=place_id&key=#{ENV['GOOGLE_API_KEY']}").read
@@ -16,6 +16,7 @@ class GoogleFetcherService
       restaurant.google_id = returned_place_id[0]["place_id"]
       restaurant.save
       grab_reviews(restaurant)
+      true
     end
   end
 
@@ -36,3 +37,4 @@ class GoogleFetcherService
 end
 
 # rubocop:enable Metrics/LineLength
+# rubocop:enable Metrics/MethodLength

@@ -72,10 +72,6 @@ class RestaurantsController < ApplicationController
     puts "tripadvisor"
   end
 
-  def find_foursquare_restaurant
-    puts "foursquare"
-  end
-
   def find_facebook_restaurant
     puts "foursquare"
   end
@@ -86,11 +82,22 @@ class RestaurantsController < ApplicationController
 
   private
 
+  def find_foursquare_restaurant
+    @restaurant = current_user.restaurant
+    @search_match = FoursquareFetcherService.new.grab_place_id(@restaurant)
+    if @search_match
+      @restaurant.linked_channels.push("Foursquare")
+      @restaurant.save
+    end
+  end
+
   def find_google_restaurant
     @restaurant = current_user.restaurant
-    GoogleFetcherService.new(@restaurant.name, @restaurant.latitude, @restaurant.longitude).grab_place_id(@restaurant.id)
-    @restaurant.linked_channels.push("Google")
-    @restaurant.save
+    @search_match = GoogleFetcherService.new.grab_place_id(@restaurant)
+    if @search_match
+      @restaurant.linked_channels.push("Google")
+      @restaurant.save
+    end
   end
 
   def restaurant_params
