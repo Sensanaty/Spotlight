@@ -35,12 +35,12 @@ class RestaurantsController < ApplicationController
 
   def find_yelp_restaurant
     @restaurant = current_user.restaurant
-    # The 'grab_place' method returns false if restaurant is not found on Yelp, or true if it is.
-    # This boolean is saved to @search_match.
-    @search_match = YelpFetcherService.new(@restaurant.longitude, @restaurant.latitude).grab_place(@restaurant.id)
+    # The 'grab_place' method returns false if restaurant is not found on Yelp, or Yelps restaurant if it is.
+    @yelp_restaurant_id = YelpFetcherService.new(@restaurant.longitude, @restaurant.latitude).grab_place(@restaurant)
 
-    if @search_match
+    if @yelp_restaurant_id
       @restaurant.linked_channels.push("Yelp")
+      @restaurant.yelp_id = @yelp_restaurant_id
     end
 
     @restaurant.channel_links_attempted.push("Yelp") unless @restaurant.channel_links_attempted.include?("Yelp")

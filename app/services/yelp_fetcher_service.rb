@@ -10,7 +10,7 @@ class YelpFetcherService
     @longitude = longitude
   end
 
-  def grab_place(spotlight_rest_id)
+  def grab_place(restaurant)
     # 1st API call
     id_uri = "https://api.yelp.com/v3/businesses/search?latitude=#{@latitude}&longitude=#{@longitude}"
     serialized_restaurants = RestClient.get(id_uri, headers = { 'Authorization': "Bearer #{ENV['YELP_API_KEY']}" })
@@ -19,19 +19,27 @@ class YelpFetcherService
       false # Returns false if the restaurant doesn't exist on Yelp.
     else
       yelp_restaurant_id = parsed_restaurants['businesses'][0]['id']
-      grab_reviews(yelp_restaurant_id, spotlight_rest_id)
-      true # Returns true if the restaurant exists on Yelp, after running the grab_reviews method.
+      grab_reviews(yelp_restaurant_id, restaurant)
+      yelp_restaurant_id # Returns the Yelp restaurant ID to save to database if the restaurant exists on Yelp, after running the grab_reviews method.
     end
   end
 
-  def grab_reviews(yelp_restaurant_id, spotlight_rest_id)
-    # 2nd API call
-    review_uri = "https://api.yelp.com/v3/businesses/#{yelp_restaurant_id}/reviews"
-    serialized_reviews = RestClient.get(review_uri, headers = { 'Authorization': "Bearer #{ENV['YELP_API_KEY']}" })
-    parsed_places = JSON.parse(serialized_reviews)
+  def grab_reviews(yelp_restaurant_id, restaurant)
+    # Call API to get restaurant:
+    restaurant_uri = "https://api.yelp.com/v3/businesses/#{yelp_restaurant_id}"
+    serialized_restaurant = RestClient.get("#{restaurant_uri}", headers = { 'Authorization': "Bearer #{ENV['YELP_API_KEY']}" })
+    parsed_restaurant = JSON.parse(serialized_restaurant)
 
-    # p parsed_places
-    parsed_places["reviews"].each do |review|
+    # Get the total review count and average rating
+    total_review_count = parsed_restaurant["review_count"]
+    average_rating = parsed_restaurant["rating"]
+
+    # Call API to get reviews:
+    serialized_reviews = RestClient.get("#{restaurant_uri}/reviews", headers = { 'Authorization': "Bearer #{ENV['YELP_API_KEY']}" })
+    parsed_reviews = JSON.parse(serialized_reviews)
+
+    # Save the reviews to the database
+    parsed_reviews["reviews"].each do |review|
       YelpReview.create(reviewer_image: review["user"]["image_url"],
                         reviewer_username: review["user"]["name"],
                         reviewer_profile_url: review["user"]["profile_url"],
