@@ -1,20 +1,4 @@
 
-
-<div class="container">
-  <div class="row">
-    <div class="col-xs-12 col-sm-6 col-sm-offset-3">
-      <div class="form-post">
-      </div>
-    </div>
-  </div>
-</div>
-
-
-
-
-
-
-<%#= render 'pages/filters'%>
 <%= render 'pages/nav_items_feedpage'%>
 
 
@@ -31,6 +15,9 @@
             <%= render 'pages/zomato_feed_card', review: review %>
           <% elsif review.review_type == "FoursquareReview" %>
             <%= render 'pages/foursquarecard', review: review %>
+          <% elsif review.review_type == "TripavisorReview" %>
+          <!-- Doube-check TripAdvisor name once TA included  -->
+            <%= render 'pages/tripadvisorcard', review: review %>
           <% end %>
         <% end %>
       </div>
@@ -67,9 +54,16 @@
         <% end %>
       </div>
 
+      <div class="tab-pane fade" id="pills-Tripadvisor" role="tabpanel" aria-labelledby="pills-Tripadvisor-tab">
+        <% @all_reviews_sorted.each do |review| %>
+          <% if review.review_type == "TripadvisorReview" %>
+            <%= render 'pages/tripadvisorcard', review: review %>
+          <% end %>
+        <% end %>
+      </div>
+
     </div>
   </div>
-<%= javascript_pack_tag 'filters' %>
 </div>
 
 
