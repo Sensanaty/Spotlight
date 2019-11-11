@@ -10,22 +10,22 @@ class ZomatoFetcherService
     @longitude = longitude
   end
 
-  def grab_place(spotlight_restaurant_id) # rubocop:disable Metrics/MethodLength
+  def grab_place(spotlight_rest_id)
     # 1st API call
     lat = @latitude
     long = @longitude
     first_rest_request = RestClient.get("https://developers.zomato.com/api/v2.1/search?q=#{@name.gsub(/\s/, '%20')}&lat=#{lat}&lon=#{long}&apikey=#{ENV['ZOMATO_API_KEY']}&count=1")
 
     if first_rest_request.body.empty?
-      return false    # Returns false if the restaurant doesn't exist on Zomato.
+      false # Returns false if the restaurant doesn't exist on Zomato.
     else
       zomato_restaurant_id = JSON.parse(first_rest_request.body)["restaurants"][0]["restaurant"]["R"]["res_id"]
-      grab_reviews(zomato_restaurant_id, spotlight_restaurant_id)
-      return true     # Returns true if the restaurant exists on Zomato, after running the grab_reviews method.
+      grab_reviews(zomato_restaurant_id, spotlight_rest_id)
+      true # Returns true if the restaurant exists on Zomato, after running the grab_reviews method.
     end
   end
 
-  def grab_reviews(zomato_restaurant_id, spotlight_restaurant_id)
+  def grab_reviews(zomato_restaurant_id, spotlight_rest_id) # rubocop:disable Metrics/MethodLength
     # 2nd API call
     second_rest_request = RestClient.get("https://developers.zomato.com/api/v2.1/reviews?res_id=#{zomato_restaurant_id}&apikey=#{ENV['ZOMATO_API_KEY']}")
     parsed_places = JSON.parse(second_rest_request.body)["user_reviews"]
@@ -36,10 +36,9 @@ class ZomatoFetcherService
                           review_text: review["review"]["review_text"],
                           rating: review["review"]["rating"],
                           review_time: review["review"]["timestamp"],
-                          restaurant_id: spotlight_restaurant_id)
+                          restaurant_id: spotlight_rest_id)
     end
   end
-
 end
 
 # rubocop:enable Metrics/LineLength
