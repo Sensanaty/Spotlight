@@ -22,8 +22,6 @@ gem 'carrierwave', '~> 1.2'
 gem 'rest-client'
 gem 'nokogiri'
 gem 'koala'
-gem 'bootstrap-multiselect-rails'
-#gem 'jquery-rails'
 
 group :development do
   gem 'web-console', '>= 3.3.0'
