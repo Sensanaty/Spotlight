@@ -9,14 +9,26 @@ class YelpFetcherService
     @longitude = longitude
   end
 
-  def grab_place(relate_restaurant_id) # rubocop:disable Metrics/MethodLength
+
+
+  def grab_place(spotlight_restaurant_id) # rubocop:disable Metrics/MethodLength
     # 1st API call
     id_uri = "https://api.yelp.com/v3/businesses/search?latitude=#{@latitude}&longitude=#{@longitude}"
     serialized_restaurants = RestClient.get(id_uri, headers = { 'Authorization': "Bearer #{ENV['YELP_API_KEY']}" })
-    restaurant_id = JSON.parse(serialized_restaurants)['businesses'][0]['id']
+    parsed_restaurants = JSON.parse(serialized_restaurants)
+    if parsed_restaurants['businesses'].empty?
+      return false    # Returns false if the restaurant doesn't exist on Yelp.
+    else
+      yelp_restaurant_id = parsed_restaurants['businesses'][0]['id']
+      grab_reviews(yelp_restaurant_id, spotlight_restaurant_id)
+      return true     # Returns true if the restaurant exists on Yelp, after running the grab_reviews method.
+    end
+  end
 
+
+  def grab_reviews(yelp_restaurant_id, spotlight_restaurant_id)
     # 2nd API call
-    review_uri = "https://api.yelp.com/v3/businesses/#{restaurant_id}/reviews"
+    review_uri = "https://api.yelp.com/v3/businesses/#{yelp_restaurant_id}/reviews"
     serialized_reviews = RestClient.get(review_uri, headers = { 'Authorization': "Bearer #{ENV['YELP_API_KEY']}" })
     parsed_places = JSON.parse(serialized_reviews)
 
@@ -28,10 +40,9 @@ class YelpFetcherService
                         review_text: review["text"],
                         rating: review["rating"],
                         review_time: DateTime.parse(review["time_created"]).to_i, # Convert to UNIX time for better storage
-                        restaurant_id: relate_restaurant_id)
+                        restaurant_id: spotlight_restaurant_id)
     end
   end
-
 end
 
 # rubocop:enable Lint/UselessAssignment
