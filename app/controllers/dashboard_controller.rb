@@ -25,7 +25,8 @@ class DashboardController < ApplicationController
     puts @restaurant.latitude
     puts @restaurant.longitude
     @markers = MapBoxCompetitionFetcherService.new(@restaurant.cuisine, @restaurant.latitude, @restaurant.longitude).grab_place
-    # @markers.each do |marker|
-    #   marker[:infoWindow] = render_to_string(partial: "info_window", locals: { restaurant: marker[:name] })
+    @markers.each do |marker|
+      marker[:infoWindow] = render_to_string(partial: "restaurants/info_window", locals: { restaurant: marker })
+    end
   end
 end
