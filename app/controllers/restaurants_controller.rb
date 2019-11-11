@@ -10,6 +10,7 @@ class RestaurantsController < ApplicationController
     @restaurant = Restaurant.new(restaurant_params)
     @restaurant.user = current_user
     @restaurant.linked_channels = []
+    @restaurant.channel_links_attempted = []
 
     if @restaurant.save
       redirect_to payment_users_path
@@ -42,9 +43,10 @@ class RestaurantsController < ApplicationController
 
     if @search_match
       @restaurant.linked_channels.push("Yelp")
-      @restaurant.save
     end
 
+    @restaurant.channel_links_attempted.push("Yelp")
+    @restaurant.save
     # Runs javascript file 'find_yelp_restaurant.js.erb' when fetcher is finished.
     respond_to do |format|
       format.html { redirect_to root_path }
@@ -60,13 +62,15 @@ class RestaurantsController < ApplicationController
 
     if @search_match
       @restaurant.linked_channels.push("Zomato")
-      @restaurant.save
     end
 
-    # Runs javascript file 'find_yelp_restaurant.js.erb' when fetcher is finished.
+    @restaurant.channel_links_attempted.push("Zomato")
+    @restaurant.save
+
+    # Runs javascript file 'find_zomato_restaurant.js.erb' when fetcher is finished.
     respond_to do |format|
       format.html { redirect_to root_path }
-      format.js  # <-- will run `find_yelp_restaurant.js.erb`
+      format.js  # <-- will run `find_zomato_restaurant.js.erb`
     end
   end
 
