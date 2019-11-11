@@ -30,7 +30,6 @@ class GoogleFetcherService
                           restaurant_id: relate_restaurant_id)
     end
   end
-
 end
 
 # rubocop:enable Metrics/LineLength

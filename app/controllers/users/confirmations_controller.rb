@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class Users::ConfirmationsController < Devise::ConfirmationsController
+class Users::ConfirmationsController < Devise::ConfirmationsController # rubocop:disable Style/ClassAndModuleChildren
   # GET /resource/confirmation/new
   # def new
   #   super
