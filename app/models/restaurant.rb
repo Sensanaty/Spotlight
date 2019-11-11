@@ -13,4 +13,6 @@ class Restaurant < ApplicationRecord
 
   serialize :linked_channels
   serialize :channel_links_attempted
+
+  serialize :yelp_review_count, :yelp_average_rating, :google_review_count, :google_average_rating, :foursquare_review_count, :foursquare_average_rating, :tripadvisor_review_count, :tripadvisor_average_rating
 end

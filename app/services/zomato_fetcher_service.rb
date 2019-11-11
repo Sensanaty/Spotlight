@@ -23,8 +23,12 @@ class ZomatoFetcherService
   end
 
   def grab_reviews(restaurant) # rubocop:disable Metrics/MethodLength
+    # API call to get the total review count and average rating
+    api_call_for_count_average = RestClient.get("https://developers.zomato.com/api/v2.1/restaurant?res_id=#{restaurant.zomato_id}&apikey=#{ENV['ZOMATO_API_KEY']}")
+    parsed_restaurant = JSON.parse(api_call_for_count_average.body)
 
-
+    restaurant. = parsed_restaurant["user_rating"]["aggregate_rating"]
+    total_review_count = parsed_restaurant["all_reviews_count"]
 
     # API call to get the reviews
     api_call_for_reviews = RestClient.get("https://developers.zomato.com/api/v2.1/reviews?res_id=#{restaurant.zomato_id}&apikey=#{ENV['ZOMATO_API_KEY']}")

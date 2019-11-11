@@ -11,6 +11,14 @@ class RestaurantsController < ApplicationController
     @restaurant.user = current_user
     @restaurant.linked_channels = []
     @restaurant.channel_links_attempted = []
+    @restaurant.yelp_review_count = []
+    @restaurant.yelp_average_rating = []
+    @restaurant.google_review_count = []
+    @restaurant.google_average_rating = []
+    @restaurant.foursquare_review_count = []
+    @restaurant.foursquare_average_rating = []
+    @restaurant.tripadvisor_review_count = []
+    @restaurant.tripadvisor_average_rating = []
 
     if @restaurant.save
       redirect_to payment_users_path
