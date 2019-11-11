@@ -20,13 +20,7 @@
      <!-- ROW 1 -->
     <div class="row d-flex justify-content-around py-2">
       <!-- Google card -->
-      <div class="card shadow h-200 p-2 d-flex flex-row dash-card position-relative">
-        <%= image_tag 'google-logo.png', class: 'logo-button-white-lg' %>
-        <div class="google-chart-2" style="width: 300px">
-          <!-- Google Chart 2 -->
-          <canvas id="googleReviewsRatingsChart" width="200" height="200"></canvas>
-        </div>
-      </div>
+      <%= render 'dashboard/google_dashcard', restaurant: @restaurant %>
       <!-- Zomato card -->
       <% if @restaurant.linked_channels.include?('Zomato') %>
         <div class="card shadow h-200 p-2 d-flex flex-row dash-card position-relative">
@@ -67,7 +61,7 @@
 
      <!-- ROW 3 -->
     <div class="row d-flex justify-content-around py-2">
-      <!-- Foursqaure card -->
+      <!-- Foursquare card -->
       <% if @restaurant.linked_channels.include?('Foursquare') %>
         <div class="card shadow h-200 p-2 d-flex flex-row dash-card position-relative">
           <%= image_tag 'foursquare-logo.png', class: 'logo-button-white-lg' %>

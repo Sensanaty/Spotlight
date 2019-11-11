@@ -93,8 +93,6 @@ class RestaurantsController < ApplicationController
     puts "foursquare"
   end
 
-  private
-
   def find_foursquare_restaurant
     @restaurant = current_user.restaurant
     @search_match = FoursquareFetcherService.new.grab_place_id(@restaurant)
@@ -103,6 +101,9 @@ class RestaurantsController < ApplicationController
       @restaurant.save
     end
   end
+
+  private
+
 
   def find_google_restaurant
     @restaurant = current_user.restaurant
