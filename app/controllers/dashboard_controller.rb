@@ -21,7 +21,13 @@ class DashboardController < ApplicationController
   end
 
   def explore
-    @restaurant = Restaurant.find_by(user_id: current_user)
+    @restaurant = Restaurant.where(user_id: current_user)
+    @markers = @restaurant.map do |flat|
+      {
+        lat: flat.latitude,
+        lng: flat.longitude
+      }
+    end
   end
 end
 
