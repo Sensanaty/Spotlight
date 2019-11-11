@@ -3,7 +3,7 @@ class RestaurantsController < ApplicationController
 
   def new
     @user = current_user
-    @restaurant = Restaurant.new()
+    @restaurant = Restaurant.new
   end
 
   def create
@@ -46,7 +46,7 @@ class RestaurantsController < ApplicationController
     # Runs javascript file 'find_yelp_restaurant.js.erb' when fetcher is finished.
     respond_to do |format|
       format.html { redirect_to root_path }
-      format.js  # <-- will run `find_yelp_restaurant.js.erb`
+      format.js # <-- will run `find_yelp_restaurant.js.erb`
     end
   end
 
@@ -54,7 +54,7 @@ class RestaurantsController < ApplicationController
     @restaurant = current_user.restaurant
     # The 'grab_place' method returns false if restaurant is not found on Zomato, or true if it is.
     # This boolean is saved to @search_match.
-    @search_match = ZomatoFetcherService.new(@restaurant.name, @restaurant.longitude, @restaurant.latitude).grab_place(@restaurant.id)
+    @search_match = ZomatoFetcherService.new(@restaurant.name, @restaurant.longitude, @restaurant.latitude).grab_place(@restaurant.id) # rubocop:disable Metrics/LineLength
 
     if @search_match
       @restaurant.linked_channels.push("Zomato")
@@ -64,7 +64,7 @@ class RestaurantsController < ApplicationController
     # Runs javascript file 'find_yelp_restaurant.js.erb' when fetcher is finished.
     respond_to do |format|
       format.html { redirect_to root_path }
-      format.js  # <-- will run `find_yelp_restaurant.js.erb`
+      format.js # <-- will run `find_yelp_restaurant.js.erb`
     end
   end
 

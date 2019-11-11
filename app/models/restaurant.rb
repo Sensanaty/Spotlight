@@ -1,8 +1,8 @@
 class Restaurant < ApplicationRecord
-  CUISINES = ["Italian", "French", "Pizza", "Western", "Turkish", "Greek", "Chinese", "Japanese", "Lebanese", "Indian", "Brazilian", "Thai", "Mexican", "Other"]
+  CUISINES = %w[Italian French Pizza Western Turkish Greek Chinese Japanese Lebanese Indian Brazilian Thai Mexican Other] # rubocop:disable Metrics/LineLength
   mount_uploader :photo, PhotoUploader
 
-  validates :name, :address, :cuisine, :price_level, presence: :true
+  validates :name, :address, :cuisine, :price_level, presence: :true # rubocop:disable Lint/BooleanSymbol
   validates :cuisine, inclusion: { in: CUISINES }
   validates :price_level, inclusion: { in: [1, 2, 3, 4] }
   belongs_to :user
