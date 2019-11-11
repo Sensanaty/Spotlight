@@ -1,4 +1,4 @@
-const searchResultDisplay = document.querySelector('#search_result_zomato');
+let zomatoSearchResultDisplay = document.querySelector('#search_result_zomato');
 
 if (<%= @search_match %> === true) {
   searchResultDisplay.innerText = "We found you on Zomato :D";

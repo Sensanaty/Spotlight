@@ -6,7 +6,11 @@
           <i class="fas fa-plus-circle add-channel-icon"></i>
           <div class="d-flex">
             <%= image_tag channel_logo, class: 'logo-button-white shadow-sm' %>
-            <h5>&nbsp;&nbsp;Add <%= channel_name %></h5>
+            <% if restaurant.channel_links_attempted.include?(channel_name.gsub(' ','')) %>
+              <h6>We couldn't find a match on <%= channel_name %>, try again?</h6>
+            <% else %>
+              <h5>&nbsp;&nbsp;Add <%= channel_name %></h5>
+            <% end %>
           </div>
         </div>
       </div>

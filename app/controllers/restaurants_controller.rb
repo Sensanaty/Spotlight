@@ -43,7 +43,7 @@ class RestaurantsController < ApplicationController
       @restaurant.linked_channels.push("Yelp")
     end
 
-    @restaurant.channel_links_attempted.push("Yelp")
+    @restaurant.channel_links_attempted.push("Yelp") unless @restaurant.channel_links_attempted.include?("Yelp")
     @restaurant.save
     # Runs javascript file 'find_yelp_restaurant.js.erb' when fetcher is finished.
     respond_to do |format|
@@ -62,7 +62,7 @@ class RestaurantsController < ApplicationController
       @restaurant.linked_channels.push("Zomato")
     end
 
-    @restaurant.channel_links_attempted.push("Zomato")
+    @restaurant.channel_links_attempted.push("Zomato") unless @restaurant.channel_links_attempted.include?("Zomato")
     @restaurant.save
 
     # Runs javascript file 'find_zomato_restaurant.js.erb' when fetcher is finished.
