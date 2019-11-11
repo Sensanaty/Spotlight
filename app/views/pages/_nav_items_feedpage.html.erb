@@ -1,25 +1,77 @@
 
-    <div class="h-200 d-flex justify-content-around mx-auto dash-sum-box">
-      <div class="container mb-0">
-        <h3>Social feed</h3>
-      </div>
-    </div>
-    <ul class="nav nav-pills mt-0" id="pills-tab" role="tablist">
-      <li class="nav-item filter-touchup">
+
+
+<div style="height:100px; background-color: white; margin-top: -20px;">
+  <div class="container pt-3" style="height:50px";><h3>Social feed</h3></div>
+  <div class="container d-flex flex-fill justify-content-end" style ="height: 50px;">
+    <ul class="nav nav-pills d-flex w-100" style = " margin-top: auto;
+    margin-bottom: 0;" id="pills-tab" role="tablist">
+      <li class="nav-item filter-touchup flex-fill">
         <a class="nav-link active" id="pills-home-tab" data-toggle="pill" href="#pills-home" role="tab" aria-controls="pills-home" aria-selected="true">All Channels</a>
       </li>
-      <li class="nav-item filter-touchup">
+      <li class="nav-item filter-touchup flex-fill">
         <a class="nav-link" id="pills-Google-tab" data-toggle="pill" href="#pills-Google" role="tab" aria-controls="pills-Google" aria-selected="false">
           Google
         </a>
       </li>
-      <li class="nav-item filter-touchup">
+      <li class="nav-item filter-touchup flex-fill">
         <a class="nav-link" id="pills-Yelp-tab" data-toggle="pill" href="#pills-Yelp" role="tab" aria-controls="pills-Yelp" aria-selected="false">Yelp</a>
       </li>
-      <li class="nav-item filter-touchup">
+      <li class="nav-item filter-touchup flex-fill">
         <a class="nav-link" id="pills-Zomato-tab" data-toggle="pill" href="#pills-Zomato" role="tab" aria-controls="pills-Zomato" aria-selected="false">Zomato</a>
       </li>
-      <li class="nav-item filter-touchup">
+      <li class="nav-item filter-touchup flex-fill">
         <a class="nav-link" id="pills-Foursquare-tab" data-toggle="pill" href="#pills-Foursquare" role="tab" aria-controls="pills-Foursquare" aria-selected="false">Foursquare</a>
       </li>
+      <li class="nav-item filter-touchup flex-fill">
+        <a class="nav-link" id="pills-TripAdvisor-tab" data-toggle="pill" href="#pills-TripAdvisor" role="tab" aria-controls="pills-TripAdvisor" aria-selected="false">TripAdvisor</a>
+      </li>
     </ul>
+    <div style = "margin-top: auto;">
+      <%= form_tag dashboard_feed_path, method: :get do |f| %>
+        <div class="dropdown">
+        <button class="btn btn-secondary dropdown-toggle filter-dropdown" style = "height:40px;" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          Filter by rating
+        </button>
+          <div class="dropdown-menu filter-dropdown-menu" aria-labelledby="dropdownMenuButton">
+            <% for i in (1..5) %>
+              <input hidden id="checkbox-<%= i %>" type="checkbox" value="<%= i %>" name="rating[]">
+              <label for="checkbox-<%= i %>" class="dropdown-item btn form-filter-label">
+                <% i.times do %>
+                  <span class="fa fa-star" style="color: #F5A431"></span>
+                <% end %>
+              </label>
+            <% end %>
+            <%= submit_tag 'save', :class => "btn-primary", :style=>"font-size: 20px; width:100%" %>
+          </div>
+        </div>
+    </div>
+  </div>
+</div>
+
+
+
+
+<% end %>
+<!--  <%#= form_tag dashboard_feed_path, method: :get do |f| %>
+    <%# @review_types.each do |type|%>
+      <input hidden id="<%#= type %>" type="checkbox" value="<%#= type %>" name="type[]">
+      <label for="<%#= type %>" class="btn form-filter-label"> <%#= type %> </label>
+    <%# end %>
+  <%#= submit_tag 'clickme' %>
+ <%# end %> -->
+
+<script>
+  // This script makes sure the selected options of the rating filter become highlighted.
+  const buttons = document.querySelectorAll(".form-filter-label")
+  buttons.forEach((button) => {
+    button.addEventListener("click", (event) =>{
+      event.currentTarget.classList.toggle("label-selected")
+
+    })
+  })
+
+</script>
+
+
+
