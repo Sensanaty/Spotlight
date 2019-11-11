@@ -34,7 +34,7 @@ class RestaurantsController < ApplicationController
 
   def find_yelp_restaurant
     @restaurant = current_user.restaurant
-    # The 'grab_place' method returns false if restaurant is not found on Yelp, or true if it is.
+    # The 'grab_place_id' method returns false if restaurant is not found on Yelp, or true if it is.
     # This boolean is saved to @search_match.
     @search_match = YelpFetcherService.new(@restaurant.longitude, @restaurant.latitude).grab_place(@restaurant.id)
 
@@ -52,7 +52,7 @@ class RestaurantsController < ApplicationController
 
   def find_zomato_restaurant
     @restaurant = current_user.restaurant
-    # The 'grab_place' method returns false if restaurant is not found on Zomato, or true if it is.
+    # The 'grab_place_id' method returns false if restaurant is not found on Zomato, or true if it is.
     # This boolean is saved to @search_match.
     @search_match = ZomatoFetcherService.new(@restaurant.name, @restaurant.longitude, @restaurant.latitude).grab_place(@restaurant.id) # rubocop:disable Metrics/LineLength
 
@@ -88,7 +88,7 @@ class RestaurantsController < ApplicationController
 
   def find_google_restaurant
     @restaurant = current_user.restaurant
-    GoogleFetcherService.new(@restaurant.name, @restaurant.latitude, @restaurant.longitude).grab_place(@restaurant.id)
+    GoogleFetcherService.new(@restaurant.name, @restaurant.latitude, @restaurant.longitude).grab_place_id(@restaurant.id)
     @restaurant.linked_channels.push("Google")
     @restaurant.save
   end

@@ -62,13 +62,13 @@ new_user.save
 new_user_2.save
 
 puts "\n\e[34mFetching from Google for Peter Luger New York\e[0m"
-google_fetch_status = GoogleFetcherService.new(new_restaurant.name, new_restaurant.latitude, new_restaurant.longitude).grab_place(new_restaurant.id)
+google_fetch_status = GoogleFetcherService.new(new_restaurant.name, new_restaurant.latitude, new_restaurant.longitude).grab_place_id(new_restaurant.id)
 new_restaurant.linked_channels.push('Google') if google_fetch_status
 
 puts "\e[92mGoogle Fetched for Peter Luger New York!\e[0m"
 
 puts "\n\e[34mFetching from Google for Hard Rock Cafe London\e[0m"
-google_fetch_status = GoogleFetcherService.new(new_restaurant_2.name, new_restaurant_2.latitude, new_restaurant_2.longitude).grab_place(new_restaurant_2.id)
+google_fetch_status = GoogleFetcherService.new(new_restaurant_2.name, new_restaurant_2.latitude, new_restaurant_2.longitude).grab_place_id(new_restaurant_2.id)
 new_restaurant_2.linked_channels.push('Google') if google_fetch_status
 
 puts "\e[92mGoogle Fetched for Hard Rock Cafe London!\e[0m"
