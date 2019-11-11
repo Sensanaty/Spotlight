@@ -104,7 +104,7 @@ new_restaurant.linked_channels.push('Zomato') if zomato_fetch_status
 puts "\e[92mZomato Fetched!\e[0m"
 
 puts "\n\e[34mFetching from FourSquare\e[0m"
-FoursquareFetcherService.new(new_restaurant.name, new_restaurant.latitude, new_restaurant.longitude).grab_place(new_restaurant)
+FoursquareFetcherService.new.grab_place(new_restaurant)
 new_restaurant.linked_channels.push('Foursquare')
 puts "\e[92mFourSquare Fetched!\e[0m"
 
