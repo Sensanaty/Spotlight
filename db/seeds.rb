@@ -30,11 +30,11 @@ new_restaurant.remote_photo_url = restaurant_logo_url
 puts "\e[92mCreated restaurant!\e[0m\n\n"
 
 new_user.save
-new_restaurant.save
 
 puts "\n\e[34mFetching from Google\e[0m"
 google_fetch_status = GoogleFetcherService.new(new_restaurant.name).grab_place(new_restaurant.id)
 new_restaurant.linked_channels.push('Google') if google_fetch_status
+
 puts "\e[92mGoogle Fetched!\e[0m"
 
 puts "\n\e[34mFetching from Yelp\e[0m"
@@ -51,6 +51,8 @@ puts "\n\e[34mFetching from FourSquare\e[0m"
 FoursquareFetcherService.new(new_restaurant.name, new_restaurant.latitude, new_restaurant.longitude).grab_place(new_restaurant.id)
 new_restaurant.linked_channels.push('Foursquare')
 puts "\e[92mFourSquare Fetched!\e[0m"
+
+new_restaurant.save
 
 puts "\n\e[32m+=+=+=+=+=+=+=+=+=+=+=+=+=+\e[0m"
 puts "\e[32m|| \e[42;97mSEEDING DATABASE DONE\e[0m \e[32m||"
