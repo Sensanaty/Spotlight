@@ -34,7 +34,7 @@
           <h6>You've already added Zomato :)</h6>
         </div>
       <% else %>
-        <%= render 'shared/add_channel_card', channel_name: 'Zomato', channel_logo: 'zomato-logo.png', channel_color: '#fcdce1', restaurant_name: @restaurant.name %>
+        <%= render 'shared/add_channel_card', channel_name: 'Zomato', channel_logo: 'zomato-logo.png', channel_color: '#fcdce1', restaurant: @restaurant %>
       <% end %>
     </div>
 
@@ -47,7 +47,7 @@
           <h6>You've already added Yelp :)</h6>
         </div>
       <% else %>
-        <%= render 'shared/add_channel_card', channel_name: 'Yelp', channel_logo: 'yelp-logo.png', channel_color: '#f5d5d5', restaurant_name: @restaurant.name %>
+        <%= render 'shared/add_channel_card', channel_name: 'Yelp', channel_logo: 'yelp-logo.png', channel_color: '#f5d5d5', restaurant: @restaurant %>
       <% end %>
 
       <!-- Tripadvisor card -->
@@ -57,7 +57,7 @@
           <h6>You've already added Trip Advisor :)</h6>
         </div>
       <% else %>
-        <%= render 'shared/add_channel_card', channel_name: 'Trip Advisor', channel_logo: 'trip-advisor-logo.png', channel_color: '#dcf0da', restaurant_name: @restaurant.name %>
+        <%= render 'shared/add_channel_card', channel_name: 'Trip Advisor', channel_logo: 'trip-advisor-logo.png', channel_color: '#dcf0da', restaurant: @restaurant %>
       <% end %>
     </div>
 
@@ -70,7 +70,7 @@
           <h6>You've already added Facebook :)</h6>
         </div>
       <% else %>
-        <%= render 'shared/add_channel_card', channel_name: 'Facebook', channel_logo: 'facebook-logo.png', channel_color: '#d5dff5', restaurant_name: @restaurant.name %>
+        <%= render 'shared/add_channel_card', channel_name: 'Facebook', channel_logo: 'facebook-logo.png', channel_color: '#d5dff5', restaurant: @restaurant %>
       <% end %>
       <!-- Insta card -->
       <% if @restaurant.linked_channels.include?('Instagram') %>
@@ -79,7 +79,7 @@
           <h6>You've already added Instagram :)</h6>
         </div>
       <% else %>
-        <%= render 'shared/add_channel_card', channel_name: 'Instagram', channel_logo: 'instagram-logo.png', channel_color: '#d9d5f5', restaurant_name: @restaurant.name %>
+        <%= render 'shared/add_channel_card', channel_name: 'Instagram', channel_logo: 'instagram-logo.png', channel_color: '#d9d5f5', restaurant: @restaurant %>
       <% end %>
     </div>
 
@@ -92,7 +92,7 @@
           <h6>You've already added Foursquare :)</h6>
         </div>
       <% else %>
-        <%= render 'shared/add_channel_card', channel_name: 'Foursquare', channel_logo: 'foursquare-logo.png', channel_color: '#d9d5f5', restaurant_name: @restaurant.name %>
+        <%= render 'shared/add_channel_card', channel_name: 'Foursquare', channel_logo: 'foursquare-logo.png', channel_color: '#d9d5f5', restaurant: @restaurant %>
       <% end %>
     </div>
   </div>
