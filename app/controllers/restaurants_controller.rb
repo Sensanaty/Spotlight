@@ -13,9 +13,7 @@ class RestaurantsController < ApplicationController
 
     if @restaurant.save
       redirect_to payment_users_path
-      GoogleFetcherService.new(Restaurant.last.name).grab_place(Restaurant.last.id)
-      @restaurant.linked_channels.push("Google")
-      @restaurant.save
+      find_google_restaurant
     else
       render :new
     end
@@ -87,6 +85,13 @@ class RestaurantsController < ApplicationController
   end
 
   private
+
+  def find_google_restaurant
+    @restaurant = current_user.restaurant
+    GoogleFetcherService.new(@restaurant.name, @restaurant.latitude, @restaurant.longitude).grab_place(@restaurant.id)
+    @restaurant.linked_channels.push("Google")
+    @restaurant.save
+  end
 
   def restaurant_params
     params.require(:restaurant).permit(:name, :address, :longitude, :latitude, :cuisine, :price_level, :user_id, :photo)
