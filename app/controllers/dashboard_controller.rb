@@ -8,7 +8,11 @@ class DashboardController < ApplicationController
 
   def feed
     @restaurant = Restaurant.find_by(user_id: current_user)
+    @review_types = @restaurant.restaurant_reviews.pluck(:review_type).uniq
     @all_reviews = @restaurant.restaurant_reviews
+    if params[:type].present?
+      @all_reviews = @all_reviews.where(review_type: params[:type])
+    end
     @all_reviews_sorted = @all_reviews.sort_by {|obj| obj.review_time}.reverse
   end
 
