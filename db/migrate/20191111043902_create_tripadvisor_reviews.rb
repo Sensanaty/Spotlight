@@ -1,6 +1,5 @@
 class CreateTripadvisorReviews < ActiveRecord::Migration[5.2]
   def change
-    drop_table :ta_reviews
     create_table :tripadvior_reviews do |t|
       t.string :reviewer_image
       t.string :reviewer_username
