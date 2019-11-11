@@ -8,13 +8,16 @@ class DashboardController < ApplicationController
   def feed
     @review = RestaurantReview.first
     @restaurant = Restaurant.find_by(user_id: current_user)
-    if params[:query]
-      ratings = params[:query]
-      @all_reviews = @restaurant.restaurant_reviews.select { |e| e.rating == ratings.to_f }
-    else
-      @all_reviews = @restaurant.restaurant_reviews
+    @review_types = @restaurant.restaurant_reviews.pluck(:review_type).uniq
+    @all_reviews = @restaurant.restaurant_reviews
+    if params[:rating].present?
+      @all_reviews = @all_reviews.where(rating: params[:rating])
     end
-    @all_reviews_sorted = @all_reviews.sort_by(&:review_time).reverse
+    # Leave in code -> if we have time we use this to refactor the way we pull the reviews. Now we use CSS which pulls all.
+    # if params[:type].present?
+    #   @all_reviews = @all_reviews.where(review_type: params[:type])
+    # end
+    @all_reviews_sorted = @all_reviews.sort_by {|obj| obj.review_time}.reverse
   end
 
   def explore

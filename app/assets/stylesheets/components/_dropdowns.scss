@@ -19,3 +19,12 @@
     display: none;
   }
 }
+
+.label-selected{
+    background-color: $green-spotlight;
+  }
+
+.form-filter-label:hover {
+  background: #1BCB7F;
+  color: white;
+}
