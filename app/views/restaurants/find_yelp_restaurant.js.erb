@@ -1,11 +1,7 @@
 const searchResultDisplay = document.querySelector('#search_result_yelp');
 
-console.log(searchResultDisplay);
-
 if (<%= @search_match %> === true) {
   searchResultDisplay.innerText = "We found you on Yelp :D";
-  console.log("If was true");
 } else if (<%= @search_match %> === false) {
   searchResultDisplay.innerText = "We couldn't find you on Yelp :(";
-  console.log("if ws false");
 }
