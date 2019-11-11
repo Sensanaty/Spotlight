@@ -13,4 +13,15 @@ class Restaurant < ApplicationRecord
 
   serialize :linked_channels
   serialize :channel_links_attempted
+
+  serialize :yelp_review_count
+  serialize :yelp_average_rating
+  serialize :google_review_count
+  serialize :google_average_rating
+  serialize :foursquare_review_count
+  serialize :foursquare_average_rating
+  serialize :zomato_review_count
+  serialize :zomato_average_rating
+  serialize :tripadvisor_review_count
+  serialize :tripadvisor_average_rating
 end

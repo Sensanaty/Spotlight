@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_11_11_043902) do
+ActiveRecord::Schema.define(version: 2019_11_11_045401) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -82,6 +82,16 @@ ActiveRecord::Schema.define(version: 2019_11_11_043902) do
     t.text "facebook_id"
     t.text "instagram_id"
     t.string "channel_links_attempted"
+    t.text "yelp_review_count"
+    t.text "yelp_average_rating"
+    t.text "google_review_count"
+    t.text "google_average_rating"
+    t.text "zomato_review_count"
+    t.text "zomato_average_rating"
+    t.text "foursquare_review_count"
+    t.text "foursquare_average_rating"
+    t.text "tripadvisor_review_count"
+    t.text "tripadvisor_average_rating"
     t.index ["user_id"], name: "index_restaurants_on_user_id"
   end
 

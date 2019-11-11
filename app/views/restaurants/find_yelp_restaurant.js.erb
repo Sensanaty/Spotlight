@@ -1,7 +1,7 @@
-const searchResultDisplay = document.querySelector('#search_result_yelp');
+let yelpSearchResultDisplay = document.querySelector('#search_result_yelp');
 
 if (<%= @search_match %> === true) {
-  searchResultDisplay.innerText = "We found you on Yelp :D";
+  yelpSearchResultDisplay.innerText = "We found you on Yelp :D";
 } else if (<%= @search_match %> === false) {
-  searchResultDisplay.innerText = "We couldn't find you on Yelp :(";
+  yelpSearchResultDisplay.innerText = "We couldn't find you on Yelp :(";
 }

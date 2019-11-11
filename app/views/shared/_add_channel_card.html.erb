@@ -6,13 +6,17 @@
           <i class="fas fa-plus-circle add-channel-icon"></i>
           <div class="d-flex">
             <%= image_tag channel_logo, class: 'logo-button-white shadow-sm' %>
-            <h5>&nbsp;&nbsp;Add <%= channel_name %></h5>
+            <% if restaurant.channel_links_attempted.include?(channel_name.gsub(' ','')) %>
+              <h6>We couldn't find a match on <%= channel_name %>, try again?</h6>
+            <% else %>
+              <h5>&nbsp;&nbsp;Add <%= channel_name %></h5>
+            <% end %>
           </div>
         </div>
       </div>
     <% end %>
-    <div class="add-channel-card-back dash-card" style='background-color: <%= channel_color %>'>
-      <h6 id="search_result_<%= channel_name.downcase %>">Looking for <strong><%= restaurant_name %></strong> on <strong><%= channel_name %></strong>...</h6>
+    <div class="add-channel-card-back dash-card" id="add-channel-back-<%= channel_name.downcase.gsub(' ','') %>" style='background-color: <%= channel_color %>'>
+      <h6 id="search_result_<%= channel_name.downcase %>">Looking for <strong><%= restaurant.name %></strong> on <strong><%= channel_name %></strong>...</h6>
     </div>
   </div>
 </div>
