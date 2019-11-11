@@ -3,16 +3,17 @@ class RestaurantsController < ApplicationController
 
   def new
     @user = current_user
-    @restaurant = Restaurant.new()
+    @restaurant = Restaurant.new
   end
 
   def create
     @restaurant = Restaurant.new(restaurant_params)
     @restaurant.user = current_user
+    @restaurant.linked_channels = []
 
-    if @restaurant.save!
+    if @restaurant.save
       redirect_to payment_users_path
-      GoogleFetcherService.new(Restaurant.last.name).grab_place(Restaurant.last.id)
+      find_google_restaurant
     else
       render :new
     end
@@ -21,13 +22,50 @@ class RestaurantsController < ApplicationController
   def edit
   end
 
+  def update
+    @restaurant = Restaurant.find(params[:id])
+
+    if @restaurant.update(restaurant_params)
+      redirect_to root_path
+    else
+      render :edit_profile
+    end
+  end
+
   def find_yelp_restaurant
-    puts "Fetching Yelp Restaurants"
-    YelpFetcherService.new(Restaurant.last.longitude, Restaurant.last.latitude).grab_place(Restaurant.last.id)
+    @restaurant = current_user.restaurant
+    # The 'grab_place' method returns false if restaurant is not found on Yelp, or true if it is.
+    # This boolean is saved to @search_match.
+    @search_match = YelpFetcherService.new(@restaurant.longitude, @restaurant.latitude).grab_place(@restaurant.id)
+
+    if @search_match
+      @restaurant.linked_channels.push("Yelp")
+      @restaurant.save
+    end
+
+    # Runs javascript file 'find_yelp_restaurant.js.erb' when fetcher is finished.
+    respond_to do |format|
+      format.html { redirect_to root_path }
+      format.js # <-- will run `find_yelp_restaurant.js.erb`
+    end
   end
 
   def find_zomato_restaurant
-    puts "zomato"
+    @restaurant = current_user.restaurant
+    # The 'grab_place' method returns false if restaurant is not found on Zomato, or true if it is.
+    # This boolean is saved to @search_match.
+    @search_match = ZomatoFetcherService.new(@restaurant.name, @restaurant.longitude, @restaurant.latitude).grab_place(@restaurant.id) # rubocop:disable Metrics/LineLength
+
+    if @search_match
+      @restaurant.linked_channels.push("Zomato")
+      @restaurant.save
+    end
+
+    # Runs javascript file 'find_yelp_restaurant.js.erb' when fetcher is finished.
+    respond_to do |format|
+      format.html { redirect_to root_path }
+      format.js # <-- will run `find_yelp_restaurant.js.erb`
+    end
   end
 
   def find_tripadvisor_restaurant
@@ -47,6 +85,13 @@ class RestaurantsController < ApplicationController
   end
 
   private
+
+  def find_google_restaurant
+    @restaurant = current_user.restaurant
+    GoogleFetcherService.new(@restaurant.name, @restaurant.latitude, @restaurant.longitude).grab_place(@restaurant.id)
+    @restaurant.linked_channels.push("Google")
+    @restaurant.save
+  end
 
   def restaurant_params
     params.require(:restaurant).permit(:name, :address, :longitude, :latitude, :cuisine, :price_level, :user_id, :photo)
