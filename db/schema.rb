@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_11_11_020825) do
+ActiveRecord::Schema.define(version: 2019_11_11_045401) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -82,18 +82,30 @@ ActiveRecord::Schema.define(version: 2019_11_11_020825) do
     t.text "facebook_id"
     t.text "instagram_id"
     t.string "channel_links_attempted"
+    t.text "yelp_review_count"
+    t.text "yelp_average_rating"
+    t.text "google_review_count"
+    t.text "google_average_rating"
+    t.text "zomato_review_count"
+    t.text "zomato_average_rating"
+    t.text "foursquare_review_count"
+    t.text "foursquare_average_rating"
+    t.text "tripadvisor_review_count"
+    t.text "tripadvisor_average_rating"
     t.index ["user_id"], name: "index_restaurants_on_user_id"
   end
 
-  create_table "ta_reviews", force: :cascade do |t|
-    t.integer "rating"
-    t.string "review_date"
-    t.string "reviewer"
-    t.string "review_title"
-    t.string "review_link"
-    t.text "review"
+  create_table "tripadvior_reviews", force: :cascade do |t|
+    t.string "reviewer_image"
+    t.string "reviewer_username"
+    t.string "reviewer_profile_url"
+    t.string "review_text"
+    t.float "rating"
+    t.integer "review_time"
+    t.bigint "restaurant_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["restaurant_id"], name: "index_tripadvior_reviews_on_restaurant_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -150,6 +162,7 @@ ActiveRecord::Schema.define(version: 2019_11_11_020825) do
   add_foreign_key "orders", "users"
   add_foreign_key "restaurant_reviews", "restaurants"
   add_foreign_key "restaurants", "users"
+  add_foreign_key "tripadvior_reviews", "restaurants"
   add_foreign_key "yelp_reviews", "restaurants"
   add_foreign_key "zomato_reviews", "restaurants"
 end
