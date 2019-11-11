@@ -54,7 +54,9 @@ restaurant_2_info = {
   foursquare_review_count: [],
   foursquare_average_rating: [],
   tripadvisor_review_count: [],
-  tripadvisor_average_rating: []
+  tripadvisor_average_rating: [],
+  zomato_review_count: [],
+  zomato_average_rating: []
  }
 
 puts "\e[34mCreating user - Joe Bloggs, jb@gmail.com\e[0m"
@@ -80,25 +82,25 @@ new_user.save
 new_user_2.save
 
 puts "\n\e[34mFetching from Google for Peter Luger New York\e[0m"
-google_fetch_status = GoogleFetcherService.new(new_restaurant.name, new_restaurant.latitude, new_restaurant.longitude).grab_place(new_restaurant)
+google_fetch_status = GoogleFetcherService.new(new_restaurant.name, new_restaurant.latitude, new_restaurant.longitude).grab_place(new_restaurant.id)
 new_restaurant.linked_channels.push('Google') if google_fetch_status
 
 puts "\e[92mGoogle Fetched for Peter Luger New York!\e[0m"
 
 puts "\n\e[34mFetching from Google for Hard Rock Cafe London\e[0m"
-google_fetch_status = GoogleFetcherService.new(new_restaurant_2.name, new_restaurant_2.latitude, new_restaurant_2.longitude).grab_place(new_restaurant_2)
+google_fetch_status = GoogleFetcherService.new(new_restaurant_2.name, new_restaurant_2.latitude, new_restaurant_2.longitude).grab_place(new_restaurant_2.id)
 new_restaurant_2.linked_channels.push('Google') if google_fetch_status
 
 puts "\e[92mGoogle Fetched for Hard Rock Cafe London!\e[0m"
 
 puts "\n\e[34mFetching from Yelp\e[0m"
-YelpFetcherService.new.grab_place(new_restaurant)
-new_restaurant.linked_channels.push('Yelp')
+yelp_fetch_status = YelpFetcherService.new.grab_place(new_restaurant)
+new_restaurant.linked_channels.push('Yelp') if yelp_fetch_status
 puts "\e[92mYelp Fetched!\e[0m"
 
 puts "\n\e[34mFetching from Zomato\e[0m"
-ZomatoFetcherService.new.grab_place(new_restaurant)
-new_restaurant.linked_channels.push('Zomato')
+zomato_fetch_status = ZomatoFetcherService.new.grab_place(new_restaurant)
+new_restaurant.linked_channels.push('Zomato') if zomato_fetch_status
 puts "\e[92mZomato Fetched!\e[0m"
 
 puts "\n\e[34mFetching from FourSquare\e[0m"

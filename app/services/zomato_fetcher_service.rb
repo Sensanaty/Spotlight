@@ -25,8 +25,11 @@ class ZomatoFetcherService
     api_call_for_count_average = RestClient.get("https://developers.zomato.com/api/v2.1/restaurant?res_id=#{restaurant.zomato_id}&apikey=#{ENV['ZOMATO_API_KEY']}")
     parsed_restaurant = JSON.parse(api_call_for_count_average.body)
 
-    restaurant.zomato_average_rating.push parsed_restaurant["user_rating"]["aggregate_rating"]
-    restaurant.zomato_review_count.push parsed_restaurant["all_reviews_count"]
+    average_rating = parsed_restaurant["user_rating"]["aggregate_rating"]
+    review_count = parsed_restaurant["all_reviews_count"]
+
+    restaurant.zomato_average_rating.push(average_rating) unless average_rating.nil?
+    restaurant.zomato_review_count.push(review_count) unless review_count.nil?
     restaurant.save
 
     # API call to get the reviews

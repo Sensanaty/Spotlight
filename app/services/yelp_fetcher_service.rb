@@ -28,8 +28,12 @@ class YelpFetcherService
     parsed_restaurant = JSON.parse(serialized_restaurant)
 
     # Get the total review count and average rating and save it to the restaurant
-    restaurant.yelp_review_count.push parsed_restaurant["review_count"]
-    restaurant.yelp_average_rating.push parsed_restaurant["rating"]
+
+    review_count = parsed_restaurant["review_count"]
+    average_rating = parsed_restaurant["rating"]
+
+    restaurant.yelp_review_count.push(review_count) unless review_count.nil?
+    restaurant.yelp_average_rating.push(average_rating) unless average_rating.nil?
     restaurant.save
 
     # Call API to get reviews:

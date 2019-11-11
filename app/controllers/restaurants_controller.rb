@@ -46,9 +46,9 @@ class RestaurantsController < ApplicationController
   def find_yelp_restaurant
     @restaurant = current_user.restaurant
     # The 'grab_place' method returns false if restaurant is not found on Yelp, otherwise returns true
-    @search_match = YelpFetcherService.new(@restaurant.longitude, @restaurant.latitude).grab_place(@restaurant)
+    @search_match = YelpFetcherService.new.grab_place(@restaurant)
 
-    if @yelp_restaurant_id
+    if @search_match
       @restaurant.linked_channels.push("Yelp")
     end
 
@@ -65,7 +65,7 @@ class RestaurantsController < ApplicationController
     @restaurant = current_user.restaurant
     # The 'grab_place' method returns false if restaurant is not found on Zomato, or true if it is.
     # This boolean is saved to @search_match.
-    @search_match = ZomatoFetcherService.new(@restaurant.name, @restaurant.longitude, @restaurant.latitude).grab_place(@restaurant) # rubocop:disable Metrics/LineLength
+    @search_match = ZomatoFetcherService.new.grab_place(@restaurant) # rubocop:disable Metrics/LineLength
 
     if @search_match
       @restaurant.linked_channels.push("Zomato")
