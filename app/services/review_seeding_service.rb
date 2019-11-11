@@ -9,7 +9,7 @@ class ReviewSeedingService
 
   def self.google_seed
     puts "\n\e[34mNow seeding randomly generated Google reviews\e[0m"
-    rand(40..70).times do
+    rand(50..110).times do
       username = "#{Faker::Verb.past_participle}#{Faker::GreekPhilosophers.name}#{Faker::NatoPhoneticAlphabet.code_word}#{rand(1050)}"
       GoogleReview.create(reviewer_image: Faker::Avatar.image,
                           reviewer_username: username,
