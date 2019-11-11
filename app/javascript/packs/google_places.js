@@ -16,10 +16,10 @@ function autocomplete() {
         //   e.preventDefault(); // Do not submit the form on Enter.
         // }
         const place = autocomplete.getPlace();
-        const lat = place.geometry.viewport.ka.g;
-        const lon = place.geometry.viewport.pa.g;
-        console.log(lat);
-        console.log(lon);
+        const lon = place.geometry.viewport.ka.g;
+        const lat = place.geometry.viewport.pa.g;
+        console.log(`Long: ${lon}`);
+        console.log(`Lat: ${lat}`);
 
         for (var component in componentForm) {
           document.getElementById(componentForm[component]).value = place[component];

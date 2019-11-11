@@ -106,17 +106,12 @@ class RestaurantsController < ApplicationController
 
   def find_google_restaurant
     @restaurant = current_user.restaurant
-<<<<<<< HEAD
-    @google_id = GoogleFetcherService.new(@restaurant.name, @restaurant.latitude, @restaurant.longitude).grab_place(@restaurant.id)
-    @restaurant.linked_channels.push("Google")
-    @restaurant.save
-=======
+
     @search_match = GoogleFetcherService.new.grab_place_id(@restaurant)
     if @search_match
       @restaurant.linked_channels.push("Google")
       @restaurant.save
     end
->>>>>>> c90f2c4fb3907eac54b620e0c92761153f066404
   end
 
   def restaurant_params
