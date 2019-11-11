@@ -12,4 +12,5 @@ class Restaurant < ApplicationRecord
   has_many :four_square_reviews, through: :restaurant_reviews, source: :review, source_type: 'FoursquareReview'
 
   serialize :linked_channels
+  serialize :channel_links_attempted
 end
