@@ -15,12 +15,11 @@ const cardSets = [[zomatoInnerCard, zomatoFrontCard], [tripAdvisorInnerCard, tri
                   [instagramInnerCard, instagramFrontCard]];
 
 
-console.log(cardSets);
 
 cardSets.forEach((cardSet) => {
-  console.log(cardSet);
-  cardSet[1].addEventListener('click', (e) => {
-    console.log(cardSet[1] + "clicked");
-    cardSet[0].classList.add("rotate");
-  });
+  if (cardSet[0] !== null) {
+    cardSet[1].addEventListener('click', (e) => {
+      cardSet[0].classList.add("rotate");
+    });
+  };
 })
