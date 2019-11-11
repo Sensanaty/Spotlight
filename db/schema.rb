@@ -95,15 +95,17 @@ ActiveRecord::Schema.define(version: 2019_11_11_045401) do
     t.index ["user_id"], name: "index_restaurants_on_user_id"
   end
 
-  create_table "ta_reviews", force: :cascade do |t|
-    t.integer "rating"
-    t.string "review_date"
-    t.string "reviewer"
-    t.string "review_title"
-    t.string "review_link"
-    t.text "review"
+  create_table "tripadvior_reviews", force: :cascade do |t|
+    t.string "reviewer_image"
+    t.string "reviewer_username"
+    t.string "reviewer_profile_url"
+    t.string "review_text"
+    t.float "rating"
+    t.integer "review_time"
+    t.bigint "restaurant_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["restaurant_id"], name: "index_tripadvior_reviews_on_restaurant_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -160,6 +162,7 @@ ActiveRecord::Schema.define(version: 2019_11_11_045401) do
   add_foreign_key "orders", "users"
   add_foreign_key "restaurant_reviews", "restaurants"
   add_foreign_key "restaurants", "users"
+  add_foreign_key "tripadvior_reviews", "restaurants"
   add_foreign_key "yelp_reviews", "restaurants"
   add_foreign_key "zomato_reviews", "restaurants"
 end

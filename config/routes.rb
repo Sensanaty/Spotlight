@@ -29,7 +29,7 @@ Rails.application.routes.draw do
 
   root :to => 'landing_page#landing_page'
 
-  get '/dashboard/feed', to: 'dashboard#feed'
+  get '/dashboard/feed', to: 'dashboard#feed', as: "dashboard_feed"
   get '/dashboard/explore', to: 'dashboard#explore'
 
   get '/landing_page/how-it-works', to: 'landing_page#how_it_works'

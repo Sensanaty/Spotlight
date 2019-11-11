@@ -1,110 +1,4 @@
 
-<!-- <div class="filter filter-basic">
-  <div class="filter-nav">
-    <button class="btn btn-success active" data-filter="">All</button>
-    <button class="btn btn-primary" data-filter="nature">Nature</button>
-    <button class="btn btn-primary" data-filter="food">Food</button>
-    <button class="btn btn-primary" data-filter="architecture">Architecture</button>
-  </div>
-  <div class="filter-gallery">
-    <div class="item" data-category="nature">
-      <div class="item-content">
-        <img src="https://mdbootstrap.com/img/Photos/Lightbox/Thumbnail/img%20(30).jpg" alt="image">
-      </div>
-    </div>
-    <div class="item" data-category="architecture">
-      <div class="item-content">
-        <img src="https://mdbootstrap.com/img/Photos/Lightbox/Thumbnail/img%20(1).jpg" alt="image">
-      </div>
-    </div>
-    <div class="item" data-category="food">
-      <div class="item-content">
-        <img src="https://mdbootstrap.com/img/Photos/Lightbox/Thumbnail/img%20(42).jpg" alt="image">
-      </div>
-    </div>
-    <div class="item" data-category="architecture">
-      <div class="item-content">
-        <img src="https://mdbootstrap.com/img/Photos/Lightbox/Thumbnail/img%20(2).jpg" alt="image">
-      </div>
-    </div>
-    <div class="item" data-category="nature">
-      <div class="item-content">
-        <img src="https://mdbootstrap.com/img/Photos/Lightbox/Thumbnail/img%20(114).jpg" alt="image">
-      </div>
-    </div>
-    <div class="item" data-category="architecture">
-      <div class="item-content">
-        <img src="https://mdbootstrap.com/img/Photos/Lightbox/Thumbnail/img%20(4).jpg" alt="image">
-      </div>
-    </div>
-    <div class="item" data-category="architecture">
-      <div class="item-content">
-        <img src="https://mdbootstrap.com/img/Photos/Lightbox/Thumbnail/img%20(6).jpg" alt="image">
-      </div>
-    </div>
-    <div class="item" data-category="nature">
-      <div class="item-content">
-        <img src="https://mdbootstrap.com/img/Photos/Lightbox/Thumbnail/img%20(115).jpg" alt="image">
-      </div>
-    </div>
-    <div class="item" data-category="food">
-      <div class="item-content">
-        <img src="https://mdbootstrap.com/img/Photos/Lightbox/Thumbnail/img%20(44).jpg" alt="image">
-      </div>
-    </div>
-    <div class="item" data-category="architecture">
-      <div class="item-content">
-        <img src="https://mdbootstrap.com/img/Photos/Lightbox/Thumbnail/img%20(5).jpg" alt="image">
-      </div>
-    </div>
-    <div class="item" data-category="food">
-      <div class="item-content">
-        <img src="https://mdbootstrap.com/img/Photos/Lightbox/Thumbnail/img%20(45).jpg" alt="image">
-      </div>
-    </div>
-    <div class="item" data-category="food">
-      <div class="item-content">
-        <img src="https://mdbootstrap.com/img/Photos/Lightbox/Thumbnail/img%20(46).jpg" alt="image">
-      </div>
-    </div>
-    <div class="item" data-category="food">
-      <div class="item-content">
-        <img src="https://mdbootstrap.com/img/Photos/Lightbox/Thumbnail/img%20(47).jpg" alt="image">
-      </div>
-    </div>
-    <div class="item" data-category="nature">
-      <div class="item-content">
-        <img src="https://mdbootstrap.com/img/Photos/Lightbox/Thumbnail/img%20(111).jpg" alt="image">
-      </div>
-    </div>
-    <div class="item" data-category="architecture">
-      <div class="item-content">
-        <img src="https://mdbootstrap.com/img/Photos/Lightbox/Thumbnail/img%20(3).jpg" alt="image">
-      </div>
-    </div>
-    <div class="item" data-category="nature">
-      <div class="item-content">
-        <img src="https://mdbootstrap.com/img/Photos/Lightbox/Thumbnail/img%20(112).jpg" alt="image">
-      </div>
-    </div>
-  </div>
-</div> -->
-
-<div class="pb-5">
-  <%= form_tag dashboard_feed_path, method: :get do %>
-    <%#= check_box_tag "query[]", 1 %>
-    <%#= check_box_tag "query[]", 2 %>
-    <%#= check_box_tag "query[]", 3 %>
-    <%#= check_box_tag "query[]", 4 %>
-    <%#= check_box_tag "query[]", 5 %>
-    <%= select_tag :query, options_for_select(["1", "2", "3", "4", "5"], params[:query]),
-      class: "form-control"
-    %>
-    <%= submit_tag "Search", class: "btn btn-primary" %>
-  <% end %>
-
-</div>
-
 <%= render 'pages/nav_items_feedpage'%>
 
 
@@ -121,6 +15,9 @@
             <%= render 'pages/zomato_feed_card', review: review %>
           <% elsif review.review_type == "FoursquareReview" %>
             <%= render 'pages/foursquarecard', review: review %>
+          <% elsif review.review_type == "TripavisorReview" %>
+          <!-- Doube-check TripAdvisor name once TA included  -->
+            <%= render 'pages/tripadvisorcard', review: review %>
           <% end %>
         <% end %>
       </div>
@@ -157,11 +54,17 @@
         <% end %>
       </div>
 
+      <div class="tab-pane fade" id="pills-Tripadvisor" role="tabpanel" aria-labelledby="pills-Tripadvisor-tab">
+        <% @all_reviews_sorted.each do |review| %>
+          <% if review.review_type == "TripadvisorReview" %>
+            <%= render 'pages/tripadvisorcard', review: review %>
+          <% end %>
+        <% end %>
+      </div>
+
     </div>
   </div>
 </div>
-
-
 
 
 
