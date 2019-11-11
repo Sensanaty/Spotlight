@@ -67,6 +67,15 @@
 
      <!-- ROW 3 -->
     <div class="row d-flex justify-content-around py-2">
+      <!-- Foursqaure card -->
+      <% if @restaurant.linked_channels.include?('Foursquare') %>
+        <div class="card shadow h-200 p-2 d-flex flex-row dash-card position-relative">
+          <%= image_tag 'foursquare-logo.png', class: 'logo-button-white-lg' %>
+          <h6>You've already added Foursquare :)</h6>
+        </div>
+      <% else %>
+        <%= render 'shared/add_channel_card', channel_name: 'Foursquare', channel_logo: 'foursquare-logo.png', channel_color: '#d9d5f5', restaurant: @restaurant %>
+      <% end %>
       <!-- FB card -->
       <% if @restaurant.linked_channels.include?('Facebook') %>
         <div class="card shadow h-200 p-2 d-flex flex-row dash-card position-relative">
@@ -76,6 +85,10 @@
       <% else %>
         <%= render 'shared/add_channel_card', channel_name: 'Facebook', channel_logo: 'facebook-logo.png', channel_color: '#d5dff5', restaurant: @restaurant %>
       <% end %>
+    </div>
+
+    <!-- ROW 4 -->
+    <div class="row d-flex justify-content-around py-2">
       <!-- Insta card -->
       <% if @restaurant.linked_channels.include?('Instagram') %>
         <div class="card shadow h-200 p-2 d-flex flex-row dash-card position-relative">
@@ -84,19 +97,6 @@
         </div>
       <% else %>
         <%= render 'shared/add_channel_card', channel_name: 'Instagram', channel_logo: 'instagram-logo.png', channel_color: '#d9d5f5', restaurant: @restaurant %>
-      <% end %>
-    </div>
-
-    <!-- ROW 4 -->
-    <div class="row d-flex justify-content-around py-2">
-      <!-- Foursqaure card -->
-      <% if @restaurant.linked_channels.include?('Foursquare') %>
-        <div class="card shadow h-200 p-2 d-flex flex-row dash-card position-relative">
-          <%= image_tag 'foursquare-logo.png', class: 'logo-button-white-lg' %>
-          <h6>You've already added Foursquare :)</h6>
-        </div>
-      <% else %>
-        <%= render 'shared/add_channel_card', channel_name: 'Foursquare', channel_logo: 'foursquare-logo.png', channel_color: '#d9d5f5', restaurant: @restaurant %>
       <% end %>
     </div>
   </div>
