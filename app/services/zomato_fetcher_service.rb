@@ -6,11 +6,9 @@ require 'json'
 class ZomatoFetcherService
   def grab_place(restaurant)
     # Call API to retrieve the restaurant
-    lat = restaurant.latitude
-    long = restaurant.longitude
-    api_call_for_id = RestClient.get("https://developers.zomato.com/api/v2.1/search?q=#{@restaurant.name.gsub(/\s/, '%20')}&lat=#{lat}&lon=#{long}&apikey=#{ENV['ZOMATO_API_KEY']}&count=1")
+    api_call_for_id = RestClient.get("https://developers.zomato.com/api/v2.1/search?q=#{restaurant.name.gsub(/\s/, '%20')}&lat=#{restaurant.latitude}&lon=#{restaurant.longitude}&apikey=#{ENV['ZOMATO_API_KEY']}&count=1")
 
-    if first_rest_request.body.empty?
+    if api_call_for_id.body.empty?
       false # Returns false if the restaurant doesn't exist on Zomato.
     else
       # Parse the API call data to JSON then save the zomato ID, run the grab_reviews method.
@@ -27,13 +25,15 @@ class ZomatoFetcherService
     api_call_for_count_average = RestClient.get("https://developers.zomato.com/api/v2.1/restaurant?res_id=#{restaurant.zomato_id}&apikey=#{ENV['ZOMATO_API_KEY']}")
     parsed_restaurant = JSON.parse(api_call_for_count_average.body)
 
-    restaurant. = parsed_restaurant["user_rating"]["aggregate_rating"]
-    total_review_count = parsed_restaurant["all_reviews_count"]
+    restaurant.zomato_average_rating.push parsed_restaurant["user_rating"]["aggregate_rating"]
+    restaurant.zomato_review_count.push parsed_restaurant["all_reviews_count"]
+    restaurant.save
 
     # API call to get the reviews
     api_call_for_reviews = RestClient.get("https://developers.zomato.com/api/v2.1/reviews?res_id=#{restaurant.zomato_id}&apikey=#{ENV['ZOMATO_API_KEY']}")
     parsed_places = JSON.parse(api_call_for_reviews.body)["user_reviews"]
     parsed_places.each do |review|
+
       ZomatoReview.create(reviewer_image: review["review"]["user"]["profile_image"],
                           reviewer_username: review["review"]["user"]["name"],
                           reviewer_profile_url: review["review"]["user"]["profile_url"],

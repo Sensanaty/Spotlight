@@ -4,6 +4,8 @@ class AddReviewStatsToRestaurant < ActiveRecord::Migration[5.2]
     add_column :restaurants, :yelp_average_rating, :text
     add_column :restaurants, :google_review_count, :text
     add_column :restaurants, :google_average_rating, :text
+    add_column :restaurants, :zomato_review_count, :text
+    add_column :restaurants, :zomato_average_rating, :text
     add_column :restaurants, :foursquare_review_count, :text
     add_column :restaurants, :foursquare_average_rating, :text
     add_column :restaurants, :tripadvisor_review_count, :text

@@ -5,30 +5,25 @@ require 'open-uri'
 require 'json'
 
 class YelpFetcherService
-  def initialize(latitude, longitude)
-    @latitude = latitude
-    @longitude = longitude
-  end
-
   def grab_place(restaurant)
     # 1st API call
-    id_uri = "https://api.yelp.com/v3/businesses/search?latitude=#{@latitude}&longitude=#{@longitude}"
+    id_uri = "https://api.yelp.com/v3/businesses/search?latitude=#{restaurant.latitude}&longitude=#{restaurant.longitude}"
     serialized_restaurants = RestClient.get(id_uri, headers = { 'Authorization': "Bearer #{ENV['YELP_API_KEY']}" })
     parsed_restaurants = JSON.parse(serialized_restaurants)
     if parsed_restaurants['businesses'].empty?
       false # Returns false if the restaurant doesn't exist on Yelp.
     else
       yelp_restaurant_id = parsed_restaurants['businesses'][0]['id']
-      grab_reviews(yelp_restaurant_id, restaurant)
       restaurant.yelp_id = yelp_restaurant_id
       restaurant.save
+      grab_reviews(restaurant)
       true # Returns true if the restaurant exists on Yelp, after running the grab_reviews method.
     end
   end
 
-  def grab_reviews(yelp_restaurant_id, restaurant)
+  def grab_reviews(restaurant)
     # Call API to get restaurant:
-    restaurant_uri = "https://api.yelp.com/v3/businesses/#{yelp_restaurant_id}"
+    restaurant_uri = "https://api.yelp.com/v3/businesses/#{restaurant.yelp_id}"
     serialized_restaurant = RestClient.get("#{restaurant_uri}", headers = { 'Authorization': "Bearer #{ENV['YELP_API_KEY']}" })
     parsed_restaurant = JSON.parse(serialized_restaurant)
 

@@ -19,6 +19,8 @@ class RestaurantsController < ApplicationController
     @restaurant.foursquare_average_rating = []
     @restaurant.tripadvisor_review_count = []
     @restaurant.tripadvisor_average_rating = []
+    @restaurant.zomato_review_count = []
+    @restaurant.zomato_average_rating = []
 
     if @restaurant.save
       redirect_to payment_users_path
