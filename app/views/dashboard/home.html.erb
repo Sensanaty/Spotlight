@@ -32,6 +32,8 @@
         <div class="card shadow h-200 p-2 d-flex flex-row dash-card position-relative">
           <%= image_tag 'zomato-logo.png', class: 'logo-button-white-lg' %>
           <h6>You've already added Zomato :)</h6>
+          <p><strong>Number of reviews: </strong><%= @restaurant.zomato_review_count.last %></p>
+          <p><strong>Average rating: </strong><%= @restaurant.zomato_average_rating.last %></p>
         </div>
       <% else %>
         <%= render 'shared/add_channel_card', channel_name: 'Zomato', channel_logo: 'zomato-logo.png', channel_color: '#fcdce1', restaurant: @restaurant %>
@@ -45,6 +47,8 @@
         <div class="card shadow h-200 p-2 d-flex flex-row dash-card position-relative">
           <%= image_tag 'yelp-logo.png', class: 'logo-button-white-lg' %>
           <h6>You've already added Yelp :)</h6>
+          <p><strong>Number of reviews: </strong><%= @restaurant.yelp_review_count.last %></p>
+          <p><strong>Average rating: </strong><%= @restaurant.yelp_average_rating.last %></p>
         </div>
       <% else %>
         <%= render 'shared/add_channel_card', channel_name: 'Yelp', channel_logo: 'yelp-logo.png', channel_color: '#f5d5d5', restaurant: @restaurant %>
