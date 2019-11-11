@@ -47,7 +47,7 @@ class RestaurantsController < ApplicationController
     @restaurant = current_user.restaurant
     # The 'grab_place' method returns false if restaurant is not found on Yelp, otherwise returns true
     @search_match = YelpFetcherService.new.grab_place(@restaurant)
-
+hyu
     if @search_match
       @restaurant.linked_channels.push("Yelp")
     end
