@@ -35,12 +35,11 @@ class RestaurantsController < ApplicationController
 
   def find_yelp_restaurant
     @restaurant = current_user.restaurant
-    # The 'grab_place' method returns false if restaurant is not found on Yelp, or Yelps restaurant if it is.
-    @yelp_restaurant_id = YelpFetcherService.new(@restaurant.longitude, @restaurant.latitude).grab_place(@restaurant)
+    # The 'grab_place' method returns false if restaurant is not found on Yelp, otherwise returns true
+    @search_match = YelpFetcherService.new(@restaurant.longitude, @restaurant.latitude).grab_place(@restaurant)
 
     if @yelp_restaurant_id
       @restaurant.linked_channels.push("Yelp")
-      @restaurant.yelp_id = @yelp_restaurant_id
     end
 
     @restaurant.channel_links_attempted.push("Yelp") unless @restaurant.channel_links_attempted.include?("Yelp")
@@ -56,7 +55,7 @@ class RestaurantsController < ApplicationController
     @restaurant = current_user.restaurant
     # The 'grab_place' method returns false if restaurant is not found on Zomato, or true if it is.
     # This boolean is saved to @search_match.
-    @search_match = ZomatoFetcherService.new(@restaurant.name, @restaurant.longitude, @restaurant.latitude).grab_place(@restaurant.id) # rubocop:disable Metrics/LineLength
+    @search_match = ZomatoFetcherService.new(@restaurant.name, @restaurant.longitude, @restaurant.latitude).grab_place(@restaurant) # rubocop:disable Metrics/LineLength
 
     if @search_match
       @restaurant.linked_channels.push("Zomato")
@@ -92,7 +91,7 @@ class RestaurantsController < ApplicationController
 
   def find_google_restaurant
     @restaurant = current_user.restaurant
-    GoogleFetcherService.new(@restaurant.name, @restaurant.latitude, @restaurant.longitude).grab_place(@restaurant.id)
+    @google_id = GoogleFetcherService.new(@restaurant.name, @restaurant.latitude, @restaurant.longitude).grab_place(@restaurant.id)
     @restaurant.linked_channels.push("Google")
     @restaurant.save
   end

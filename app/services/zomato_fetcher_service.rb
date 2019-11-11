@@ -4,31 +4,31 @@ require 'open-uri'
 require 'json'
 
 class ZomatoFetcherService
-  def initialize(name, latitude, longitude)
-    @name = name
-    @latitude = latitude
-    @longitude = longitude
-  end
-
-  def grab_place(spotlight_rest_id)
-    # 1st API call
-    lat = @latitude
-    long = @longitude
-    first_rest_request = RestClient.get("https://developers.zomato.com/api/v2.1/search?q=#{@name.gsub(/\s/, '%20')}&lat=#{lat}&lon=#{long}&apikey=#{ENV['ZOMATO_API_KEY']}&count=1")
+  def grab_place(restaurant)
+    # Call API to retrieve the restaurant
+    lat = restaurant.latitude
+    long = restaurant.longitude
+    api_call_for_id = RestClient.get("https://developers.zomato.com/api/v2.1/search?q=#{@restaurant.name.gsub(/\s/, '%20')}&lat=#{lat}&lon=#{long}&apikey=#{ENV['ZOMATO_API_KEY']}&count=1")
 
     if first_rest_request.body.empty?
       false # Returns false if the restaurant doesn't exist on Zomato.
     else
-      zomato_restaurant_id = JSON.parse(first_rest_request.body)["restaurants"][0]["restaurant"]["R"]["res_id"]
-      grab_reviews(zomato_restaurant_id, spotlight_rest_id)
+      # Parse the API call data to JSON then save the zomato ID, run the grab_reviews method.
+      zomato_restaurant_id = JSON.parse(api_call_for_id.body)["restaurants"][0]["restaurant"]["R"]["res_id"]
+      restaurant.zomato_id = zomato_restaurant_id
+      restaurant.save
+      grab_reviews(restaurant)
       true # Returns true if the restaurant exists on Zomato, after running the grab_reviews method.
     end
   end
 
-  def grab_reviews(zomato_restaurant_id, spotlight_rest_id) # rubocop:disable Metrics/MethodLength
-    # 2nd API call
-    second_rest_request = RestClient.get("https://developers.zomato.com/api/v2.1/reviews?res_id=#{zomato_restaurant_id}&apikey=#{ENV['ZOMATO_API_KEY']}")
-    parsed_places = JSON.parse(second_rest_request.body)["user_reviews"]
+  def grab_reviews(restaurant) # rubocop:disable Metrics/MethodLength
+
+
+
+    # API call to get the reviews
+    api_call_for_reviews = RestClient.get("https://developers.zomato.com/api/v2.1/reviews?res_id=#{restaurant.zomato_id}&apikey=#{ENV['ZOMATO_API_KEY']}")
+    parsed_places = JSON.parse(api_call_for_reviews.body)["user_reviews"]
     parsed_places.each do |review|
       ZomatoReview.create(reviewer_image: review["review"]["user"]["profile_image"],
                           reviewer_username: review["review"]["user"]["name"],
@@ -36,7 +36,7 @@ class ZomatoFetcherService
                           review_text: review["review"]["review_text"],
                           rating: review["review"]["rating"],
                           review_time: review["review"]["timestamp"],
-                          restaurant_id: spotlight_rest_id)
+                          restaurant_id: restaurant.id)
     end
   end
 end

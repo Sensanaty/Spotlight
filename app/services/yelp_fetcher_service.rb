@@ -20,7 +20,9 @@ class YelpFetcherService
     else
       yelp_restaurant_id = parsed_restaurants['businesses'][0]['id']
       grab_reviews(yelp_restaurant_id, restaurant)
-      yelp_restaurant_id # Returns the Yelp restaurant ID to save to database if the restaurant exists on Yelp, after running the grab_reviews method.
+      restaurant.yelp_id = yelp_restaurant_id
+      restaurant.save
+      true # Returns true if the restaurant exists on Yelp, after running the grab_reviews method.
     end
   end
 
@@ -30,9 +32,10 @@ class YelpFetcherService
     serialized_restaurant = RestClient.get("#{restaurant_uri}", headers = { 'Authorization': "Bearer #{ENV['YELP_API_KEY']}" })
     parsed_restaurant = JSON.parse(serialized_restaurant)
 
-    # Get the total review count and average rating
-    total_review_count = parsed_restaurant["review_count"]
-    average_rating = parsed_restaurant["rating"]
+    # Get the total review count and average rating and save it to the restaurant
+    restaurant.yelp_review_count = parsed_restaurant["review_count"]
+    restaurant.yelp_average_rating = parsed_restaurant["rating"]
+    restaurant.save
 
     # Call API to get reviews:
     serialized_reviews = RestClient.get("#{restaurant_uri}/reviews", headers = { 'Authorization': "Bearer #{ENV['YELP_API_KEY']}" })
@@ -46,7 +49,7 @@ class YelpFetcherService
                         review_text: review["text"],
                         rating: review["rating"],
                         review_time: DateTime.parse(review["time_created"]).to_i, # Convert to UNIX time for storage
-                        restaurant_id: spotlight_rest_id)
+                        restaurant_id: restaurant)
     end
   end
 end
