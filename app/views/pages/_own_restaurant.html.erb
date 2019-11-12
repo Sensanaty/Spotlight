@@ -9,16 +9,25 @@
         <div class = "d-flex justify-content-between pb-2">
           <h5 class="card-title my-auto" style="width:68%; font-size: 16px;"><%=restaurant.name %></h5>
           <div class = "px-2" style="font-size: 14px;">
-            <% 3.times do  %>
-            <span class="fa fa-star checked" style="color: #F5A431"></span>
+            <% restaurant.average_google_rating.to_i.times do  %>
+              <span class="fa fa-star checked" style="color: #F5A431"></span>
+              <% end %>
+            <% if restaurant.average_google_rating - restaurant.average_google_rating.to_i > 0.1 %>
+              <span class="fa fa-star-half" style="color: #F5A431"></span>
+              <% (4 - restaurant.average_google_rating.to_i).times do %>
+                <span class="fa fa-star" style="color: #CDCDCD"></span>
+              <% end %>
+            <% else %>
+              <% (5 - restaurant.average_google_rating.to_i).times do %>
+                <span class="fa fa-star" style="color: #CDCDCD"></span>
+              <% end %>
             <% end %>
-            <% (5 - 3).times do %>
-            <span class="fa fa-star" style="color: #CDCDCD"></span>
-            <% end %>
+
           </div>
         </div>
         <div class = "d-flex align-items-center" style= "font-size: 12px;">
           <ul>
+            <li>Rating = <%= restaurant.average_google_rating.round(1) %></li>
             <li>Total ratings = <%= restaurant.google_reviews.count %></li>
             <% if restaurant.price_level == 1 %>
               <li>Price level = $</li>
@@ -29,7 +38,6 @@
             <% elsif restaurant.price_level == 4 %>
               <li>Price level = $$$$</li>
             <% end %>
-            <li>Type = restaurant, food, point of interest </li>
           </ul>
         </div>
       </div>
