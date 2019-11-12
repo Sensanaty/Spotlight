@@ -14,7 +14,7 @@ class FoursquareFetcherService
     else
       restaurant.foursquare_id = parsed_id[0]["id"]
       restaurant.save
-      # ReviewSeedingService.foursquare_seed(restaurant)
+      ReviewSeedingService.foursquare_seed(restaurant)
       grab_reviews(restaurant)
       true
     end
