@@ -8,11 +8,18 @@
         <div class = "d-flex justify-content-between pb-2">
           <h5 class="card-title my-auto" style="width:68%; font-size: 16px;"><%= competitor[:name] %></h5>
           <div class = "px-2" style="font-size: 14px;">
-            <% 3.times do  %>
-            <span class="fa fa-star checked" style="color: #F5A431"></span>
-            <% end %>
-            <% (5 - 3).times do %>
-            <span class="fa fa-star" style="color: #CDCDCD"></span>
+            <% competitor[:rating].to_i.times do  %>
+              <span class="fa fa-star checked" style="color: #F5A431"></span>
+              <% end %>
+            <% if competitor[:rating] - competitor[:rating].to_i > 0.1 %>
+              <span class="fa fa-star-half" style="color: #F5A431"></span>
+              <% (4 - competitor[:rating].to_i).times do %>
+                <span class="fa fa-star" style="color: #CDCDCD"></span>
+              <% end %>
+            <% else %>
+              <% (5 - competitor[:rating].to_i).times do %>
+                <span class="fa fa-star" style="color: #CDCDCD"></span>
+              <% end %>
             <% end %>
           </div>
         </div>
