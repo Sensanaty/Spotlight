@@ -1,12 +1,23 @@
+<!-- <div class="mx-3">
+ -->  <h3>Explore the competition</h3>
+  <div class="d-flex align-items-start">
+    <div
+      id="map"
+      style="width: 100%; height: 80vh; position: sticky; top: 0;"
+      data-center="<%= @my_resto.to_json %>"
+      data-markers="<%= @markers.to_json %>"
+      data-mapbox-api-key="<%= ENV['MAPBOX_TOKEN'] %>"
+    ></div>
+    <div class="cards ml-3 flex-grow-1" style="position: sticky; top: 0;" >
+      <%= render 'pages/own_restaurant', restaurant: @restaurant %>
+      <%= render 'pages/competition'%>
+      <%= render 'pages/competition'%>
+      <%= render 'pages/competition'%>
+      <%= render 'pages/competition'%>
+      <%= render 'pages/competition'%>
+    </div >
+  </div>
+<!-- </div>
+ -->
 
-<h3>price filter, maybe even search filter</h3>
-
-<div
-  id="map"
-  style="width: 100%;
-  height: 600px;"
-  data-center="<%= @my_resto.to_json %>"
-  data-markers="<%= @markers.to_json %>"
-  data-mapbox-api-key="<%= ENV['MAPBOX_TOKEN'] %>"
-></div>
 
