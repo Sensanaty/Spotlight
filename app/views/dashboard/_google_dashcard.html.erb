@@ -1,4 +1,3 @@
-<%= javascript_pack_tag 'chartkick' %>
 <div class="row">
   <div class="col-12">
     <div class="top-panel d-flex justify-content-around">
@@ -12,29 +11,46 @@
       </div>
       <div class="right">
         <div class="text-xs font-weight-bold text-warning text-uppercase mb-1">Since last login</div>
-        <div class="h5 mb-0 mr-3 font-weight-bold text-gray-800">5 new</div>
+        <div class="h5 mb-0 mr-3 font-weight-bold text-gray-800"><%= restaurant.google_reviews.where(review_time: current_user.last_sign_in_at..Date.today).count %> new</div>
       </div>
     </div>
   </div>
 </div>
 <div class="row h-100 mt-5">
-  <div class="col-12">
-    <div class="charts d-flex h-100">
-      <div class="chart-left w-100 d-flex flex-column align-items-center">
-        <span class="text-xs font-weight-bold text-uppercase mb-1">Review count over last 6 months</span>
-        <div class="google-chart-1" style="width: 180px">
-          <!-- Google Chart 1 -->
-          <%#= bar_chart restaurant.google_reviews.group_by_month(DateTime.strptime(:review_time.to_s, '%s')) %>
-        </div>
-      </div>
-      <div class="chart-right w-100 d-flex flex-column align-items-center">
-        <span class="text-xs font-weight-bold text-uppercase mb-1">Ratings distribution</span>
-        <div class="google-chart-2">
-          <!-- Google Chart 2 -->
-          <%= pie_chart restaurant.google_reviews.group(:rating).count, width: "180px", height: "18=begin=end0px"%>
-        </div>
+  <div class="col-6">
+    <div class="chart-left w-100 d-flex flex-column align-items-center">
+      <span class="text-xs font-weight-bold text-uppercase mb-1">Review count over last 6 months</span>
+        <!-- Google Chart 1 -->
+        <%= column_chart restaurant.google_reviews.where(review_time: (Date.today << 6)..Date.today).group_by_month(:review_time, format: "%b").count, width: "90%", height: "180px" %>
+    </div>
+  </div>
+  <div class="col-6">
+    <div class="chart-right w-100 d-flex flex-column align-items-center">
+      <span class="text-xs font-weight-bold text-uppercase mb-1">Ratings distribution</span>
+      <div class="google-chart-2">
+        <!-- Google Chart 2 -->
+        <canvas id="googlePieChart" width="200" height="200" data-chartdata="<%= restaurant.google_reviews.group(:rating).count %>"></canvas>
+
+        <%#= pie_chart restaurant.google_reviews.group(:rating).count, width: "90%", height: "180px", donut: true, code: true,
+        library: {
+          plugins: {
+            datalabels: {
+              formatter: "function(value, context) {
+                                  return context.chart.data.labels[context.dataIndex];
+                              }",
+              color: 'white',
+            },
+              labels: {
+                title: {
+                  font: { weight: 'bold' }
+                },
+              value: { color: 'white' },
+            },
+          },
+        } %>
       </div>
     </div>
   </div>
 </div>
+<%= javascript_pack_tag 'charts.js' %>
 

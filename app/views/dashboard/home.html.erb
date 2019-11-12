@@ -1,3 +1,4 @@
+<%= javascript_pack_tag 'chartkick' %>
 <% if !@restaurant %>
   <%= render 'shared/no_restaurant_display' %>
 <% else %>
@@ -23,13 +24,14 @@
 
       <!-- Zomato card -->
       <% if @restaurant.linked_channels.include?('Zomato') %>
-        <div class="card shadow h-200 p-2 dash-card position-relative">
-          <div class="d-flex align-items-center">
+        <div class="card shadow h-200 dash-card position-relative">
+          <div class="card-header py-2 d-flex align-items-center">
             <%= image_tag 'zomato-logo.png', class: 'logo-button-white-lg' %>
             <h5>Zomato Performance</h5>
           </div>
-            <hr>
-          <%= render 'dashboard/zomato_dashcard', restaurant: @restaurant %>
+          <div class="py-3">
+            <%= render 'dashboard/zomato_dashcard', restaurant: @restaurant %>
+          </div>
         </div>
       <% else %>
         <%= render 'shared/add_channel_card', channel_name: 'Zomato', channel_logo: 'zomato-logo.png', channel_color: '#fcdce1', restaurant: @restaurant %>
@@ -90,18 +92,17 @@
     </div>
 
     <!-- ROW 4 -->
-    <div class="row d-flex justify-content-around py-2">
+    <!-- <div class="row d-flex justify-content-around py-2"> -->
       <!-- Insta card -->
-      <% if @restaurant.linked_channels.include?('Instagram') %>
-        <div class="card shadow h-200 p-2 d-flex flex-row dash-card position-relative">
-          <%= image_tag 'instagram-logo.png', class: 'logo-button-white-lg' %>
-          <h6>You've already added Instagram :)</h6>
-        </div>
-      <% else %>
-        <%= render 'shared/add_channel_card', channel_name: 'Instagram', channel_logo: 'instagram-logo.png', channel_color: '#d9d5f5', restaurant: @restaurant %>
-      <% end %>
-    </div>
+      <!-- <#% if @restaurant.linked_channels.include?('Instagram') %> -->
+        <!-- <div class="card shadow h-200 p-2 d-flex flex-row dash-card position-relative"> -->
+          <%#= image_tag 'instagram-logo.png', class: 'logo-button-white-lg' %>
+          <!-- <h6>You've already added Instagram :)</h6> -->
+        <!-- </div> -->
+      <%# else %>
+        <%#= render 'shared/add_channel_card', channel_name: 'Instagram', channel_logo: 'instagram-logo.png', channel_color: '#d9d5f5', restaurant: @restaurant %>
+      <%# end %>
+    <!-- </div> -->
   </div>
-  <%= javascript_pack_tag 'charts' %>
   <%= javascript_pack_tag 'dashboard' %>
 <% end %>
