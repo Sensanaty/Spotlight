@@ -19,7 +19,7 @@ class MapBoxCompetitionFetcherService
     competition = JSON.parse(parsed_id)
 
     markers = competition["results"].map do |result|
-      {name: result['name'], lat: result['geometry']['location']['lat'], lng: result['geometry']['location']['lng'], rating: result['rating']}
+      {name: result['name'], lat: result['geometry']['location']['lat'], lng: result['geometry']['location']['lng'], rating: result['rating'], price_level: result['price_level'], user_ratings_total: result['user_ratings_total']}
     end
 
     return markers.first(10)

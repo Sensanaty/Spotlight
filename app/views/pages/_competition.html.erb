@@ -19,6 +19,8 @@
         <div class = "d-flex align-items-center" style= "font-size: 12px;">
           <ul>
             <li>Total ratings = 201</li>
+            <li><%=competitor[:price_level] %></li>
+            <li><%=competitor[:user_ratings_total]%> </li>
             <%# if restaurant.price_level == 1 %>
        <!--        <li>Price level = $</li>
             <%# elsif restaurant.price_level == 2 %>
@@ -28,7 +30,6 @@
             <%# elsif restaurant.price_level == 4 %>
               <li>Price level = $$$$</li> -->
             <%# end %>
-            <li>Type = restaurant, food, point of interest </li>
           </ul>
         </div>
       </div>
