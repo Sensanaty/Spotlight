@@ -11,6 +11,7 @@
       <%= render 'pages/own_restaurant', restaurant: @restaurant %>
 
       <% @markers.each do |competitor| %>
+        <% if competitor[:name] != @restaurant.name %>
         <%= render 'pages/competition', competitor: competitor %>
       <% end %>
     </div >
