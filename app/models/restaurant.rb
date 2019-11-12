@@ -24,4 +24,12 @@ class Restaurant < ApplicationRecord
   serialize :zomato_average_rating
   serialize :tripadvisor_review_count
   serialize :tripadvisor_average_rating
+
+  def average_google_rating
+    all_ratings = []
+    self.google_reviews.each do |review|
+      all_ratings << review.rating
+    end
+    all_ratings.sum / all_ratings.length
+  end
 end

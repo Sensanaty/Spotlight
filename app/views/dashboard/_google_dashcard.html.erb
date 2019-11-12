@@ -1,9 +1,40 @@
-<div class="card shadow h-200 p-2 d-flex flex-row dash-card position-relative">
-  <h6>Google Performance</h6>
-  <hr class="sidebar-divider d-none d-md-block mt-4">
-  <%= image_tag 'google-logo.png', class: 'logo-button-white-lg' %>
-  <div class="google-chart-2" style="width: 300px">
-    <!-- Google Chart 2 -->
-    <canvas id="googleReviewsRatingsChart" width="200" height="200"></canvas>
+<%= javascript_pack_tag 'chartkick' %>
+<div class="row">
+  <div class="col-12">
+    <div class="top-panel d-flex justify-content-around">
+      <div class="left">
+        <div class="text-xs font-weight-bold text-info text-uppercase mb-1">Total Reviews</div>
+        <div class="h5 mb-0 mr-3 font-weight-bold text-gray-800"><%= restaurant.google_reviews.count %></div>
+      </div>
+      <div class="middle">
+        <div class="text-xs font-weight-bold text-success text-uppercase mb-1">Average Rating</div>
+        <div class="h5 mb-0 mr-3 font-weight-bold text-gray-800"><%= restaurant.average_google_rating %></div>
+      </div>
+      <div class="right">
+        <div class="text-xs font-weight-bold text-warning text-uppercase mb-1">Since last login</div>
+        <div class="h5 mb-0 mr-3 font-weight-bold text-gray-800">5 new</div>
+      </div>
+    </div>
   </div>
 </div>
+<div class="row h-100 mt-5">
+  <div class="col-12">
+    <div class="charts d-flex h-100">
+      <div class="chart-left w-100 d-flex flex-column align-items-center">
+        <span class="text-xs font-weight-bold text-uppercase mb-1">Review count over last 6 months</span>
+        <div class="google-chart-1" style="width: 180px">
+          <!-- Google Chart 1 -->
+          <%#= bar_chart restaurant.google_reviews.group_by_month(DateTime.strptime(:review_time.to_s, '%s')) %>
+        </div>
+      </div>
+      <div class="chart-right w-100 d-flex flex-column align-items-center">
+        <span class="text-xs font-weight-bold text-uppercase mb-1">Ratings distribution</span>
+        <div class="google-chart-2">
+          <!-- Google Chart 2 -->
+          <%= pie_chart restaurant.google_reviews.group(:rating).count, width: "180px", height: "18=begin=end0px"%>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+

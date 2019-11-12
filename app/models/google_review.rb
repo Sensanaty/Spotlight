@@ -13,4 +13,8 @@ class GoogleReview < ApplicationRecord
       rating: rating # check for naming/type of rating in google review
     )
   end
+
+  def get_review_datetime
+    DateTime.strptime(self.review_time.to_s, '%s')
+  end
 end
