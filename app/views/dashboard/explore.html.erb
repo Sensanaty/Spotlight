@@ -1,5 +1,5 @@
 <!-- <div class="mx-3">
- -->  <h3>Explore the competition</h3>
+ -->  <h3><%=@markers.first[:name]  %></h3>
   <div class="d-flex align-items-start">
     <div
       id="map"
@@ -10,11 +10,10 @@
     ></div>
     <div class="cards ml-3 flex-grow-1" style="position: sticky; top: 0;" >
       <%= render 'pages/own_restaurant', restaurant: @restaurant %>
-      <%= render 'pages/competition'%>
-      <%= render 'pages/competition'%>
-      <%= render 'pages/competition'%>
-      <%= render 'pages/competition'%>
-      <%= render 'pages/competition'%>
+
+      <% @markers.each do |competitor| %>
+        <%= render 'pages/competition', competitor: competitor %>
+      <% end %>
     </div >
   </div>
 <!-- </div>
