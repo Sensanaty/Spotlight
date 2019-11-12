@@ -14,8 +14,10 @@
           <span class="fa fa-star" style="color: #CDCDCD"></span>
           <% end %>
         </div>
-        <p class = "my-auto timebox mx-2"><%= DateTime.strptime(review.review.review_time.to_s, '%s').strftime('%d-%m-%Y %H:%M') %></p>
-        <p class = "my-auto" style="color: #E34444">NEW</p>
+        <p class = "my-auto timebox mx-2"><%= review.review.review_time.strftime('%d-%m-%Y %H:%M') %></p>
+        <% if review.review.review_time > current_user.last_sign_in_at %>
+          <p class = "my-auto" style="color: #E34444">NEW</p>
+        <% end %>
       </div>
       <div>
         <%= review.review.review_text %>
