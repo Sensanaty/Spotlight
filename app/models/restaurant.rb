@@ -31,6 +31,30 @@ class Restaurant < ApplicationRecord
     self.google_reviews.each do |review|
       all_ratings << review.rating
     end
-    all_ratings.sum / all_ratings.length unless all_ratings == []
+    (all_ratings.sum / all_ratings.length).round(1) unless all_ratings == []
+  end
+
+  def average_zomato_rating
+    all_ratings = []
+    self.zomato_reviews.each do |review|
+      all_ratings << review.rating
+    end
+    (all_ratings.sum / all_ratings.length).round(1) unless all_ratings == []
+  end
+
+  def average_yelp_rating
+    all_ratings = []
+    self.yelp_reviews.each do |review|
+      all_ratings << review.rating
+    end
+    (all_ratings.sum / all_ratings.length).round(1) unless all_ratings == []
+  end
+
+  def average_foursquare_rating
+    all_ratings = []
+    self.google_reviews.each do |review|
+      all_ratings << review.rating
+    end
+    (all_ratings.sum / all_ratings.length).round(1) unless all_ratings == []
   end
 end

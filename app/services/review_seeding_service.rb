@@ -11,7 +11,7 @@ class ReviewSeedingService
                           reviewer_username: Faker::Name.name,
                           reviewer_profile_url: "https://sp0tlight.herokuapp.com",
                           review_text: "#{Faker::Quote.matz} #{Faker::Lorem.sentence(word_count: rand(15..25))}",
-                          rating: rand(1.0..5.0),
+                          rating: rand(1..5),
                           review_time: DateTime.strptime(rand(1_420_070_400..1_573_506_000).to_s, "%s"),
                           restaurant_id: restaurant.id)
     end
@@ -25,7 +25,7 @@ class ReviewSeedingService
                         reviewer_username: Faker::Name.name,
                         reviewer_profile_url: "https://sp0tlight.herokuapp.com",
                         review_text: "#{Faker::Quote.matz} #{Faker::Lorem.sentence(word_count: rand(11..23))}",
-                        rating: rand(1.0..5.0),
+                        rating: rand(1..5),
                         review_time: DateTime.strptime(rand(1_420_070_400..1_573_506_000).to_s, "%s"),
                         restaurant_id: restaurant.id)
     end
@@ -39,7 +39,7 @@ class ReviewSeedingService
                           reviewer_username: Faker::Name.name,
                           reviewer_profile_url: "https://sp0tlight.herokuapp.com",
                           review_text: "#{Faker::Quote.matz} #{Faker::Lorem.sentence(word_count: rand(17..27))}",
-                          rating: rand(1.0..5.0),
+                          rating: rand(1..5),
                           review_time: DateTime.strptime(rand(1_420_070_400..1_573_506_000).to_s, "%s"),
                           restaurant_id: restaurant.id)
     end
