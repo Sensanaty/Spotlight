@@ -11,29 +11,16 @@ class TripadvisorScraperService
     browser = Watir::Browser.new :chrome, headless: true
     browser.goto(url)
     browser.span(text: "More").click
-    parsed_url = Nokogiri.parse(URI.open(browser.html))
-    puts parsed_url.at('div.entry').children
-    # puts parsed_url
-    # puts "review_text: #{parsed_url.search('.partial_entry')}"
-    # puts "review_time: #{parsed_url.search('.ratingDate')[0].attributes['title']}"
-    # puts "rating: #{parsed_url.search('.ui_column.is-9')[0].children.first.attributes['class'].value[-2].to_i}"
-    # puts "reviewer_username: #{parsed_url.search('.memberOverlayLink > .info_text.pointer_cursor')[0].children.first.text}"
-    # counter = 0
-    # 10.times do
-    # TripadvisorReview.create(review_time: parsed_url.search('.ratingDate')[counter].attributes['title'],
-    #                          rating: parsed_url.search('.ui_column.is-9')[0].children.first.attributes['class'].value[-2].to_i,
-    #                          reviewer_username: parsed_url.search('.memberOverlayLink > .info_text.pointer_cursor')[counter].children.first.text,
-    #                          )
-    # review.rating_time = parsed_url.search('.ratingDate')[counter].attributes['title']
-    # review.title = parsed_url.search('.noQuotes')[counter].text.strip
-    # review.review_link = parsed_url.search('.ui_column.is-9 div a')[counter].attributes['href'].value
-    # review.reviewer = parsed_url.search('.memberOverlayLink > .info_text.pointer_cursor')[counter].children.first.text
-    # rate = parsed_url.search('.ui_column.is-9')[0].children.first.attributes['class'].value
-    # this returns a string like "ui_bubble_rating bubble_10" / 20 / 30 / 40 / 50 depending on the star rating
-    # review.rating = rate[-2].to_i
-    # review.save
-    #   counter += 1
-    # end
+    reviews = browser.div(id: "REVIEWS").html
+    parsed_reviews = Nokogiri.parse(reviews)
+    10.times do |index|
+      TripadvisorReview.create(review_time: parsed_reviews.search('.ratingDate')[index].attributes['title'],
+                               rating: parsed_reviews.search('.ui_column.is-9')[index].children.first.attributes['class'].value[-2].to_i,
+                               reviewer_username: parsed_reviews.search('.info_text.pointer_cursor > div')[index].text,
+                               review_text: parsed_reviews.search('.partial_entry')[index].text,
+                               reviewer_image: parsed_reviews.search('.ui_avatar > img')[index].attributes['src'],
+                               restaurant_id: 3)
+    end
   end
 end
 
