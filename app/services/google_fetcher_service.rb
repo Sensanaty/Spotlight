@@ -15,6 +15,7 @@ class GoogleFetcherService
     else
       restaurant.google_id = returned_place_id[0]["place_id"]
       restaurant.save
+      ReviewSeedingService.google_seed(restaurant)
       grab_reviews(restaurant)
       true
     end

@@ -9,6 +9,12 @@ autocomplete();
 if (document.querySelector('.filter-dropdown-menu')){
   $(".filter-dropdown-menu").click(function(e){
    e.stopPropagation();
-})
-
+  })
 }
+
+import 'mapbox-gl/dist/mapbox-gl.css';
+
+import { initMapbox } from '../plugins/init_mapbox';
+
+initMapbox();
+

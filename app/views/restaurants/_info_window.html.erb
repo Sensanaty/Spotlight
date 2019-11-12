@@ -1,0 +1,6 @@
+<% if restaurant.class == "Restaurant" %>
+  <h1>Some info <%= restaurant.name %></h1>
+<% else %>
+  <h1>Some info <%= restaurant[:name] %></h1>
+<% end %>
+
