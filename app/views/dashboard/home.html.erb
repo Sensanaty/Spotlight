@@ -2,16 +2,7 @@
   <%= render 'shared/no_restaurant_display' %>
 <% else %>
   <div class="h-200 d-flex justify-content-around flex-row mx-auto dash-sum-box">
-    <div class="container">
-      <h3>Performance Overview</h3>
-      <h5><strong><%= @restaurant.name.upcase if @restaurant %></strong></h5>
-      <div class="d-flex">
-        <div class="google-chart-1" style="width: 200px">
-          <!-- Google Chart 1 -->
-          <canvas id="googleReviewsCountChart" width="180" height="200"></canvas>
-        </div>
-      </div>
-    </div>
+    <%= render 'dashboard/dashboard_overview_section' %>
   </div>
 
   <div class="container pb-4">
@@ -20,14 +11,25 @@
      <!-- ROW 1 -->
     <div class="row d-flex justify-content-around py-2">
       <!-- Google card -->
-      <%= render 'dashboard/google_dashcard', restaurant: @restaurant %>
+      <div class="card shadow h-200 dash-card position-relative">
+        <div class="card-header py-2 d-flex align-items-center">
+            <%= image_tag 'google-logo.png', class: 'logo-button-white-lg' %>
+            <h5>Google Performance</h5>
+        </div>
+        <div class="py-3">
+          <%= render 'dashboard/google_dashcard', restaurant: @restaurant %>
+        </div>
+      </div>
+
       <!-- Zomato card -->
       <% if @restaurant.linked_channels.include?('Zomato') %>
-        <div class="card shadow h-200 p-2 d-flex flex-row dash-card position-relative">
-          <%= image_tag 'zomato-logo.png', class: 'logo-button-white-lg' %>
-          <h6>You've already added Zomato :)</h6>
-          <p><strong>Number of reviews: </strong><%= @restaurant.zomato_review_count.last %></p>
-          <p><strong>Average rating: </strong><%= @restaurant.zomato_average_rating.last %></p>
+        <div class="card shadow h-200 p-2 dash-card position-relative">
+          <div class="d-flex align-items-center">
+            <%= image_tag 'zomato-logo.png', class: 'logo-button-white-lg' %>
+            <h5>Zomato Performance</h5>
+          </div>
+            <hr>
+          <%= render 'dashboard/zomato_dashcard', restaurant: @restaurant %>
         </div>
       <% else %>
         <%= render 'shared/add_channel_card', channel_name: 'Zomato', channel_logo: 'zomato-logo.png', channel_color: '#fcdce1', restaurant: @restaurant %>
@@ -38,11 +40,13 @@
     <div class="row d-flex justify-content-around py-2">
       <!-- Yelp card -->
       <% if @restaurant.linked_channels.include?('Yelp') %>
-        <div class="card shadow h-200 p-2 d-flex flex-row dash-card position-relative">
-          <%= image_tag 'yelp-logo.png', class: 'logo-button-white-lg' %>
-          <h6>You've already added Yelp :)</h6>
-          <p><strong>Number of reviews: </strong><%= @restaurant.yelp_review_count.last %></p>
-          <p><strong>Average rating: </strong><%= @restaurant.yelp_average_rating.last %></p>
+        <div class="card shadow h-200 p-2 dash-card position-relative">
+          <div class="d-flex align-items-center">
+            <%= image_tag 'yelp-logo.png', class: 'logo-button-white-lg' %>
+            <h5>Yelp Performance</h5>
+          </div>
+            <hr>
+          <%= render 'dashboard/yelp_dashcard', restaurant: @restaurant %>
         </div>
       <% else %>
         <%= render 'shared/add_channel_card', channel_name: 'Yelp', channel_logo: 'yelp-logo.png', channel_color: '#f5d5d5', restaurant: @restaurant %>
@@ -63,9 +67,13 @@
     <div class="row d-flex justify-content-around py-2">
       <!-- Foursquare card -->
       <% if @restaurant.linked_channels.include?('Foursquare') %>
-        <div class="card shadow h-200 p-2 d-flex flex-row dash-card position-relative">
-          <%= image_tag 'foursquare-logo.png', class: 'logo-button-white-lg' %>
-          <h6>You've already added Foursquare :)</h6>
+        <div class="card shadow h-200 p-2 dash-card position-relative">
+          <div class="d-flex align-items-center">
+            <%= image_tag 'foursquare-logo.png', class: 'logo-button-white-lg' %>
+            <h5>FourSquare Performance</h5>
+          </div>
+            <hr>
+          <%= render 'dashboard/foursquare_dashcard', restaurant: @restaurant %>
         </div>
       <% else %>
         <%= render 'shared/add_channel_card', channel_name: 'Foursquare', channel_logo: 'foursquare-logo.png', channel_color: '#d9d5f5', restaurant: @restaurant %>
