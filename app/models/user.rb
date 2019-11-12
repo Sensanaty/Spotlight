@@ -3,7 +3,7 @@ class User < ApplicationRecord
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   mount_uploader :photo, PhotoUploader
   has_one :restaurant
-  devise :database_authenticatable, :registerable,
+  devise :database_authenticatable, :registerable, :trackable,
          :recoverable, :rememberable, :validatable,
          :omniauthable, omniauth_providers: [:facebook]
   validates :first_name, :last_name, :email, presence: :true # rubocop:disable Lint/BooleanSymbol

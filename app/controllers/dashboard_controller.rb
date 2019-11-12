@@ -22,5 +22,12 @@ class DashboardController < ApplicationController
 
   def explore
     @restaurant = Restaurant.find_by(user_id: current_user)
+    puts @restaurant.latitude
+    puts @restaurant.longitude
+    @markers = MapBoxCompetitionFetcherService.new(@restaurant.cuisine, @restaurant.latitude, @restaurant.longitude).grab_place
+    @markers.each do |marker|
+      marker[:infoWindow] = render_to_string(partial: "restaurants/info_window", locals: { restaurant: marker })
+    end
+    @my_resto = [ {lat:@restaurant.latitude, lng: @restaurant.longitude, infoWindow: render_to_string(partial: "restaurants/info_window", locals: { restaurant: @restaurant })} ]
   end
 end
