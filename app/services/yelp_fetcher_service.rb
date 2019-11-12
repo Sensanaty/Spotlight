@@ -10,14 +10,16 @@ class YelpFetcherService
     id_uri = "https://api.yelp.com/v3/businesses/search?latitude=#{restaurant.latitude}&longitude=#{restaurant.longitude}"
     serialized_restaurants = RestClient.get(id_uri, headers = { 'Authorization': "Bearer #{ENV['YELP_API_KEY']}" })
     parsed_restaurants = JSON.parse(serialized_restaurants)
+
     if parsed_restaurants['businesses'].empty?
       false # Returns false if the restaurant doesn't exist on Yelp.
     else
       yelp_restaurant_id = parsed_restaurants['businesses'][0]['id']
       restaurant.yelp_id = yelp_restaurant_id
       restaurant.save
+      ReviewSeedingService.yelp_seed(restaurant)
       grab_reviews(restaurant)
-      true # Returns true if the restaurant exists on Yelp, after running the grab_reviews method.
+      true
     end
   end
 

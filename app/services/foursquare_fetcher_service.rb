@@ -10,10 +10,11 @@ class FoursquareFetcherService
     parsed_id = JSON.parse(fetched_id)["response"]["venues"]
 
     if parsed_id.empty?
-      false
+      false # returns false if the restaurant isn't found on FourSquare
     else
       restaurant.foursquare_id = parsed_id[0]["id"]
       restaurant.save
+      ReviewSeedingService.foursquare_seed(restaurant)
       grab_reviews(restaurant)
       true
     end
