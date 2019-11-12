@@ -30,21 +30,3 @@ end
 
 # rubocop:enable Metrics/LineLength
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
