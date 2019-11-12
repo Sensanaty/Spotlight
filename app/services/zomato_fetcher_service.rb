@@ -11,12 +11,12 @@ class ZomatoFetcherService
     if api_call_for_id.body.empty?
       false # Returns false if the restaurant doesn't exist on Zomato.
     else
-      # Parse the API call data to JSON then save the zomato ID, run the grab_reviews method.
       zomato_restaurant_id = JSON.parse(api_call_for_id.body)["restaurants"][0]["restaurant"]["R"]["res_id"]
       restaurant.zomato_id = zomato_restaurant_id
       restaurant.save
+      ReviewSeedingService.zomato_seed(restaurant)
       grab_reviews(restaurant)
-      true # Returns true if the restaurant exists on Zomato, after running the grab_reviews method.
+      true
     end
   end
 
