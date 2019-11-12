@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_11_12_025822) do
+ActiveRecord::Schema.define(version: 2019_11_12_061339) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -76,7 +76,7 @@ ActiveRecord::Schema.define(version: 2019_11_12_025822) do
     t.text "linked_channels"
     t.text "yelp_id"
     t.text "zomato_id"
-    t.text "tripadvisor_id"
+    t.text "tripadvisor_url"
     t.text "google_id"
     t.text "foursquare_id"
     t.text "facebook_id"
