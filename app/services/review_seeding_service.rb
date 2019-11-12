@@ -12,7 +12,7 @@ class ReviewSeedingService
                           reviewer_profile_url: "https://sp0tlight.herokuapp.com",
                           review_text: "#{Faker::Quote.matz} #{Faker::Lorem.sentence(word_count: rand(15..25))}",
                           rating: rand(1.0..5.0),
-                          review_time: rand(1_420_070_400..1_573_506_000),
+                          review_time: DateTime.strptime(rand(1_420_070_400..1_573_506_000).to_s, "%s"),
                           restaurant_id: restaurant.id)
     end
     puts "\e[92Google Seeded\e[0m\n"
@@ -26,7 +26,7 @@ class ReviewSeedingService
                         reviewer_profile_url: "https://sp0tlight.herokuapp.com",
                         review_text: "#{Faker::Quote.matz} #{Faker::Lorem.sentence(word_count: rand(11..23))}",
                         rating: rand(1.0..5.0),
-                        review_time: rand(1_420_070_400..1_573_506_000),
+                        review_time: DateTime.strptime(rand(1_420_070_400..1_573_506_000).to_s, "%s"),
                         restaurant_id: restaurant.id)
     end
     puts "\e[92Yelp Seeded\e[0m\n"
@@ -40,7 +40,7 @@ class ReviewSeedingService
                           reviewer_profile_url: "https://sp0tlight.herokuapp.com",
                           review_text: "#{Faker::Quote.matz} #{Faker::Lorem.sentence(word_count: rand(17..27))}",
                           rating: rand(1.0..5.0),
-                          review_time: rand(1_420_070_400..1_573_506_000),
+                          review_time: DateTime.strptime(rand(1_420_070_400..1_573_506_000).to_s, "%s"),
                           restaurant_id: restaurant.id)
     end
     puts "\e[92Zomato Seeded\e[0m\n"
@@ -51,10 +51,8 @@ class ReviewSeedingService
     rand(20..90).times do
       FoursquareReview.create(reviewer_image: Faker::Avatar.image,
                               reviewer_username: Faker::Name.name,
-                              reviewer_profile_url: "https://sp0tlight.herokuapp.com",
                               review_text: "#{Faker::Quote.matz} #{Faker::Lorem.sentence(word_count: rand(10..19))}",
-                              rating: rand(1.0..5.0),
-                              review_time: rand(1_420_070_400..1_573_506_000),
+                              review_time: DateTime.strptime(rand(1_420_070_400..1_573_506_000).to_s, "%s"),
                               restaurant_id: restaurant.id)
     end
     puts "\e[92Squarespace Seeded\e[0m\n"
