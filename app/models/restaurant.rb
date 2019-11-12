@@ -31,6 +31,6 @@ class Restaurant < ApplicationRecord
     self.google_reviews.each do |review|
       all_ratings << review.rating
     end
-    all_ratings.sum / all_ratings.length
+    all_ratings.sum / all_ratings.length unless all_ratings == []
   end
 end

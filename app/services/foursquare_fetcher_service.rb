@@ -14,7 +14,7 @@ class FoursquareFetcherService
     else
       restaurant.foursquare_id = parsed_id[0]["id"]
       restaurant.save
-      ReviewSeedingService.foursquare_seed(restaurant)
+      # ReviewSeedingService.foursquare_seed(restaurant)
       grab_reviews(restaurant)
       true
     end
@@ -29,7 +29,7 @@ class FoursquareFetcherService
                               meal_image: review["photourl"],
                               reviewer_username: review["user"]["firstName"],
                               review_text: review["text"],
-                              review_time: review["createdAt"],
+                              review_time: DateTime.strptime(review["createdAt"].to_s, "%s"),
                               restaurant_id: restaurant.id)
     end
   end
