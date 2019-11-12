@@ -9,7 +9,7 @@ gem 'puma'
 gem 'figaro'
 gem 'rails', '5.2.3'
 gem 'redis'
-gem  'geocoder'
+gem 'geocoder'
 gem 'autoprefixer-rails'
 gem 'font-awesome-sass', '~> 5.6.1'
 gem 'sassc-rails'
@@ -22,6 +22,11 @@ gem 'carrierwave', '~> 1.2'
 gem 'rest-client'
 gem 'nokogiri'
 gem 'koala'
+gem 'pg_search', '~> 2.3.0'
+gem "chartkick"
+gem 'groupdate'
+gem 'faker'
+
 
 group :development do
   gem 'web-console', '>= 3.3.0'

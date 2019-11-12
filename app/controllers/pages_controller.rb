@@ -1,11 +1,10 @@
 class PagesController < ApplicationController
-  skip_before_action :authenticate_user!, only: [:home, :dashboard]
+  skip_before_action :authenticate_user!, only: %i[home dashboard]
 
   def home
   end
 
-
-# Below are all temporary controllers
+  # Below are all temporary controllers
   def dashboard
   end
 

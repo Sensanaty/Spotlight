@@ -1,1 +1,12 @@
-i am explore
+
+<h3>price filter, maybe even search filter</h3>
+
+<div
+  id="map"
+  style="width: 100%;
+  height: 600px;"
+  data-center="<%= @my_resto.to_json %>"
+  data-markers="<%= @markers.to_json %>"
+  data-mapbox-api-key="<%= ENV['MAPBOX_TOKEN'] %>"
+></div>
+

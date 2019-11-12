@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-  before_action :authenticate_user!, exclude: [:new, :create]
+  before_action :authenticate_user!, exclude: %i[new create]
 
   def edit_profile
     @user = current_user
