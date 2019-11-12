@@ -31,7 +31,7 @@ class GoogleFetcherService
                           reviewer_profile_url: review["author_url"],
                           review_text: review["text"],
                           rating: review["rating"],
-                          review_time: review["time"],
+                          review_time: DateTime.strptime(parsed_places["result"]["reviews"][0]["time"].to_s, "%s"),
                           restaurant_id: restaurant.id)
     end
   end

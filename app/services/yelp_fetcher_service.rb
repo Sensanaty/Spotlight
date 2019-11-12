@@ -49,7 +49,7 @@ class YelpFetcherService
                         reviewer_profile_url: review["user"]["profile_url"],
                         review_text: review["text"],
                         rating: review["rating"],
-                        review_time: DateTime.parse(review["time_created"]).to_i, # Convert to UNIX time for storage
+                        review_time: DateTime.parse(review["time_created"]), # Convert to UNIX time for storage
                         restaurant_id: restaurant)
     end
   end
