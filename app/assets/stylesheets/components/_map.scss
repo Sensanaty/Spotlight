@@ -1,8 +1,13 @@
 .mapboxgl-popup {
   max-width: 200px;
+  border-radius: 10px;
+
 }
 
 .mapboxgl-popup-content {
   text-align: center;
   font-family: 'Raleway', sans-serif;
+  border-radius: 10px;
+  border-left-style: outset;
+  border-color: #F5A431;
 }
