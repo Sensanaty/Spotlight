@@ -147,14 +147,14 @@ let googleBarChart = new Chart(googleBarChartDisplay, {
                 position: 'right',
                 scaleLabel: {
                   labelString: "Average rating (bars)",
-                  display: true,
+                  display: false,
                 },
                 id: 'right-y-axis',
                 gridLines: {
                   display: false,
                 },
                 ticks: {
-                  display: true,
+                  display: false,
                   min: 0
                 }
               }

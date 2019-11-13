@@ -85,7 +85,8 @@ let zomatoBarChart = new Chart(zomatoBarChartDisplay, {
             label: 'Average review rating',
             data: Object.values(zomatoBarChartReviewAverageData),
             backgroundColor: zomatoBarChartcoloursArray,
-            options: { barThickness: 40 }
+            options: { barThickness: 40 },
+            yAxisID: 'right-y-axis'
           },
           {
             label: 'Number of reviews',
@@ -139,7 +140,22 @@ let zomatoBarChart = new Chart(zomatoBarChartDisplay, {
                   stepSize: 1,
                   min: 0
                 }
-              }],
+              },
+              {
+                position: 'right',
+                scaleLabel: {
+                  labelString: "Average rating (bars)",
+                  display: false,
+                },
+                id: 'right-y-axis',
+                gridLines: {
+                  display: false,
+                },
+                ticks: {
+                  display: false,
+                  min: 0
+                }
+              }]
             },
       title: {
         display: false,

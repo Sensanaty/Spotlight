@@ -85,7 +85,8 @@ let yelpBarChart = new Chart(yelpBarChartDisplay, {
             label: 'Average review rating',
             data: Object.values(yelpBarChartReviewAverageData),
             backgroundColor: yelpBarChartcoloursArray,
-            options: { barThickness: 40 }
+            options: { barThickness: 40 },
+            yAxisID: 'right-y-axis'
           },
           {
             label: 'Number of reviews',
@@ -139,7 +140,22 @@ let yelpBarChart = new Chart(yelpBarChartDisplay, {
                   stepSize: 1,
                   min: 0
                 }
-              }],
+              },
+              {
+                position: 'right',
+                scaleLabel: {
+                  labelString: "Average rating (bars)",
+                  display: false,
+                },
+                id: 'right-y-axis',
+                gridLines: {
+                  display: false,
+                },
+                ticks: {
+                  display: false,
+                  min: 0
+                }
+              }]
             },
       title: {
         display: false,
