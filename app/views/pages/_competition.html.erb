@@ -5,8 +5,8 @@
     </div>
     <div class="col-md-8">
       <div class="p-3" style ="width: 400px;">
-        <div class = "d-flex justify-content-between pb-2">
-          <h5 class="card-title my-auto" style="width:68%; font-size: 16px;"><%= competitor[:name] %></h5>
+        <div class = "d-flex justify-content-between">
+          <h5 class="card-title" style="width:68%; font-size: 16px; "><%= competitor[:name].truncate(33) %></h5>
           <div class = "px-2" style="font-size: 14px;">
             <% competitor[:rating].to_i.times do  %>
               <span class="fa fa-star checked" style="color: #F5A431"></span>

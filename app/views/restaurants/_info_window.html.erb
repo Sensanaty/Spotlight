@@ -7,15 +7,13 @@
 
 
 <% else %>
-<div class="card mb-3 border-left-warning" style = "width:100%; border-radius: 10px;">
-  <div class="row no-gutters" style = "height:140px;">
-    <div>
-      <img style = "height: 140px; width:30px; border-top-left-radius: 10px; border-bottom-left-radius: 10px; object-fit: cover"src=<%= restaurant[:photo] %> class="card-img" alt="...">
-    </div>
-    <div class="col-md-8">
-      <div class="p-3" style ="width: 400px;">
-        <div class = "d-flex justify-content-between pb-2">
-          <h5 class="card-title my-auto" style="width:68%; font-size: 16px;"><%= restaurant[:name] %></h5>
+  <div class="card mb-3" style = "width:100%; border-radius: 10px; border:none;">
+      <div>
+        <img style = "height: 100px; width:100%; border-top-right-radius: 10px; border-top-left-radius: 10px; object-fit: cover"src=<%= restaurant[:photo] %> class="card-img" alt="...">
+      </div>
+      <div class="">
+        <div class="" style ="width: 100%;">
+          <h5 class="card-title mt-3 mb-1" style="width:100%; text-align: center; font-size: 16px;"><%= restaurant[:name].truncate(33) %></h5>
           <div class = "px-2" style="font-size: 14px;">
             <% restaurant[:rating].to_i.times do  %>
               <span class="fa fa-star checked" style="color: #F5A431"></span>
@@ -31,28 +29,26 @@
               <% end %>
             <% end %>
           </div>
-        </div>
-        <div class = "d-flex align-items-center" style= "font-size: 12px;">
-          <ul style = "list-style-type: none; padding-left: 10px;">
-            <li>Rating = <%=restaurant[:rating]%> </li>
-            <li>Total ratings = <%=restaurant[:user_ratings_total]%> </li>
-            <% if restaurant[:price_level] == 1 %>
-              <li>Price level = $</li>
-            <% elsif restaurant[:price_level] == 2 %>
-              <li>Price level = $$</li>
-            <% elsif restaurant[:price_level] == 3 %>
-              <li>Price level = $$$</li>
-            <% elsif restaurant[:price_level] == 4 %>
-              <li>Price level = $$$$</li>
-            <% else %>
-              <li>Price level = unkown</li>
-            <% end %>
-            <li>Cuisine = <%=restaurant[:cuisine]%> </li>
-          </ul>
+          <div class = "d-flex align-items-center" style= "font-size: 12px;">
+            <ul style = "list-style-type: none; padding-left: 0px; text-align: center; width: 100%">
+              <li>Rating = <%=restaurant[:rating]%> </li>
+              <li>Total ratings = <%=restaurant[:user_ratings_total]%> </li>
+              <% if restaurant[:price_level] == 1 %>
+                <li>Price level = $</li>
+              <% elsif restaurant[:price_level] == 2 %>
+                <li>Price level = $$</li>
+              <% elsif restaurant[:price_level] == 3 %>
+                <li>Price level = $$$</li>
+              <% elsif restaurant[:price_level] == 4 %>
+                <li>Price level = $$$$</li>
+              <% else %>
+                <li>Price level = unkown</li>
+              <% end %>
+              <li>Cuisine = <%=restaurant[:cuisine]%> </li>
+            </ul>
+          </div>
         </div>
       </div>
-    </div>
   </div>
-</div>
 <% end %>
 
