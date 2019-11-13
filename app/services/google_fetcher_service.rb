@@ -10,7 +10,9 @@ class GoogleFetcherService
     parsed_id = URI.open("#{ENV['GOOGLE_BASE_URL']}#{formatted_name}&inputtype=textquery&location=#{restaurant.latitude},#{restaurant.longitude}&fields=place_id,photos&key=#{ENV['GOOGLE_API_KEY']}").read
     returned_place_id = JSON.parse(parsed_id)["candidates"]
     if returned_place_id[0]["photos"]
-      restaurant.photo_reference = returned_place_id[0]["photos"][0]["photo_reference"]
+      photo_reference = returned_place_id[0]["photos"][0]["photo_reference"]
+      image = "#{ENV['GOOGLE_IMAGE_URL']}maxwidth=200&photoreference=#{photo_reference}&key=#{ENV['GOOGLE_API_KEY']}"
+      restaurant.photo_reference = image
     end
 
     if returned_place_id.empty?

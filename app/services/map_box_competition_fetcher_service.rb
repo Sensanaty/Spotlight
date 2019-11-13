@@ -17,8 +17,6 @@ class MapBoxCompetitionFetcherService
     parsed_id = open(url).read
     competition = JSON.parse(parsed_id)
 
-
-
     markers = competition["results"].map do |result|
       image = "https://image.flaticon.com/icons/svg/857/857755.svg"
       if result["photos"]
