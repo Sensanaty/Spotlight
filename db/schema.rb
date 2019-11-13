@@ -54,10 +54,10 @@ ActiveRecord::Schema.define(version: 2019_11_12_025822) do
     t.bigint "restaurant_id"
     t.string "review_type"
     t.bigint "review_id"
-    t.integer "review_time"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.float "rating"
+    t.datetime "review_time"
     t.index ["restaurant_id"], name: "index_restaurant_reviews_on_restaurant_id"
     t.index ["review_type", "review_id"], name: "index_restaurant_reviews_on_review_type_and_review_id"
   end
