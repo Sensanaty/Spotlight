@@ -1,1 +1,33 @@
-<h1>This will be the tripadvisor card</h1>
+<div class="col-xl-12 col-md-6 mb-2">
+  <div class="card tripadvisorcard shadow h-200 py-3 pl-4 d-flex flex-row card-touchup">
+<!--     left-side-->
+    <div>
+      <div class="d-flex position pb-1">
+        <img class = 'avatar' src=<%= review.review.reviewer_image %> alt="">
+        <div class = 'namebox my-auto'><%=review.review.reviewer_username%></div>
+        <div class = "px-2 my-auto">
+          <% review.rating.to_i.times do  %>
+          <span class="fa fa-star checked" style="color: #F5A431"></span>
+          <% end %>
+          <% (5 - review.rating.to_i).times do %>
+          <span class="fa fa-star" style="color: #CDCDCD"></span>
+          <% end %>
+        </div>
+        <p class = "my-auto timebox mx-2"><%= review.review.review_time.strftime('%d-%m-%Y %H:%M') %></p>
+        <% if review.review.review_time > current_user.last_sign_in_at %>
+          <p class = "my-auto" style="color: #E34444">NEW</p>
+        <% end %>
+      </div>
+      <div class = "p-3">
+        <%= review.review.review_text %>
+      </div>
+    </div>
+<!--     right side-->
+    <div class="d-flex flex-column px-2 justify-content-between">
+      <i class="fas fa-external-link-square-alt open-link"></i>
+      <div class = "logo-button-white-lg d-flex justify-content-center">
+        <%= image_tag 'trip-advisor-logo.png', class: 'logo-button-white-lg' %>
+      </div>
+    </div>
+  </div>
+</div>
