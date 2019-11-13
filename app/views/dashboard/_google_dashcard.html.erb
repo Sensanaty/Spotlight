@@ -27,7 +27,7 @@
   </div>
   <div class="col-6">
     <div class="chart-right w-100 d-flex flex-column pl-4">
-      <span class="text-xs font-weight-bold text-uppercase mb-2 text-gray-800">Ratings distribution</span>
+      <span class="text-xs font-weight-bold text-uppercase mb-2 text-gray-800">Ratings distribution (stars)</span>
       <div class="google-chart-2">
         <!-- Google Chart 2 -->
         <canvas id="googlePieChart" width="150" height="120" data-chartdata="<%= restaurant.google_reviews.group(:rating).count.sort %>"></canvas>

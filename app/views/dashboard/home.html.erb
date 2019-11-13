@@ -1,9 +1,8 @@
-<%= javascript_pack_tag 'chartkick' %>
 <% if !@restaurant %>
   <%= render 'shared/no_restaurant_display' %>
 <% else %>
   <div class="h-200 d-flex justify-content-around flex-row mx-auto dash-sum-box">
-    <%#= render 'dashboard/dashboard_overview_section' %>
+    <%= render 'dashboard/dashboard_overview_section' %>
   </div>
 
   <div class="container pb-4">
@@ -24,7 +23,7 @@
 
       <!-- Zomato card -->
       <div class="col-xs-12 col-lg-6">
-        <% if @restaurant.linked_channels.include?('Zomato') %>
+        <% if @linked_channels.include?('Zomato') %>
           <div class="card shadow h-200 dash-card position-relative">
             <div class="card-header py-2 d-flex align-items-center">
               <%= image_tag 'zomato-logo.png', class: 'logo-button-white-lg' %>
@@ -44,7 +43,7 @@
     <div class="row justify-content-around py-2">
       <div class="col-xs-12 col-lg-6">
         <!-- Yelp card -->
-        <% if @restaurant.linked_channels.include?('Yelp') %>
+        <% if @linked_channels.include?('Yelp') %>
           <div class="card shadow h-200 dash-card position-relative">
             <div class="card-header py-2 d-flex align-items-center">
               <%= image_tag 'yelp-logo.png', class: 'logo-button-white-lg' %>
@@ -61,7 +60,7 @@
 
       <div class="col-xs-12 col-lg-6">
         <!-- Tripadvisor card -->
-        <% if @restaurant.linked_channels.include?('Tripadvisor') %>
+        <% if @linked_channels.include?('Tripadvisor') %>
 
               <%= image_tag 'trip-advisor-logo.png', class: 'logo-button-white-lg' %>
               <h6>You've already added Trip Advisor :)</h6>
@@ -77,7 +76,7 @@
     <div class="row justify-content-around py-2">
       <div class="col-6">
         <!-- Foursquare card -->
-        <% if @restaurant.linked_channels.include?('Foursquare') %>
+        <% if @linked_channels.include?('Foursquare') %>
           <div class="card shadow h-200 p-2 dash-card position-relative">
             <div class="d-flex align-items-center">
               <%= image_tag 'foursquare-logo.png', class: 'logo-button-white-lg' %>
@@ -92,7 +91,7 @@
       </div>
       <div class="col-6">
         <!-- FB card -->
-        <% if @restaurant.linked_channels.include?('Facebook') %>
+        <% if @linked_channels.include?('Facebook') %>
           <div class="card shadow h-200 p-2 d-flex flex-row dash-card position-relative">
             <%= image_tag 'facebook-logo.png', class: 'logo-button-white-lg' %>
             <h6>You've already added Facebook :)</h6>
@@ -111,7 +110,7 @@
     <!-- ROW 4 -->
     <!-- <div class="row d-flex justify-content-around py-2"> -->
       <!-- Insta card -->
-      <!-- <#% if @restaurant.linked_channels.include?('Instagram') %> -->
+      <!-- <#% if @linked_channels.include?('Instagram') %> -->
         <!-- <div class="card shadow h-200 p-2 d-flex flex-row dash-card position-relative"> -->
           <%#= image_tag 'instagram-logo.png', class: 'logo-button-white-lg' %>
           <!-- <h6>You've already added Instagram :)</h6> -->

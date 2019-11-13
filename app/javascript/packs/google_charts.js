@@ -1,7 +1,6 @@
 import Chart from 'chart.js';
 import ChartDataLabels from 'chartjs-plugin-datalabels';
 
-
 // ---------------------- GOOGLE CHART 1 ----------------------- //
 let googlePieChartDisplay = document.querySelector('#googlePieChart')
 let googlePieChartData = JSON.parse(googlePieChartDisplay.dataset.chartdata)
@@ -60,12 +59,9 @@ let googlePieChart = new Chart(googlePieChartDisplay, {
 let googleBarChartDisplay = document.querySelector('#googleBarChart')
 let googleBarChartReviewCountData = JSON.parse(googleBarChartDisplay.dataset.reviewcountdata)
 let googleBarChartReviewAverageData = JSON.parse(googleBarChartDisplay.dataset.reviewaveragedata)
-// let googleBarChartcoloursArray = ["rgba(25, 100, 182, 0.5)", "rgba(25, 115, 182,0.5)", "rgba(25, 130, 182,0.5)","rgba(25, 145, 182,0.5)", "rgba(25, 160, 182,0.5)", "rgba(25, 175, 182,0.5)"]
 let googleBarChartcoloursArray = []
 
 googleBarChartReviewAverageData.forEach(function(rating, index) {
-  console.log(rating);
-  console.log(index);
   if (rating > 4 && rating <= 5) {
     googleBarChartcoloursArray[index] = "rgba(95, 186, 74,0.7)"
   } else if (rating > 3 && rating <= 4) {
@@ -77,10 +73,7 @@ googleBarChartReviewAverageData.forEach(function(rating, index) {
   } else if (rating > 0 && rating <= 1) {
     googleBarChartcoloursArray[index] = "rgba(217, 68, 61, 0.7)"
   }
-}),
-
-
-console.log(googleBarChartReviewAverageData)
+});
 
 // Google Reviews Count chart code
 let googleBarChart = new Chart(googleBarChartDisplay, {
@@ -92,6 +85,7 @@ let googleBarChart = new Chart(googleBarChartDisplay, {
             label: 'Average review rating',
             data: Object.values(googleBarChartReviewAverageData),
             backgroundColor: googleBarChartcoloursArray,
+            options: { barThickness: 40 }
           },
           {
             label: 'Number of reviews',
@@ -143,6 +137,7 @@ let googleBarChart = new Chart(googleBarChartDisplay, {
                 ticks: {
                   display: true,
                   stepSize: 1,
+                  min: 0
                 }
               }],
             },

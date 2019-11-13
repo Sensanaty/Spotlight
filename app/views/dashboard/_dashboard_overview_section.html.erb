@@ -1,20 +1,20 @@
 <div class="container py-2">
   <h4>Welcome, <%= current_user.first_name %>. Here's your summary from last week</h4>
-  <h6 class="font-weight-bold text-uppercase mb-1">Week Commencing <%= @restaurant.week_name(-2) %><%#= @restaurant.name.upcase if @restaurant %></h6>
+  <h6 class="font-weight-bold text-uppercase mb-1">Week Commencing <%= Date.today - (Date.today.wday + 7) %><%#= @restaurant.name.upcase if @restaurant %></h6>
   <div class="row py-3">
     <div class="col-4">
       <span class="text-md font-weight-bold spotlight-green text-uppercase mb-1">Reviews This Week</span>
-      <div class="h2 mb-0 mr-3 text-gray-800"><strong><%= @restaurant.week_reviews_count(-2) %></strong></div>
+      <div class="h2 mb-0 mr-3 text-gray-800"><strong><%= @reviews_last_week.size %></strong></div>
     </div>
     <div class="col-4">
       <span class="text-md font-weight-bold spotlight-green text-uppercase mb-1">Average Rating This Week</span>
-      <div class="h2 mb-0 mr-3 font-weight-bold text-gray-800"><%= @restaurant.week_reviews_average(-2) %></div>
+      <div class="h2 mb-0 mr-3 font-weight-bold text-gray-800"><%= @last_week_average %></div>
     </div>
     <div class="col-4">
       <span class="text-md font-weight-bold spotlight-green text-uppercase mb-1">Weeks Performance</span>
       <ul style="padding-left: 20px">
-        <li><div class="h6 mb-0 mr-3 text-gray-800"><%= @restaurant.week_review_count_comparision(-2, -3) %></div></li>
-        <li><div class="h6 mb-0 mr-3 text-gray-800"> <%= @restaurant.week_review_average_comparision(-2, -3) %></div></li>
+        <li><div class="h6 mb-0 mr-3 text-gray-800"><%= @week_review_count_comparision %></div></li>
+        <li><div class="h6 mb-0 mr-3 text-gray-800"> <%= @week_review_average_comparision %></div></li>
       </ul>
     </div>
   </div>
