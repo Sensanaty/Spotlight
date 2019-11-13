@@ -1,9 +1,9 @@
-<div class="card mb-3 border-left-danger" style = "width:530px;">
+<div class="card mb-3 border-left-danger" style = "width:530px; border-radius: 10px;">
   <div class="row no-gutters position-relative" style = "height:140px;">
     <div>
-      <div class= "position-absolute" style="top:-1px;left:-1px; width:46px; height:46px; background-color: #F3705B "></div>
-      <img class= "position-absolute" style="top:5px;left:0; width:40px; height:40px; "; src="https://image.flaticon.com/icons/svg/608/608671.svg" alt="">
-      <img style = "height: 140px; width:130px; object-fit: cover"src="https://i.pinimg.com/564x/2c/b5/23/2cb5238a1f642f8926d52c06713b9093.jpg" class="card-img" alt="...">
+      <div class= "position-absolute" style="bottom:-1px;right:-1px; width:46px; height:46px; background-color: #F3705B; border-bottom-right-radius: 10px;"></div>
+      <img class= "position-absolute" style="bottom:0px;right:0; width:40px; height:40px; "; src="https://image.flaticon.com/icons/svg/608/608671.svg" alt="">
+      <img style = "height: 140px; width:130px; border-top-left-radius: 10px; border-bottom-left-radius: 10px; object-fit: cover"src="https://i.pinimg.com/564x/2c/b5/23/2cb5238a1f642f8926d52c06713b9093.jpg" class="card-img" alt="...">
     </div>
     <div class="col-md-8">
       <div class="card-body" style ="width: 400px;">
@@ -26,7 +26,7 @@
           </div>
         </div>
         <div class = "d-flex align-items-center" style= "font-size: 12px;">
-          <ul>
+          <ul style = "list-style-type: none ; padding-left: 10px;">
             <li>Rating = <%= restaurant.average_google_rating.round(1) %></li>
             <li>Total ratings = <%= restaurant.google_reviews.count %></li>
             <% if restaurant.price_level == 1 %>

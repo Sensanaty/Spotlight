@@ -1,6 +1,22 @@
+
+
 <% if restaurant.class == "Restaurant" %>
-  <h1>Some info <%= restaurant.name %></h1>
+  <h5><%= restaurant.name %></h5>
 <% else %>
-  <h1>Some info what if we have a lot longer text what does happen with the size of the card? <%= restaurant[:name] %></h1>
+  <h5> <%= restaurant[:name] %></h5>
+  <%= restaurant[:rating]  %>
+  <li> <%= restaurant[:cuisine] %></li>
+  <% if restaurant[:price_level] == 1 %>
+    <li>Price level = $</li>
+  <% elsif restaurant[:price_level] == 2 %>
+    <li>Price level = $$</li>
+  <% elsif restaurant[:price_level] == 3 %>
+    <li>Price level = $$$</li>
+  <% elsif restaurant[:price_level] == 4 %>
+    <li>Price level = $$$$</li>
+  <% else %>
+    <li>Price level = unkown</li>
+  <% end %>
+
 <% end %>
 

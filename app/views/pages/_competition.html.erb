@@ -1,7 +1,7 @@
-<div class="card mb-3 border-left-warning" style = "width:530px;">
+<div class="card mb-3 border-left-warning" style = "width:530px; border-radius: 10px;">
   <div class="row no-gutters" style = "height:140px;">
     <div>
-      <img style = "height: 140px; width:130px; object-fit: cover"src="https://i.pinimg.com/564x/2c/b5/23/2cb5238a1f642f8926d52c06713b9093.jpg" class="card-img" alt="...">
+      <img style = "height: 140px; width:130px; border-top-left-radius: 10px; border-bottom-left-radius: 10px; object-fit: cover"src=<%= competitor[:photo] %> class="card-img" alt="...">
     </div>
     <div class="col-md-8">
       <div class="p-3" style ="width: 400px;">
@@ -24,7 +24,7 @@
           </div>
         </div>
         <div class = "d-flex align-items-center" style= "font-size: 12px;">
-          <ul>
+          <ul style = "list-style-type: none; padding-left: 10px;">
             <li>Rating = <%=competitor[:rating]%> </li>
             <li>Total ratings = <%=competitor[:user_ratings_total]%> </li>
             <% if competitor[:price_level] == 1 %>
