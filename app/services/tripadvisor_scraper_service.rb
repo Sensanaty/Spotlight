@@ -8,6 +8,19 @@ require_relative '../models/tripadvisor_review'
 
 class TripadvisorScraperService
 
+  def self.first_scrape
+    acquire_all_review_urls
+    pages.each do |url|
+      scrape_tripadvisor(url, restaurant)
+    end
+  end
+
+
+  def self.update_scraped
+    scrape_tripadvisor(url, restaurant)
+  end
+
+
   def self.scrape_tripadvisor(url, restaurant)
     browser = Watir::Browser.new :chrome, headless: true
     browser.goto(url)
@@ -27,48 +40,49 @@ class TripadvisorScraperService
   end
 
 
-  # def acquire_all_review_urls
-  #   # url here is the first page of the restaurant, which contains reviews, starting from the first ten
-  #   pages = []
-  #   url = params[:url]
-  #   serialized = open(url).read
-  #   parsed = Nokogiri.parse(serialized)
+  def self.acquire_all_review_urls
+    # url here is the first page of the restaurant, which contains reviews, starting from the first ten
+    pages = []
+    url = restaurants.tripadvisor_url
+    serialized = open(url).read
+    parsed = Nokogiri.parse(serialized)
 
-  #   6.times do |index|
-  #     next unless parsed.search('.pageNumbers > a')[index].attributes['href'] != nil
+    6.times do |index|
+      next unless parsed.search('.pageNumbers > a')[index].attributes['href'] != nil
 
-  #     next_page = parsed.search('.pageNumbers > a')[index].attributes['href'].value
-  #     new_url = "https://www.tripadvisor.com/#{next_page}"
-  #     pages << new_url
-  #   end
+      next_page = parsed.search('.pageNumbers > a')[index].attributes['href'].value
+      new_url = "https://www.tripadvisor.com/#{next_page}"
+      pages << new_url
+    end
 
-  #   finished = false
+    finished = false
 
-  #   until finished do
-  #     url = pages[-1]
-  #     serialized = open(url).read
-  #     parsed = Nokogiri.parse(serialized)
-  #     if parsed.search('.pageNumbers > a').size < 9
-  #       finished = true
-  #       next_page = parsed.search('.pageNumbers > a')[-3].attributes['href'].value
-  #       new_url = "https://www.tripadvisor.com/#{next_page}"
-  #       next_page2 = parsed.search('.pageNumbers > a')[-2].attributes['href'].value
-  #       new_url2 = "https://www.tripadvisor.com/#{next_page2}"
-  #       next_page3 = parsed.search('.pageNumbers > a')[-1].attributes['href'].value
-  #       new_url3 = "https://www.tripadvisor.com/#{next_page3}"
-  #       pages << new_url
-  #       pages << new_url2
-  #       pages << new_url3
-  #     else
-  #       next_page = parsed.search('.pageNumbers > a')[-4].attributes['href'].value
-  #       new_url = "https://www.tripadvisor.com/#{next_page}"
-  #       next_page2 = parsed.search('.pageNumbers > a')[-3].attributes['href'].value
-  #       new_url2 = "https://www.tripadvisor.com/#{next_page2}"
-  #       pages << new_url
-  #       pages << new_url2
-  #     end
-  #   end
-  # end
+    until finished do
+      url = pages[-1]
+      serialized = open(url).read
+      parsed = Nokogiri.parse(serialized)
+      if parsed.search('.pageNumbers > a').size < 9
+        finished = true
+        next_page = parsed.search('.pageNumbers > a')[-3].attributes['href'].value
+        new_url = "https://www.tripadvisor.com/#{next_page}"
+        next_page2 = parsed.search('.pageNumbers > a')[-2].attributes['href'].value
+        new_url2 = "https://www.tripadvisor.com/#{next_page2}"
+        next_page3 = parsed.search('.pageNumbers > a')[-1].attributes['href'].value
+        new_url3 = "https://www.tripadvisor.com/#{next_page3}"
+        pages << new_url
+        pages << new_url2
+        pages << new_url3
+      else
+        next_page = parsed.search('.pageNumbers > a')[-4].attributes['href'].value
+        new_url = "https://www.tripadvisor.com/#{next_page}"
+        next_page2 = parsed.search('.pageNumbers > a')[-3].attributes['href'].value
+        new_url2 = "https://www.tripadvisor.com/#{next_page2}"
+        pages << new_url
+        pages << new_url2
+      end
+    end
+  return pages
+  end
 
 end
 
