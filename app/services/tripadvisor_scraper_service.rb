@@ -16,18 +16,13 @@ class TripadvisorScraperService
     parsed_reviews = Nokogiri.parse(reviews)
     10.times do |index|
       remote_id = parsed_reviews.search('.review-container')[index].attributes['data-reviewid'].value.to_i
-      ta_review = TripadvisorReview.new(review_time: parsed_reviews.search('.ratingDate')[index].attributes['title'],
+      TripadvisorReview.create(review_time: parsed_reviews.search('.ratingDate')[index].attributes['title'],
                                rating: parsed_reviews.search('.ui_column.is-9')[index].children.first.attributes['class'].value[-2].to_i,
                                reviewer_username: parsed_reviews.search('.info_text.pointer_cursor > div')[index].text,
                                review_text: parsed_reviews.search('.partial_entry')[index].text,
                                reviewer_image: parsed_reviews.search('.ui_avatar > img')[index].attributes['src'],
                                remote_id: remote_id,
                                restaurant_id: restaurant.id)
-      if TripadvisorReview.find_by(remote_id: remote_id)
-        break
-      else
-        ta_review.save
-      end
     end
   end
 

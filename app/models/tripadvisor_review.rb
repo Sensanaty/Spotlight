@@ -1,7 +1,7 @@
 class TripadvisorReview < ApplicationRecord
   has_one :restaurant_review, as: :review
   has_one :restaurant, through: :restaurant_review
-  validates :review_time, uniqueness: :true
+  validates :remote_id, uniqueness: :true
 
   after_create :generate_restaurant_review
 
