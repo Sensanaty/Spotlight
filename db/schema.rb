@@ -76,7 +76,7 @@ ActiveRecord::Schema.define(version: 2019_11_13_054747) do
     t.text "linked_channels"
     t.text "yelp_id"
     t.text "zomato_id"
-    t.text "tripadvisor_id"
+    t.text "tripadvisor_url"
     t.text "google_id"
     t.text "foursquare_id"
     t.text "facebook_id"
@@ -96,7 +96,7 @@ ActiveRecord::Schema.define(version: 2019_11_13_054747) do
     t.index ["user_id"], name: "index_restaurants_on_user_id"
   end
 
-  create_table "tripadvior_reviews", force: :cascade do |t|
+  create_table "tripadvisor_reviews", force: :cascade do |t|
     t.string "reviewer_image"
     t.string "reviewer_username"
     t.string "reviewer_profile_url"
@@ -106,7 +106,8 @@ ActiveRecord::Schema.define(version: 2019_11_13_054747) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.datetime "review_time"
-    t.index ["restaurant_id"], name: "index_tripadvior_reviews_on_restaurant_id"
+    t.integer "remote_id"
+    t.index ["restaurant_id"], name: "index_tripadvisor_reviews_on_restaurant_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -168,7 +169,7 @@ ActiveRecord::Schema.define(version: 2019_11_13_054747) do
   add_foreign_key "orders", "users"
   add_foreign_key "restaurant_reviews", "restaurants"
   add_foreign_key "restaurants", "users"
-  add_foreign_key "tripadvior_reviews", "restaurants"
+  add_foreign_key "tripadvisor_reviews", "restaurants"
   add_foreign_key "yelp_reviews", "restaurants"
   add_foreign_key "zomato_reviews", "restaurants"
 end

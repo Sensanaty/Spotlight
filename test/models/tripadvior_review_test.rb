@@ -1,6 +1,6 @@
 require 'test_helper'
 
-class TripadviorReviewTest < ActiveSupport::TestCase
+class TripadvisorReviewTest < ActiveSupport::TestCase
   # test "the truth" do
   #   assert true
   # end
