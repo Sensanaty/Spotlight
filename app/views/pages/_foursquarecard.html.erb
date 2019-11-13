@@ -16,9 +16,11 @@
       <div class ="p-3">
         <%= review.review.review_text %>
       </div>
-      <div class = "imagediv">
-        <img class = "my-2 img-responsive" src=<%= review.review.meal_image %>>
-      </div>
+      <% if review.review.meal_image != nil %>
+        <div class = "imagediv">
+          <img class = "my-2 img-responsive" src=<%= review.review.meal_image %>>
+        </div>
+      <% end %>
     </div>
 <!--     right side-->
     <div class="d-flex flex-column px-2 justify-content-between">
