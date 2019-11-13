@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_11_13_041415) do
+ActiveRecord::Schema.define(version: 2019_11_13_054747) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -92,6 +92,7 @@ ActiveRecord::Schema.define(version: 2019_11_13_041415) do
     t.text "foursquare_average_rating"
     t.text "tripadvisor_review_count"
     t.text "tripadvisor_average_rating"
+    t.string "photo_reference"
     t.index ["user_id"], name: "index_restaurants_on_user_id"
   end
 
