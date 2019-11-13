@@ -1,7 +1,8 @@
 let zomatoSearchResultDisplay = document.querySelector('#search_result_zomato');
 
 if (<%= @search_match %> === true) {
-  zomatoSearchResultDisplay.innerText = "We found you on Zomato :D";
+  zomatoSearchResultDisplay.innerHTML = "<h5 font-weight-bold>We found you on Zomato</h5><br><h1><i class='far fa-smile'></i></h1>";
 } else if (<%= @search_match %> === false) {
-  zomatoSearchResultDisplay.innerText = "We couldn't find you on Zomato :(";
+  zomatoSearchResultDisplay.innerHTML = "<h5 font-weight-bold>We couldn't find you on Zomato</h5><br><h1><i class='far fa-frown'></i></h1>";
 }
+
