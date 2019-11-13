@@ -22,7 +22,7 @@
     <div class="chart-left w-100 d-flex flex-column pl-4">
       <span class="text-xs font-weight-bold text-uppercase mb-2 text-gray-800">Reviews by month</span>
         <!-- Google Chart 1 -->
-        <canvas id="googleBarChart" width="160" height="130" data-reviewcountdata="<%= restaurant.google_last_six_months_review_count %>" data-reviewaveragedata="<%= restaurant.google_last_six_months_rating_average %>"></canvas>
+        <canvas id="googleBarChart" width="160" height="130" data-reviewcountdata="<%= restaurant.last_six_months_review_count(GoogleReview) %>" data-reviewaveragedata="<%= restaurant.last_six_months_rating_average(GoogleReview) %>"></canvas>
     </div>
   </div>
   <div class="col-6">

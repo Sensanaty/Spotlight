@@ -1,7 +1,6 @@
 import Chart from 'chart.js';
 import ChartDataLabels from 'chartjs-plugin-datalabels';
 
-
 // ---------------------- yelp CHART 1 ----------------------- //
 let yelpPieChartDisplay = document.querySelector('#yelpPieChart')
 let yelpPieChartData = JSON.parse(yelpPieChartDisplay.dataset.chartdata)
@@ -23,7 +22,7 @@ let yelpPieChart = new Chart(yelpPieChartDisplay, {
             label: '# of reviews',
             data: yelpPieChartValues,
             backgroundColor: yelpPieChartcoloursArray,
-        }]
+          }]
     },
     plugins: [ChartDataLabels],
     options: {
@@ -58,21 +57,51 @@ let yelpPieChart = new Chart(yelpPieChartDisplay, {
 // ------------------- yelp CHART 2 ----------------------- //
 
 let yelpBarChartDisplay = document.querySelector('#yelpBarChart')
-let yelpBarChartData = JSON.parse(yelpBarChartDisplay.dataset.chartdata)
-let yelpBarChartcoloursArray = ["rgba(25, 100, 182, 0.5)", "rgba(25, 115, 182,0.5)", "rgba(25, 130, 182,0.5)","rgba(25, 145, 182,0.5)", "rgba(25, 160, 182,0.5)", "rgba(25, 175, 182,0.5)"]
+let yelpBarChartReviewCountData = JSON.parse(yelpBarChartDisplay.dataset.reviewcountdata)
+let yelpBarChartReviewAverageData = JSON.parse(yelpBarChartDisplay.dataset.reviewaveragedata)
+let yelpBarChartcoloursArray = []
 
-console.log(yelpBarChartData);
+yelpBarChartReviewAverageData.forEach(function(rating, index) {
+  if (rating > 4 && rating <= 5) {
+    yelpBarChartcoloursArray[index] = "rgba(95, 186, 74,0.7)"
+  } else if (rating > 3 && rating <= 4) {
+    yelpBarChartcoloursArray[index] = "rgba(166, 217, 89,0.7)"
+  } else if (rating > 2 && rating <= 3) {
+    yelpBarChartcoloursArray[index] = "rgba(237, 202, 85,0.7)"
+  } else if (rating > 1 && rating <= 2) {
+    yelpBarChartcoloursArray[index] = "rgba(237, 123, 85,0.7)"
+  } else if (rating > 0 && rating <= 1) {
+    yelpBarChartcoloursArray[index] = "rgba(217, 68, 61, 0.7)"
+  }
+});
 
 // yelp Reviews Count chart code
 let yelpBarChart = new Chart(yelpBarChartDisplay, {
     type: 'bar',
     data: {
-        labels: Object.keys(yelpBarChartData),
-        datasets: [{
-            label: '# of reviews',
-            data: Object.values(yelpBarChartData),
+        labels: Object.keys(yelpBarChartReviewCountData),
+        datasets: [
+          {
+            label: 'Average review rating',
+            data: Object.values(yelpBarChartReviewAverageData),
             backgroundColor: yelpBarChartcoloursArray,
-        }]
+            options: { barThickness: 40 }
+          },
+          {
+            label: 'Number of reviews',
+            data: Object.values(yelpBarChartReviewCountData),
+            type: 'line',
+            fill: false,
+            borderWidth: 2,
+            borderColor: '#000',
+            yAxisID: 'left-y-axis',
+            datalabels: {
+              display: false,
+              labels: {
+
+                }
+            }
+          }]
     },
     plugins: [ChartDataLabels],
 
@@ -95,17 +124,20 @@ let yelpBarChart = new Chart(yelpBarChartDisplay, {
                 gridLines: {
                   display: false,
                 },
-                // ticks: {
-                //   fontSize: 15,
-                //   fontColor: 'lightgrey'
-                // }
               }],
               yAxes: [{
+                scaleLabel: {
+                  labelString: "Number of reviews (line)",
+                  display: true,
+                },
+                id: 'left-y-axis',
                 gridLines: {
-                  display: false,
+                  display: true,
                 },
                 ticks: {
-                  display: false,
+                  display: true,
+                  stepSize: 1,
+                  min: 0
                 }
               }],
             },

@@ -30,7 +30,7 @@
               <h5>Zomato Performance</h5>
             </div>
             <div class="py-3">
-              <%#= render 'dashboard/zomato_dashcard', restaurant: @restaurant %>
+              <%= render 'dashboard/zomato_dashcard', restaurant: @restaurant %>
             </div>
           </div>
         <% else %>
@@ -50,7 +50,7 @@
               <h5>Yelp Performance</h5>
             </div>
             <div class="py-3">
-              <%#= render 'dashboard/yelp_dashcard', restaurant: @restaurant %>
+              <%= render 'dashboard/yelp_dashcard', restaurant: @restaurant %>
             </div>
           </div>
         <% else %>
@@ -77,13 +77,14 @@
       <div class="col-6">
         <!-- Foursquare card -->
         <% if @linked_channels.include?('Foursquare') %>
-          <div class="card shadow h-200 p-2 dash-card position-relative">
-            <div class="d-flex align-items-center">
+          <div class="card shadow h-200 dash-card position-relative">
+            <div class="card-header py-2 d-flex align-items-center">
               <%= image_tag 'foursquare-logo.png', class: 'logo-button-white-lg' %>
               <h5>FourSquare Performance</h5>
             </div>
-              <hr>
-            <%= render 'dashboard/foursquare_dashcard', restaurant: @restaurant %>
+            <div class="py-3">
+              <%= render 'dashboard/foursquare_dashcard', restaurant: @restaurant %>
+            </div>
           </div>
         <% else %>
           <%= render 'shared/add_channel_card', channel_name: 'Foursquare', channel_logo: 'foursquare-logo.png', channel_color: '#d9d5f5', restaurant: @restaurant %>
@@ -121,7 +122,8 @@
     <!-- </div> -->
   </div>
   <%= javascript_pack_tag 'dashboard' %>
-  <%#= javascript_pack_tag 'zomato_charts.js' %>
+  <%= javascript_pack_tag 'zomato_charts.js' %>
   <%= javascript_pack_tag 'google_charts.js' %>
-  <%#= javascript_pack_tag 'yelp_charts.js' %>
+  <%= javascript_pack_tag 'yelp_charts.js' %>
+  <%= javascript_pack_tag 'foursquare_charts.js' %>
 <% end %>

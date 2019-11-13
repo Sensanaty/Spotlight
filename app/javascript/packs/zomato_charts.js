@@ -1,7 +1,6 @@
 import Chart from 'chart.js';
 import ChartDataLabels from 'chartjs-plugin-datalabels';
 
-
 // ---------------------- zomato CHART 1 ----------------------- //
 let zomatoPieChartDisplay = document.querySelector('#zomatoPieChart')
 let zomatoPieChartData = JSON.parse(zomatoPieChartDisplay.dataset.chartdata)
@@ -23,7 +22,7 @@ let zomatoPieChart = new Chart(zomatoPieChartDisplay, {
             label: '# of reviews',
             data: zomatoPieChartValues,
             backgroundColor: zomatoPieChartcoloursArray,
-        }]
+          }]
     },
     plugins: [ChartDataLabels],
     options: {
@@ -58,21 +57,51 @@ let zomatoPieChart = new Chart(zomatoPieChartDisplay, {
 // ------------------- zomato CHART 2 ----------------------- //
 
 let zomatoBarChartDisplay = document.querySelector('#zomatoBarChart')
-let zomatoBarChartData = JSON.parse(zomatoBarChartDisplay.dataset.chartdata)
-let zomatoBarChartcoloursArray = ["rgba(25, 100, 182, 0.5)", "rgba(25, 115, 182,0.5)", "rgba(25, 130, 182,0.5)","rgba(25, 145, 182,0.5)", "rgba(25, 160, 182,0.5)", "rgba(25, 175, 182,0.5)"]
+let zomatoBarChartReviewCountData = JSON.parse(zomatoBarChartDisplay.dataset.reviewcountdata)
+let zomatoBarChartReviewAverageData = JSON.parse(zomatoBarChartDisplay.dataset.reviewaveragedata)
+let zomatoBarChartcoloursArray = []
 
-console.log(zomatoBarChartData);
+zomatoBarChartReviewAverageData.forEach(function(rating, index) {
+  if (rating > 4 && rating <= 5) {
+    zomatoBarChartcoloursArray[index] = "rgba(95, 186, 74,0.7)"
+  } else if (rating > 3 && rating <= 4) {
+    zomatoBarChartcoloursArray[index] = "rgba(166, 217, 89,0.7)"
+  } else if (rating > 2 && rating <= 3) {
+    zomatoBarChartcoloursArray[index] = "rgba(237, 202, 85,0.7)"
+  } else if (rating > 1 && rating <= 2) {
+    zomatoBarChartcoloursArray[index] = "rgba(237, 123, 85,0.7)"
+  } else if (rating > 0 && rating <= 1) {
+    zomatoBarChartcoloursArray[index] = "rgba(217, 68, 61, 0.7)"
+  }
+});
 
 // zomato Reviews Count chart code
 let zomatoBarChart = new Chart(zomatoBarChartDisplay, {
     type: 'bar',
     data: {
-        labels: Object.keys(zomatoBarChartData),
-        datasets: [{
-            label: '# of reviews',
-            data: Object.values(zomatoBarChartData),
+        labels: Object.keys(zomatoBarChartReviewCountData),
+        datasets: [
+          {
+            label: 'Average review rating',
+            data: Object.values(zomatoBarChartReviewAverageData),
             backgroundColor: zomatoBarChartcoloursArray,
-        }]
+            options: { barThickness: 40 }
+          },
+          {
+            label: 'Number of reviews',
+            data: Object.values(zomatoBarChartReviewCountData),
+            type: 'line',
+            fill: false,
+            borderWidth: 2,
+            borderColor: '#000',
+            yAxisID: 'left-y-axis',
+            datalabels: {
+              display: false,
+              labels: {
+
+                }
+            }
+          }]
     },
     plugins: [ChartDataLabels],
 
@@ -95,17 +124,20 @@ let zomatoBarChart = new Chart(zomatoBarChartDisplay, {
                 gridLines: {
                   display: false,
                 },
-                // ticks: {
-                //   fontSize: 15,
-                //   fontColor: 'lightgrey'
-                // }
               }],
               yAxes: [{
+                scaleLabel: {
+                  labelString: "Number of reviews (line)",
+                  display: true,
+                },
+                id: 'left-y-axis',
                 gridLines: {
-                  display: false,
+                  display: true,
                 },
                 ticks: {
-                  display: false,
+                  display: true,
+                  stepSize: 1,
+                  min: 0
                 }
               }],
             },

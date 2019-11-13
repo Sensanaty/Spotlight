@@ -20,15 +20,14 @@
 <div class="row">
   <div class="col-6">
     <div class="chart-left w-100 d-flex flex-column pl-4">
-      <span class="text-xs font-weight-bold text-uppercase mb-2 text-gray-800">Review counts by month</span>
+      <span class="text-xs font-weight-bold text-uppercase mb-2 text-gray-800">Reviews by month</span>
         <!-- zomato Chart 1 -->
-        <canvas id="zomatoBarChart" width="160" height="130" data-chartdata="<%= restaurant.zomato_reviews.where(review_time: (Date.today << 6)..Date.today).group_by_month(:review_time, format: "%b").count.to_json %>"></canvas>
-        <%#= column_chart restaurant.zomato_reviews.where(review_time: (Date.today << 6)..Date.today).group_by_month(:review_time, format: "%b").count, width: "90%", height: "180px" %>
+        <canvas id="zomatoBarChart" width="160" height="130" data-reviewcountdata="<%= restaurant.last_six_months_review_count(ZomatoReview) %>" data-reviewaveragedata="<%= restaurant.last_six_months_rating_average(ZomatoReview) %>"></canvas>
     </div>
   </div>
   <div class="col-6">
     <div class="chart-right w-100 d-flex flex-column pl-4">
-      <span class="text-xs font-weight-bold text-uppercase mb-2 text-gray-800">Ratings distribution</span>
+      <span class="text-xs font-weight-bold text-uppercase mb-2 text-gray-800">Ratings distribution (stars)</span>
       <div class="zomato-chart-2">
         <!-- zomato Chart 2 -->
         <canvas id="zomatoPieChart" width="150" height="120" data-chartdata="<%= restaurant.zomato_reviews.group(:rating).count.sort %>"></canvas>
@@ -36,4 +35,3 @@
     </div>
   </div>
 </div>
-

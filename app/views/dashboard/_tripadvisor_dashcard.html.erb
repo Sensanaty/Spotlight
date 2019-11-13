@@ -1,1 +1,37 @@
-_google_dashcard.html.erb
+<div class="row">
+  <div class="col-12">
+    <div class="top-panel d-flex justify-content-around">
+      <div class="left">
+        <div class="text-xs font-weight-bold text-info text-uppercase mb-1">Total Reviews</div>
+        <div class="h5 mb-0 mr-3 font-weight-bold text-gray-800"><%= restaurant.tripadvisor_reviews.count %></div>
+      </div>
+      <div class="middle">
+        <div class="text-xs font-weight-bold text-success text-uppercase mb-1">Average Rating</div>
+        <div class="h5 mb-0 mr-3 font-weight-bold text-gray-800"><%= restaurant.average_tripadvisor_rating %></div>
+      </div>
+      <div class="right">
+        <div class="text-xs font-weight-bold text-warning text-uppercase mb-1">Since last login</div>
+        <div class="h5 mb-0 mr-3 text-gray-800"><strong><%= restaurant.tripadvisor_reviews.where(review_time: current_user.last_sign_in_at..Date.today).count %></strong> new</div>
+      </div>
+    </div>
+  </div>
+</div>
+<hr class='sidebar-divider d-none d-md-block mx-3 my-4'>
+<div class="row">
+  <div class="col-6">
+    <div class="chart-left w-100 d-flex flex-column pl-4">
+      <span class="text-xs font-weight-bold text-uppercase mb-2 text-gray-800">Reviews by month</span>
+        <!-- tripadvisor Chart 1 -->
+        <canvas id="tripadvisorBarChart" width="160" height="130" data-reviewcountdata="<%= restaurant.last_six_months_review_count(tripadvisorReview) %>" data-reviewaveragedata="<%= restaurant.last_six_months_rating_average(tripadvisorReview) %>"></canvas>
+    </div>
+  </div>
+  <div class="col-6">
+    <div class="chart-right w-100 d-flex flex-column pl-4">
+      <span class="text-xs font-weight-bold text-uppercase mb-2 text-gray-800">Ratings distribution (stars)</span>
+      <div class="tripadvisor-chart-2">
+        <!-- tripadvisor Chart 2 -->
+        <canvas id="tripadvisorPieChart" width="150" height="120" data-chartdata="<%= restaurant.tripadvisor_reviews.group(:rating).count.sort %>"></canvas>
+      </div>
+    </div>
+  </div>
+</div>
