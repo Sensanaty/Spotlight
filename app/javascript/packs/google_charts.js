@@ -23,7 +23,7 @@ let googlePieChart = new Chart(googlePieChartDisplay, {
             label: '# of reviews',
             data: googlePieChartValues,
             backgroundColor: googlePieChartcoloursArray,
-        }]
+          }]
     },
     plugins: [ChartDataLabels],
     options: {
@@ -58,21 +58,56 @@ let googlePieChart = new Chart(googlePieChartDisplay, {
 // ------------------- GOOGLE CHART 2 ----------------------- //
 
 let googleBarChartDisplay = document.querySelector('#googleBarChart')
-let googleBarChartData = JSON.parse(googleBarChartDisplay.dataset.chartdata)
-let googleBarChartcoloursArray = ["rgba(25, 100, 182, 0.5)", "rgba(25, 115, 182,0.5)", "rgba(25, 130, 182,0.5)","rgba(25, 145, 182,0.5)", "rgba(25, 160, 182,0.5)", "rgba(25, 175, 182,0.5)"]
+let googleBarChartReviewCountData = JSON.parse(googleBarChartDisplay.dataset.reviewcountdata)
+let googleBarChartReviewAverageData = JSON.parse(googleBarChartDisplay.dataset.reviewaveragedata)
+// let googleBarChartcoloursArray = ["rgba(25, 100, 182, 0.5)", "rgba(25, 115, 182,0.5)", "rgba(25, 130, 182,0.5)","rgba(25, 145, 182,0.5)", "rgba(25, 160, 182,0.5)", "rgba(25, 175, 182,0.5)"]
+let googleBarChartcoloursArray = []
 
-console.log(googleBarChartData);
+googleBarChartReviewAverageData.forEach(function(rating, index) {
+  console.log(rating);
+  console.log(index);
+  if (rating > 4 && rating <= 5) {
+    googleBarChartcoloursArray[index] = "rgba(95, 186, 74,0.7)"
+  } else if (rating > 3 && rating <= 4) {
+    googleBarChartcoloursArray[index] = "rgba(166, 217, 89,0.7)"
+  } else if (rating > 2 && rating <= 3) {
+    googleBarChartcoloursArray[index] = "rgba(237, 202, 85,0.7)"
+  } else if (rating > 1 && rating <= 2) {
+    googleBarChartcoloursArray[index] = "rgba(237, 123, 85,0.7)"
+  } else if (rating > 0 && rating <= 1) {
+    googleBarChartcoloursArray[index] = "rgba(217, 68, 61, 0.7)"
+  }
+}),
+
+
+console.log(googleBarChartReviewAverageData)
 
 // Google Reviews Count chart code
 let googleBarChart = new Chart(googleBarChartDisplay, {
     type: 'bar',
     data: {
-        labels: Object.keys(googleBarChartData),
-        datasets: [{
-            label: '# of reviews',
-            data: Object.values(googleBarChartData),
+        labels: Object.keys(googleBarChartReviewCountData),
+        datasets: [
+          {
+            label: 'Average review rating',
+            data: Object.values(googleBarChartReviewAverageData),
             backgroundColor: googleBarChartcoloursArray,
-        }]
+          },
+          {
+            label: 'Number of reviews',
+            data: Object.values(googleBarChartReviewCountData),
+            type: 'line',
+            fill: false,
+            borderWidth: 2,
+            borderColor: '#000',
+            yAxisID: 'left-y-axis',
+            datalabels: {
+              display: false,
+              labels: {
+
+                }
+            }
+          }]
     },
     plugins: [ChartDataLabels],
 
@@ -95,17 +130,19 @@ let googleBarChart = new Chart(googleBarChartDisplay, {
                 gridLines: {
                   display: false,
                 },
-                // ticks: {
-                //   fontSize: 15,
-                //   fontColor: 'lightgrey'
-                // }
               }],
               yAxes: [{
+                scaleLabel: {
+                  labelString: "Number of reviews (line)",
+                  display: true,
+                },
+                id: 'left-y-axis',
                 gridLines: {
-                  display: false,
+                  display: true,
                 },
                 ticks: {
-                  display: false,
+                  display: true,
+                  stepSize: 1,
                 }
               }],
             },

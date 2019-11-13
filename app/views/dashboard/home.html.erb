@@ -3,7 +3,7 @@
   <%= render 'shared/no_restaurant_display' %>
 <% else %>
   <div class="h-200 d-flex justify-content-around flex-row mx-auto dash-sum-box">
-    <%= render 'dashboard/dashboard_overview_section' %>
+    <%#= render 'dashboard/dashboard_overview_section' %>
   </div>
 
   <div class="container pb-4">
@@ -31,7 +31,7 @@
               <h5>Zomato Performance</h5>
             </div>
             <div class="py-3">
-              <%= render 'dashboard/zomato_dashcard', restaurant: @restaurant %>
+              <%#= render 'dashboard/zomato_dashcard', restaurant: @restaurant %>
             </div>
           </div>
         <% else %>
@@ -51,7 +51,7 @@
               <h5>Yelp Performance</h5>
             </div>
             <div class="py-3">
-              <%= render 'dashboard/yelp_dashcard', restaurant: @restaurant %>
+              <%#= render 'dashboard/yelp_dashcard', restaurant: @restaurant %>
             </div>
           </div>
         <% else %>
@@ -122,7 +122,7 @@
     <!-- </div> -->
   </div>
   <%= javascript_pack_tag 'dashboard' %>
-  <%= javascript_pack_tag 'zomato_charts.js' %>
+  <%#= javascript_pack_tag 'zomato_charts.js' %>
   <%= javascript_pack_tag 'google_charts.js' %>
-  <%= javascript_pack_tag 'yelp_charts.js' %>
+  <%#= javascript_pack_tag 'yelp_charts.js' %>
 <% end %>

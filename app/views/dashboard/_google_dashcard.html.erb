@@ -20,10 +20,9 @@
 <div class="row">
   <div class="col-6">
     <div class="chart-left w-100 d-flex flex-column pl-4">
-      <span class="text-xs font-weight-bold text-uppercase mb-2 text-gray-800">Review counts by month</span>
+      <span class="text-xs font-weight-bold text-uppercase mb-2 text-gray-800">Reviews by month</span>
         <!-- Google Chart 1 -->
-        <canvas id="googleBarChart" width="160" height="130" data-chartdata="<%= restaurant.google_reviews.where(review_time: (Date.today << 6)..Date.today).group_by_month(:review_time, format: "%b").count.to_json %>"></canvas>
-        <%#= column_chart restaurant.google_reviews.where(review_time: (Date.today << 6)..Date.today).group_by_month(:review_time, format: "%b").count, width: "90%", height: "180px" %>
+        <canvas id="googleBarChart" width="160" height="130" data-reviewcountdata="<%= restaurant.google_last_six_months_review_count %>" data-reviewaveragedata="<%= restaurant.google_last_six_months_rating_average %>"></canvas>
     </div>
   </div>
   <div class="col-6">

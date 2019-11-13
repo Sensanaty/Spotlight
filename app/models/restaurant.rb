@@ -34,6 +34,20 @@ class Restaurant < ApplicationRecord
     (all_ratings.sum / all_ratings.length).round(1) unless all_ratings == []
   end
 
+  def google_last_six_months_review_count
+    self.google_reviews.where(review_time: (Date.today << 6)..Date.today).group_by_month(:review_time, format: "%b").count.to_json
+  end
+
+  def google_last_six_months_rating_average
+    reviews_by_month = self.google_reviews.where(review_time: (Date.today << 6)..Date.today).group_by_month(&:review_time)
+    average_ratings = []
+    reviews_by_month.each do |date, reviews|
+      average_rating = reviews.map { |rev| rev.rating }.reduce { |number, next_num| number + next_num } / reviews.length
+      average_ratings << average_rating
+    end
+   average_ratings
+  end
+
   def average_zomato_rating
     all_ratings = []
     self.zomato_reviews.each do |review|
