@@ -7,8 +7,11 @@ require 'json'
 class GoogleFetcherService
   def grab_place_id(restaurant)
     formatted_name = restaurant.name.strip.gsub(/\s/, "%20") # All whitespace must be converted into %20 for the API to respond
-    parsed_id = URI.open("#{ENV['GOOGLE_BASE_URL']}#{formatted_name}&inputtype=textquery&locationbias=point:#{restaurant.longitude},#{restaurant.latitude}&fields=place_id&key=#{ENV['GOOGLE_API_KEY']}").read
+    parsed_id = URI.open("#{ENV['GOOGLE_BASE_URL']}#{formatted_name}&inputtype=textquery&location=#{restaurant.latitude},#{restaurant.longitude}&fields=place_id,photos&key=#{ENV['GOOGLE_API_KEY']}").read
     returned_place_id = JSON.parse(parsed_id)["candidates"]
+    if returned_place_id[0]["photos"]
+      restaurant.photo_reference = returned_place_id[0]["photos"][0]["photo_reference"]
+    end
 
     if returned_place_id.empty?
       false

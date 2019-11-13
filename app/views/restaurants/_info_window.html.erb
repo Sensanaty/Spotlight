@@ -5,15 +5,14 @@
 
 
 
-
 <% else %>
   <div class="card mb-3" style = "width:100%; border-radius: 10px; border:none;">
       <div>
-        <img style = "height: 100px; width:100%; border-top-right-radius: 10px; border-top-left-radius: 10px; object-fit: cover"src=<%= restaurant[:photo] %> class="card-img" alt="...">
+        <img class="card-img" style = "height: 100px; width:100%; border-top-right-radius: 10px; border-top-left-radius: 10px; object-fit: cover"src=<%= restaurant[:photo] %> >
       </div>
       <div class="">
         <div class="" style ="width: 100%;">
-          <h5 class="card-title mt-3 mb-1" style="width:100%; text-align: center; font-size: 16px;"><%= restaurant[:name].truncate(33) %></h5>
+          <h5 class="card-title px-1 mt-3 mb-1" style="width:100%; text-align: center; font-size: 16px;"><%= restaurant[:name].truncate(33) %></h5>
           <div class = "px-2" style="font-size: 14px;">
             <% restaurant[:rating].to_i.times do  %>
               <span class="fa fa-star checked" style="color: #F5A431"></span>
