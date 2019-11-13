@@ -85,7 +85,8 @@ let googleBarChart = new Chart(googleBarChartDisplay, {
             label: 'Average review rating',
             data: Object.values(googleBarChartReviewAverageData),
             backgroundColor: googleBarChartcoloursArray,
-            options: { barThickness: 40 }
+            options: { barThickness: 40 },
+            yAxisID: 'right-y-axis'
           },
           {
             label: 'Number of reviews',
@@ -125,7 +126,9 @@ let googleBarChart = new Chart(googleBarChartDisplay, {
                   display: false,
                 },
               }],
-              yAxes: [{
+              yAxes: [
+              {
+                position: 'left',
                 scaleLabel: {
                   labelString: "Number of reviews (line)",
                   display: true,
@@ -139,7 +142,23 @@ let googleBarChart = new Chart(googleBarChartDisplay, {
                   stepSize: 1,
                   min: 0
                 }
-              }],
+              },
+              {
+                position: 'right',
+                scaleLabel: {
+                  labelString: "Average rating (bars)",
+                  display: true,
+                },
+                id: 'right-y-axis',
+                gridLines: {
+                  display: false,
+                },
+                ticks: {
+                  display: true,
+                  min: 0
+                }
+              }
+              ],
             },
       title: {
         display: false,
