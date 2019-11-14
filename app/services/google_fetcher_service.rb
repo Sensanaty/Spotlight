@@ -19,6 +19,7 @@ class GoogleFetcherService
       false
     else
       restaurant.google_id = returned_place_id[0]["place_id"]
+      restaurant.linked_channels << "Google"
       restaurant.save
       ReviewSeedingService.google_seed(restaurant)
       grab_reviews(restaurant)
