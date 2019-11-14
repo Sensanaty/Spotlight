@@ -1,67 +1,47 @@
-<div class="container">
+<div class="landing-background-container" style="background-image: url(<%= image_url 'landing-page-background.svg' %>)">
   <%= render 'shared/landing_nav_bar' %>
-</div>
-<!-- Landing Content -->
-<div class="landing-content">
-  <div class="banner" style="background-image: linear-gradient(rgba(0,0,0,0.4),rgba(0,0,0,0.4)), url(<%= asset_path 'landing-temporary.jpg' %>);">
-    <div class="container">
-      <h1><strong>Spotlight</strong>.</h1>
-      <p>Shine a light on your restaurants performance.</p>
-      <a class="btn btn-flat" href="#">Apply now</a>
-    </div>
-  </div>
-  <div class="landing-section" id="what-is-spotlight" style="background-color: #023436">
-    <div class="container">
-      <div class="row">
-        <div class="col-6">
-          <%= image_tag 'undraw_chef.svg', class: 'landing-section-image' %>
-        </div>
-        <div class="col-6">
-          <h3>What's Spotlight?</h3>
-          <p>
-            Designed specifically with restaurant owners in mind, Spotlight
-            brings all your public facing reviews to one single place so you can focus
-            on what's important - providing the best experience and food as you can for
-            your customers.
-          </p>
-        </div>
+  <!-- Landing Content -->
+  <div class="landing-content">
+  <!--   <div class="banner" style="background-image: linear-gradient(rgba(0,0,0,0.4),rgba(0,0,0,0.4)), url(<%#= asset_path 'landing-temporary.jpg' %>);">
+      <div class="container">
+        <h1><strong>Spotlight</strong>.</h1>
+        <p>Shine a light on your restaurants performance.</p>
+        <a class="btn btn-flat" href="#">Apply now</a>
       </div>
-    </div>
-  </div>
-  <div class="landing-section" id="how-it-works" style="background-color: white; color: black">
-    <div class="container">
-      <div class="row">
-          <div class="col-6">
-            <h3>How it works</h3>
-            <p>
-              We pull in data from a number of popular crowd-sourced review platforms so you
-              don't have to check each individually. With that data, we bring you the key
-              statistics and bite-size data that you can practically evaluate to improve
-              your customers experience and allow your business to thrive.
-            </p>
+    </div> -->
+    <div class="landing-section" id="what-is-spotlight">
+      <div class="logo-container">
+        <%= link_to root_path do %>
+          <%= image_tag 'spotlight-logo.svg', class: 'landing-logo' %>
+        <% end %>
+      </div>
+      <div class="d-flex justify-content center align-items-center w-100">
+        <div class="container h-100">
+          <div class="row h-100">
+            <div class="col-7">
+              <div class="d-flex h-100 flex-column justify-content-end">
+                <div>
+                  <%= image_tag 'landing-image-1.png', class: 'landing-section-image' %>
+                </div>
+              </div>
+            </div>
+            <div class="col-5 d-flex flex-column justify-content-center align-items-center">
+              <h3><strong>Manage your restaurants online reputation with ease</strong></h3>
+              <p>
+                Spotlight brings all your customer reviews together so you can focus on what matters -
+                providing the best experience possible.
+              </p>
+              <div class="landing-channels">
+                <%= image_tag 'google-logo.png', class: 'logo-button-white-lg' %>
+                <%= image_tag 'zomato-logo.png', class: 'logo-button-white-lg' %>
+                <%= image_tag 'yelp-logo.png', class: 'logo-button-white-lg' %>
+                <%= image_tag 'foursquare-logo.png', class: 'logo-button-white-lg' %>
+                <%= image_tag 'trip-advisor-logo.png', class: 'logo-button-white-lg' %>
+              </div>
+              <%= link_to "Sign Up", new_user_registration_path, class: 'btn btn-flat-secondary ml-3' %>
+            </div>
           </div>
-          <div class="col-6">
-            <%= image_tag 'undraw_chef.svg', class: 'landing-section-image' %>
-          </div>
-      </div>
-    </div>
-  </div>
-  <div class="landing-section" id="pricing" style="background-color: #3DD6D0">
-    <div class="container">
-      <div class="row">
-        <div class="col-6">
-          <%= image_tag 'undraw_chef.svg', class: 'landing-section-image' %>
         </div>
-        <div class="col-6">
-          <h3>Pricing</h3>
-          <p>
-            Designed specifically with restaurant owners in mind, Spotlight
-            brings all your public facing reviews to one single place so you can focus
-            on what's important - providing the best experience and food as you can for
-            your customers.
-          </p>
-        </div>
-      </div>
     </div>
   </div>
 </div>

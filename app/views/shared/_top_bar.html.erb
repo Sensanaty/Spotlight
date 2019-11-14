@@ -28,10 +28,12 @@
 <!--    </li>-->
 
     <!-- Refresh all reviews -->
-    <li class="nav-item dropdown no-arrow mx-1 align-items-center">
-      <%= link_to refresh_review_path, method: :post do %>
-        <p class="mr-2 d-none d-lg-inline text-gray-600 small">Fetch New Reviews</p>
-        <i class="fas fa-retweet fa-fw mr-3 d-lg-inlined-lg-inline"></i>
+    <li class="nav-item dropdown no-arrow mx-1 align-items-center d-flex">
+      <%= link_to refresh_review_path, method: :post, class: 'text-decoration-none' do %>
+        <div class="d-flex align-items-center">
+          <p class="mr-2 d-none d-lg-inline text-gray-600 small m-0">Fetch New Reviews</p>
+          <i style="font-size: 20px" class="fas fa-sync-alt fa-fw mr-3 d-lg-inlined-lg-inline"></i>
+        </div>
       <% end %>
     </li>
 
@@ -42,7 +44,7 @@
       <a class="nav-link dropdown-toggle" href="#" id="alertsDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
         <i class="fas fa-bell fa-fw"></i>
         <!-- Counter - Alerts -->
-        <span class="badge badge-danger badge-counter">3+</span>
+        <span class="badge badge-danger badge-counter">1+</span>
       </a>
       <!-- Dropdown - Alerts -->
       <div class="dropdown-list dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="alertsDropdown">
@@ -56,7 +58,7 @@
             </div>
           </div>
           <div>
-            <div class="small text-gray-500">December 12, 2019</div>
+            <div class="small text-gray-500">Nov 12, 2019</div>
             <span class="font-weight-bold">You got a new 5 star review!</span>
           </div>
         </a>
@@ -67,8 +69,8 @@
             </div>
           </div>
           <div>
-            <div class="small text-gray-500">December 7, 2019</div>
-              Your account is due for renewal in 30 days.
+            <div class="small text-gray-500">Nov 7, 2019</div>
+              You got a new 3 star review.
           </div>
         </a>
         <a class="dropdown-item d-flex align-items-center" href="#">
@@ -78,8 +80,8 @@
             </div>
           </div>
           <div>
-            <div class="small text-gray-500">December 2, 2019</div>
-              Check your performance for November now.
+            <div class="small text-gray-500">Nov 1, 2019</div>
+              Check your performance for October now.
           </div>
         </a>
         <a class="dropdown-item text-center small text-gray-500" href="#">Show All Alerts</a>
@@ -113,16 +115,6 @@
         </a>
       </div>
     </li>
-
-    <div class="topbar-divider d-none d-sm-block"></div>
-
-    <li class="nav-item dropdown no-arrow">
-      <%= link_to "Refresh your Reviews", refresh_review_path, method: :post %>
-<!--      <a class="nav-link dropdown-toggle" href="#" id="alertsDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">-->
-<!--        <i class="fas fa-retweet"></i>-->
-<!--      </a>-->
-    </li>
-
   </ul>
 </nav>
 <!-- End of Topbar -->

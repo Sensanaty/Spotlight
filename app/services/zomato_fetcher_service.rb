@@ -5,8 +5,9 @@ require 'json'
 
 class ZomatoFetcherService
   def grab_place(restaurant)
+
     # Call API to retrieve the restaurant
-    api_call_for_id = RestClient.get("https://developers.zomato.com/api/v2.1/search?q=#{restaurant.name.gsub(/\s/, '%20')}&lat=#{restaurant.latitude}&lon=#{restaurant.longitude}&apikey=#{ENV['ZOMATO_API_KEY']}&count=1")
+      api_call_for_id = RestClient.get("https://developers.zomato.com/api/v2.1/search?q=#{restaurant.name.gsub(/\s/, '%20')}&lat=#{restaurant.latitude}&lon=#{restaurant.longitude}&apikey=#{ENV['ZOMATO_API_KEY']}&count=1")
 
     if api_call_for_id.body.empty?
       false # Returns false if the restaurant doesn't exist on Zomato.
@@ -14,8 +15,8 @@ class ZomatoFetcherService
       zomato_restaurant_id = JSON.parse(api_call_for_id.body)["restaurants"][0]["restaurant"]["R"]["res_id"]
       restaurant.zomato_id = zomato_restaurant_id
       restaurant.save
-      ReviewSeedingService.zomato_seed(restaurant)
       grab_reviews(restaurant)
+      ReviewSeedingService.zomato_seed(restaurant)
       true
     end
   end
