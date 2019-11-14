@@ -12,7 +12,6 @@ if (document.querySelector('.filter-dropdown-menu')){
   })
 }
 
-import 'mapbox-gl/dist/mapbox-gl.css';
 
 import { initMapbox } from '../plugins/init_mapbox';
 

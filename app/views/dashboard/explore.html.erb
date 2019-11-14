@@ -1,23 +1,22 @@
-<!-- <div class="mx-3">
- -->  <h3>Explore the competition</h3>
+
+<div class="mx-3">
   <div class="d-flex align-items-start">
     <div
       id="map"
-      style="width: 100%; height: 80vh; position: sticky; top: 0;"
+      style="width: 100%; height: 85vh; position: sticky; top: 94px; border-radius: 10px;"
       data-center="<%= @my_resto.to_json %>"
       data-markers="<%= @markers.to_json %>"
       data-mapbox-api-key="<%= ENV['MAPBOX_TOKEN'] %>"
     ></div>
     <div class="cards ml-3 flex-grow-1" style="position: sticky; top: 0;" >
       <%= render 'pages/own_restaurant', restaurant: @restaurant %>
-      <%= render 'pages/competition'%>
-      <%= render 'pages/competition'%>
-      <%= render 'pages/competition'%>
-      <%= render 'pages/competition'%>
-      <%= render 'pages/competition'%>
+
+      <% @markers.each do |competitor| %>
+        <% if competitor[:name] != @restaurant.name %>
+          <%= render 'pages/competition', competitor: competitor, restaurant: @restaurant %>
+        <% end %>
+      <% end %>
     </div >
   </div>
-<!-- </div>
- -->
-
+</div>
 

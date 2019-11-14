@@ -1,0 +1,7 @@
+let yelpSearchResultDisplay = document.querySelector('#search_result_tripadvisor');
+
+if (<%= @search_match %> === true) {
+  yelpSearchResultDisplay.innerHTML = "<h5 font-weight-bold>We found you on Yelp</h5><br><h1><i class='far fa-smile'></i></h1>";
+} else if (<%= @search_match %> === false) {
+  yelpSearchResultDisplay.innerHTML = "<h5 font-weight-bold>We couldn't find you on Yelp</h5><br><h1><i class='far fa-frown'></i></h1>";
+}

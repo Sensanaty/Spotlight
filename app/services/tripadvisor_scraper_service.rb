@@ -1,39 +1,56 @@
-# TODO: Everything
-# rubocop:disable Metrics/MethodLength
+# rubocop:disable Metrics/LineLength
 
 require 'nokogiri'
 require 'open-uri'
+require 'watir'
+require 'webdrivers'
+require_relative '../models/tripadvisor_review'
 
 class TripadvisorScraperService
 
-  def scrape_tripadvisor
-    url = params[:url]
-    serialized = open(url).read
-    parsed = Nokogiri.parse(serialized)
-    10.times do
-      review = TripadvisorReview.new
-      review.rating_date = parsed.search('.ratingDate')[counter].attributes['title']
-      review.title = parsed.search('.noQuotes')[counter].text.strip
-      review.review_link = parsed.search('.ui_column.is-9 div a')[counter].attributes['href'].value
-      review.reviewer = parsed.search('.memberOverlayLink > .info_text.pointer_cursor')[counter].children.first.text
-      rate = parsed.search('.ui_column.is-9')[0].children.first.attributes['class'].value
-      # this returns a string like "ui_bubble_rating bubble_10" / 20 / 30 / 40 / 50 depending on the star rating
-      review.rating = rate[-2].to_i
-      review.save
+  def self.first_scrape
+    acquire_all_review_urls
+    pages.each do |url|
+      scrape_tripadvisor(url, restaurant)
     end
   end
 
-  def acquire_all_review_urls
+
+  def self.update_scraped
+    scrape_tripadvisor(url, restaurant)
+  end
+
+
+  def self.scrape_tripadvisor(url, restaurant)
+    browser = Watir::Browser.new :chrome, headless: true
+    browser.goto(url)
+    browser.span(text: "More").click
+    reviews = browser.div(id: "REVIEWS").html
+    parsed_reviews = Nokogiri.parse(reviews)
+    10.times do |index|
+      remote_id = parsed_reviews.search('.review-container')[index].attributes['data-reviewid'].value.to_i
+      TripadvisorReview.create(review_time: parsed_reviews.search('.ratingDate')[index].attributes['title'],
+                               rating: parsed_reviews.search('.ui_column.is-9')[index].children.first.attributes['class'].value[-2].to_i,
+                               reviewer_username: parsed_reviews.search('.info_text.pointer_cursor > div')[index].text,
+                               review_text: parsed_reviews.search('.partial_entry')[index].text,
+                               reviewer_image: parsed_reviews.search('.ui_avatar > img')[index].attributes['src'],
+                               remote_id: remote_id,
+                               restaurant_id: restaurant.id)
+    end
+  end
+
+
+  def self.acquire_all_review_urls
     # url here is the first page of the restaurant, which contains reviews, starting from the first ten
     pages = []
-    url = params[:url]
+    url = restaurants.tripadvisor_url
     serialized = open(url).read
     parsed = Nokogiri.parse(serialized)
 
-    6.times do
-      next unless parsed.search('.pageNumbers > a')[page].attributes['href'] != nil
+    6.times do |index|
+      next unless parsed.search('.pageNumbers > a')[index].attributes['href'] != nil
 
-      next_page = parsed.search('.pageNumbers > a')[page].attributes['href'].value
+      next_page = parsed.search('.pageNumbers > a')[index].attributes['href'].value
       new_url = "https://www.tripadvisor.com/#{next_page}"
       pages << new_url
     end
@@ -64,7 +81,9 @@ class TripadvisorScraperService
         pages << new_url2
       end
     end
+  return pages
   end
+
 end
 
-# rubocop:enable Metrics/MethodLength
+# rubocop:enable Metrics/LineLength

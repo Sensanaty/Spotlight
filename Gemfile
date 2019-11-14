@@ -26,7 +26,8 @@ gem 'pg_search', '~> 2.3.0'
 gem "chartkick"
 gem 'groupdate'
 gem 'faker'
-
+gem 'watir'
+gem 'webdrivers'
 
 group :development do
   gem 'web-console', '>= 3.3.0'
