@@ -1,6 +1,5 @@
 Rails.application.routes.draw do
-
-
+  
   get 'reviews/new'
   get 'reviews/create'
   devise_for :users, controllers: {registrations: 'users/registrations', omniauth_callbacks: 'users/omniauth_callbacks'}
@@ -21,11 +20,10 @@ Rails.application.routes.draw do
 
   get '/restaurants/find_yelp_restaurant', to: 'restaurants#find_yelp_restaurant'
   get '/restaurants/find_zomato_restaurant', to: 'restaurants#find_zomato_restaurant'
-  get '/restaurants/find_tripadvisor_restaurant', to: 'restaurants#find_tripadvisor_restaurant'
+  post '/restaurants/find_tripadvisor_restaurant', to: 'restaurants#find_tripadvisor_restaurant', as: "find_tripadvisor_restaurant"
   get '/restaurants/find_foursquare_restaurant', to: 'restaurants#find_foursquare_restaurant'
   get '/restaurants/find_facebook_restaurant', to: 'restaurants#find_facebook_restaurant'
   get '/restaurants/find_instagram_restaurant', to: 'restaurants#find_instagram_restaurant'
-
 
   root :to => 'landing_page#landing_page'
 
@@ -41,4 +39,5 @@ Rails.application.routes.draw do
 
   # Temp route to view the themes dashboard
   get 'dashboard', to: 'pages#dashboard'
+  post 'dashboard', to: 'dashboard#refresh_review', as: 'refresh_review'
 end

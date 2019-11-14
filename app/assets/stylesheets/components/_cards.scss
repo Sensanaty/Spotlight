@@ -42,13 +42,12 @@
 }
 
 .card-touchup {
-  border-radius: 20px;
+  border-radius: 10px;
   color:#5A5C69;
   justify-content: space-between;
 }
 
 .dash-card {
-  width: 48%;
   height: 400px;
   border-radius: 8px;
 
@@ -109,11 +108,15 @@
 
 
 .googlecard {
-  border-left: 0.25rem solid #F8BC32 !important;
+  border-left: 0.25rem solid #4285F4 !important;
 }
 
 .yelpcard {
-  border-left: 0.25rem solid black !important;
+  border-left: 0.25rem solid #af0606 !important;
+}
+
+.tripadvisorcard {
+  border-left: 0.25rem solid #00af87 !important;
 }
 
 

@@ -1,6 +1,8 @@
 // Topbar
 .topbar {
   z-index: 1;
+  position: sticky;
+  top: 0px;
   height: $topbar-base-height;
   #sidebarToggleTop {
     height: 2.5rem;

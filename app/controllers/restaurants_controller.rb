@@ -82,7 +82,9 @@ class RestaurantsController < ApplicationController
   end
 
   def find_tripadvisor_restaurant
-    puts "tripadvisor"
+    @restaurant = current_user.restaurant
+    @restaurant.tripadvisor_url = tripadvisor_form_params[:tripadvisor_url]
+    raise
   end
 
   def find_facebook_restaurant
@@ -117,5 +119,9 @@ class RestaurantsController < ApplicationController
 
   def restaurant_params
     params.require(:restaurant).permit(:name, :address, :longitude, :latitude, :cuisine, :price_level, :user_id, :photo)
+  end
+
+  def tripadvisor_form_params
+    params.permit(:tripadvisor_url)
   end
 end

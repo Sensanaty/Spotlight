@@ -1,0 +1,30 @@
+
+
+
+<div style="height:100px; background-color: white; margin-top: -20px;">
+  <div class="container pt-3" style="height:50px";><h3 style ="text-align: center">Explore competition</h3></div>
+  <div class="container d-flex flex-fill justify-content-end" style ="height: 50px;">
+    <ul class="nav nav-pills d-flex w-100" style = " margin-top: auto;
+    margin-bottom: 0;" id="pills-tab" role="tablist">
+      <li class="nav-item filter-touchup flex-fill">
+        <a class="nav-link active" id="pills-cuisine-tab" data-toggle="pill" href="#pills-cuisine" role="tab" aria-controls="pills-cuisine" aria-selected="true">Same quisine</a>
+      </li>
+      <li class="nav-item filter-touchup flex-fill">
+        <a class="nav-link" id="pills-price-tab" data-toggle="pill" href="#pills-price" role="tab" aria-controls="pills-price" aria-selected="false">
+          Same price level
+        </a>
+      </li>
+    </ul>
+    <div style = "margin-top: auto;">
+      <%= form_tag dashboard_explore_path, method: :get do |f| %>
+    </div>
+  </div>
+</div>
+
+
+<% end %>
+
+
+
+
+
