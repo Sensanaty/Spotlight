@@ -7,18 +7,15 @@ require 'webdrivers'
 require_relative '../models/tripadvisor_review'
 
 class TripadvisorScraperService
-
   def self.first_scrape(restaurant)
     TripadvisorScraperService.acquire_all_review_urls(restaurant).each do |url|
       scrape_tripadvisor(url, restaurant)
     end
   end
 
-
   def self.update_scraped
     scrape_tripadvisor(url, restaurant)
   end
-
 
   def self.scrape_tripadvisor(url, restaurant)
     browser = Watir::Browser.new :chrome, headless: true
@@ -37,11 +34,10 @@ class TripadvisorScraperService
                                    remote_id: remote_id,
                                    restaurant_id: restaurant.id)
         end
-      rescue
+    rescue
         redirect_to dashboard_path
       end
   end
-
 
   def self.acquire_all_review_urls(restaurant)
     # url here is the first page of the restaurant, which contains reviews, starting from the first ten
@@ -61,8 +57,6 @@ class TripadvisorScraperService
       new_url = "https://www.tripadvisor.com/#{next_page}"
       pages << new_url
     end
-
-
 
     until finished do
       url = pages[-1]
@@ -88,9 +82,8 @@ class TripadvisorScraperService
         pages << new_url2
       end
     end
-  return pages
+    return pages
   end
-
 end
 
 # rubocop:enable Metrics/LineLength
