@@ -5,7 +5,7 @@ import ChartDataLabels from 'chartjs-plugin-datalabels';
 
 let foursquareBarChartDisplay = document.querySelector('#foursquareBarChart')
 let foursquareBarChartReviewCountData = JSON.parse(foursquareBarChartDisplay.dataset.reviewcountdata)
-let foursquareBarChartcoloursArray = []
+let foursquareBarChartcoloursArray = ['rgba(30, 90, 130,0.6), rgba(23, 85, 140,0.6)', 'rgba(27, 105, 133,0.6)', 'rgba(34, 88, 128,0.6)', 'rgba(29, 79, 137,0.6)', 'rgba(38, 83, 132,0.6)', 'rgba(41, 74, 128,0.6)']
 
 // foursquare Reviews Count chart code
 let foursquareBarChart = new Chart(foursquareBarChartDisplay, {
@@ -17,6 +17,7 @@ let foursquareBarChart = new Chart(foursquareBarChartDisplay, {
             label: 'Number of reviews',
             data: Object.values(foursquareBarChartReviewCountData),
             yAxisID: 'left-y-axis',
+            backgroundColor: foursquareBarChartcoloursArray,
           }]
     },
     plugins: [ChartDataLabels],

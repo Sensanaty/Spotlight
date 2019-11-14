@@ -15,8 +15,8 @@
 <hr class='sidebar-divider d-none d-md-block mx-3 my-4'>
 <div class="row">
   <div class="col-6 mx-auto">
-    <div class="chart-left w-100 d-flex flex-column pl-4">
-      <span class="text-xs font-weight-bold text-uppercase mb-2 text-gray-800">Reviews by month</span>
+    <div class="chart-left w-100 d-flex flex-column">
+      <span class="text-xs font-weight-bold text-uppercase mb-2 text-gray-800 text-center">Reviews by month</span>
         <!-- four_square Chart 1 -->
         <canvas id="foursquareBarChart" width="130" height="100" data-reviewcountdata="<%= restaurant.last_six_months_review_count(FoursquareReview) %>" ></canvas>
     </div>
