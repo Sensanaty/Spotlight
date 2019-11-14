@@ -16,7 +16,17 @@
       </div>
     <% end %>
     <div class="add-channel-card-back dash-card" id="add-channel-back-<%= channel_name.downcase.gsub(' ','') %>" style='background-color: <%= channel_color %>'>
-      <h6 id="search_result_<%= channel_name.downcase %>">Looking for <strong><%= restaurant.name %></strong> on <strong><%= channel_name %></strong>...</h6>
+      <% if channel_name == "Trip Advisor" %>
+        <div style="width: 80%">
+          <h6 class="my-3" style="padding-left: 0">Please add your Trip Advisor URL below</h6>
+          <%= form_for :restaurant, :url => {:controller => 'restaurants', :action => "find_tripadvisor_restaurant"}, class: 'form-group' do %>
+            <%= text_field_tag(:tripadvisor_url, "", class: 'form-control') %>
+            <%= submit_tag("Add URL", class: 'btn btn-primary my-2') %>
+          <% end %>
+        </div>
+      <% else %>
+        <h6 id="search_result_<%= channel_name.downcase %>">Looking for <strong><%= restaurant.name %></strong> on <strong><%= channel_name %></strong>...</h6>
+      <% end %>
     </div>
   </div>
 </div>
