@@ -16,17 +16,29 @@
         <% end %>
       </div>
       <div class="d-flex justify-content center align-items-center w-100">
-        <div class="container">
-          <div class="row">
-            <div class="col-6">
-              <%= image_tag 'undraw_chef.svg', class: 'landing-section-image' %>
+        <div class="container h-100">
+          <div class="row h-100">
+            <div class="col-7">
+              <div class="d-flex h-100 flex-column justify-content-end">
+                <div>
+                  <%= image_tag 'landing-image-1.png', class: 'landing-section-image' %>
+                </div>
+              </div>
             </div>
-            <div class="col-6 d-flex flex-column justify-content-center align-items-center">
+            <div class="col-5 d-flex flex-column justify-content-center align-items-center">
               <h3><strong>Manage your restaurants online reputation with ease</strong></h3>
               <p>
                 Spotlight brings all your customer reviews together so you can focus on what matters -
                 providing the best experience possible.
               </p>
+              <div class="landing-channels">
+                <%= image_tag 'google-logo.png', class: 'logo-button-white-lg' %>
+                <%= image_tag 'zomato-logo.png', class: 'logo-button-white-lg' %>
+                <%= image_tag 'yelp-logo.png', class: 'logo-button-white-lg' %>
+                <%= image_tag 'foursquare-logo.png', class: 'logo-button-white-lg' %>
+                <%= image_tag 'trip-advisor-logo.png', class: 'logo-button-white-lg' %>
+              </div>
+              <%= link_to "Sign Up", new_user_registration_path, class: 'btn btn-flat-secondary ml-3' %>
             </div>
           </div>
         </div>

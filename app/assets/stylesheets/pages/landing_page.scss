@@ -67,10 +67,19 @@
 }
 
 .landing-section-image {
-  width: 80%
+  width: 100%;
 }
 
 .landing-background-container {
   background-repeat: no-repeat;
   background-position: -140px -140px;
+}
+
+.landing-channels {
+  display: flex;
+  align-items: center;
+
+  img {
+    margin: 0px 10px;
+  }
 }
