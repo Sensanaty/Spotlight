@@ -28,67 +28,70 @@
 <!--    </li>-->
 
     <!-- Refresh all reviews -->
-    <li class="nav-item dropdown no-arrow mx-1 align-items-center d-flex">
-      <%= link_to refresh_review_path, method: :post, class: 'text-decoration-none' do %>
-        <div class="d-flex align-items-center">
-          <p class="mr-2 d-none d-lg-inline text-gray-600 small m-0">Fetch New Reviews</p>
-          <i style="font-size: 20px" class="fas fa-sync-alt fa-fw mr-3 d-lg-inlined-lg-inline"></i>
+    <% if @restaurant %>
+      <li class="nav-item dropdown no-arrow mx-1 align-items-center d-flex">
+        <%= link_to refresh_review_path, method: :post, class: 'text-decoration-none' do %>
+          <div class="d-flex align-items-center">
+            <p class="mr-2 d-none d-lg-inline text-gray-600 small m-0">Fetch New Reviews</p>
+            <i style="font-size: 20px" class="fas fa-sync-alt fa-fw mr-3 d-lg-inlined-lg-inline"></i>
+          </div>
+        <% end %>
+      </li>
+
+      <div class="topbar-divider d-none d-sm-block"></div>
+
+      <!-- Nav Item - Alerts -->
+      <li class="nav-item dropdown no-arrow mx-1">
+        <a class="nav-link dropdown-toggle" href="#" id="alertsDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          <i class="fas fa-bell fa-fw"></i>
+          <!-- Counter - Alerts -->
+          <span class="badge badge-danger badge-counter">1+</span>
+        </a>
+        <!-- Dropdown - Alerts -->
+        <div class="dropdown-list dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="alertsDropdown">
+          <h6 class="dropdown-header">
+            Alerts Center
+          </h6>
+          <a class="dropdown-item d-flex align-items-center" href="#">
+            <div class="mr-3">
+              <div class="icon-circle bg-primary">
+                <i class="fas fa-file-alt text-white"></i>
+              </div>
+            </div>
+            <div>
+              <div class="small text-gray-500">Nov 12, 2019</div>
+              <span class="font-weight-bold">You got a new 5 star review!</span>
+            </div>
+          </a>
+          <a class="dropdown-item d-flex align-items-center" href="#">
+            <div class="mr-3">
+              <div class="icon-circle bg-success">
+                <i class="fas fa-donate text-white"></i>
+              </div>
+            </div>
+            <div>
+              <div class="small text-gray-500">Nov 7, 2019</div>
+                You got a new 3 star review.
+            </div>
+          </a>
+          <a class="dropdown-item d-flex align-items-center" href="#">
+            <div class="mr-3">
+              <div class="icon-circle bg-warning">
+                <i class="fas fa-exclamation-triangle text-white"></i>
+              </div>
+            </div>
+            <div>
+              <div class="small text-gray-500">Nov 1, 2019</div>
+                Check your performance for October now.
+            </div>
+          </a>
+          <a class="dropdown-item text-center small text-gray-500" href="#">Show All Alerts</a>
         </div>
+      </li>
+
+      <div class="topbar-divider d-none d-sm-block"></div>
+
       <% end %>
-    </li>
-
-    <div class="topbar-divider d-none d-sm-block"></div>
-
-    <!-- Nav Item - Alerts -->
-    <li class="nav-item dropdown no-arrow mx-1">
-      <a class="nav-link dropdown-toggle" href="#" id="alertsDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-        <i class="fas fa-bell fa-fw"></i>
-        <!-- Counter - Alerts -->
-        <span class="badge badge-danger badge-counter">1+</span>
-      </a>
-      <!-- Dropdown - Alerts -->
-      <div class="dropdown-list dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="alertsDropdown">
-        <h6 class="dropdown-header">
-          Alerts Center
-        </h6>
-        <a class="dropdown-item d-flex align-items-center" href="#">
-          <div class="mr-3">
-            <div class="icon-circle bg-primary">
-              <i class="fas fa-file-alt text-white"></i>
-            </div>
-          </div>
-          <div>
-            <div class="small text-gray-500">Nov 12, 2019</div>
-            <span class="font-weight-bold">You got a new 5 star review!</span>
-          </div>
-        </a>
-        <a class="dropdown-item d-flex align-items-center" href="#">
-          <div class="mr-3">
-            <div class="icon-circle bg-success">
-              <i class="fas fa-donate text-white"></i>
-            </div>
-          </div>
-          <div>
-            <div class="small text-gray-500">Nov 7, 2019</div>
-              You got a new 3 star review.
-          </div>
-        </a>
-        <a class="dropdown-item d-flex align-items-center" href="#">
-          <div class="mr-3">
-            <div class="icon-circle bg-warning">
-              <i class="fas fa-exclamation-triangle text-white"></i>
-            </div>
-          </div>
-          <div>
-            <div class="small text-gray-500">Nov 1, 2019</div>
-              Check your performance for October now.
-          </div>
-        </a>
-        <a class="dropdown-item text-center small text-gray-500" href="#">Show All Alerts</a>
-      </div>
-    </li>
-
-    <div class="topbar-divider d-none d-sm-block"></div>
 
     <!-- Nav Item - User Information -->
     <li class="nav-item dropdown no-arrow">
