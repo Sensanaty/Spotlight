@@ -83,8 +83,14 @@ class RestaurantsController < ApplicationController
 
   def find_tripadvisor_restaurant
     @restaurant = current_user.restaurant
-    @restaurant.tripadvisor_url = tripadvisor_form_params[:tripadvisor_url]
-    raise
+    if url_valid?(params[:tripadvisor_url])
+      @restaurant.tripadvisor_url = params[:tripadvisor_url]
+      @restaurant.save # save restaurant if regex passes
+      TripadvisorScraperService.first_scrape(@restaurant)
+      redirect_to dashboard_path
+    else #call appropriate first time scraping function
+      redirect_to dashboard_path
+    end
   end
 
   def find_facebook_restaurant
@@ -130,7 +136,8 @@ class RestaurantsController < ApplicationController
     params.require(:restaurant).permit(:name, :address, :longitude, :latitude, :cuisine, :price_level, :user_id, :photo)
   end
 
-  def tripadvisor_form_params
-    params.permit(:tripadvisor_url)
+  def url_valid?(url)
+    url.match /^https:\/\/www\.tripadvisor\.com\/Restaurant_Review(.*)\.html$/
   end
+
 end
