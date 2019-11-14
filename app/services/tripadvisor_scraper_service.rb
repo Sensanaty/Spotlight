@@ -26,20 +26,25 @@ class TripadvisorScraperService
     rescue Selenium::WebDriver::Error::ElementClickInterceptedError
       attempts += 1
       sleep 1
+      puts "eror - trying again"
       retry  if attempts < 5
       raise "Selenium error"
     end
     reviews = browser.div(id: "REVIEWS").html
     parsed_reviews = Nokogiri.parse(reviews)
     10.times do |index|
+      break if parsed_reviews.search('.review-container')[index].nil?
       remote_id = parsed_reviews.search('.review-container')[index].attributes['data-reviewid'].value.to_i
-      TripadvisorReview.create(review_time: parsed_reviews.search('.ratingDate')[index].attributes['title'],
+      break if TripadvisorReview.find_by(remote_id: remote_id)
+      review = TripadvisorReview.new(review_time: parsed_reviews.search('.ratingDate')[index].attributes['title'],
                                rating: parsed_reviews.search('.ui_column.is-9')[index].children.first.attributes['class'].value[-2].to_i,
                                reviewer_username: parsed_reviews.search('.info_text.pointer_cursor > div')[index].text,
                                review_text: parsed_reviews.search('.partial_entry')[index].text,
                                reviewer_image: parsed_reviews.search('.ui_avatar > img')[index].attributes['src'],
                                remote_id: remote_id,
                                restaurant_id: restaurant.id)
+      review.save
+
     end
   end
 
@@ -61,11 +66,6 @@ class TripadvisorScraperService
       new_url = "https://www.tripadvisor.com/#{next_page}"
       pages << new_url
     end
-<<<<<<< HEAD
-
-=======
-
->>>>>>> e970f3efd03b23114b1513416b88860e1f2a5c5d
     until finished do
       url = pages[-1]
       serialized = open(url).read
