@@ -2,13 +2,27 @@
   color: white;
   padding: 8px 24px;
   border-radius: 4px;
-  background: $green;
+  background: $spotlight-primary;
   transition: background 0.3s ease;
   margin: 20px 0;
 }
 
 .btn-flat:hover {
-  background: #1BCB7F;
+  background: $spotlight-primary-hover;
+  color: white;
+}
+
+.btn-flat-secondary {
+  color: white;
+  padding: 8px 24px;
+  border-radius: 4px;
+  background: $spotlight-secondary;
+  transition: background 0.3s ease;
+  margin: 20px 0;
+}
+
+.btn-flat-secondary:hover {
+  background: $spotlight-primary-hover;
   color: white;
 }
 
