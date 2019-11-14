@@ -7,7 +7,6 @@ class CreateTripadvisorReviews < ActiveRecord::Migration[5.2]
       t.string :review_text
       t.float :rating
       t.integer :review_time
-
       t.references :restaurant, foreign_key: true
       t.timestamps
     end
