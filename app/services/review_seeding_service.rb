@@ -75,6 +75,7 @@ class ReviewSeedingService
   end
 
   def self.date_picker
+
     month = rand(1..7)
     case month
     when 1
@@ -96,6 +97,7 @@ class ReviewSeedingService
 
 
   def self.real_google_reviews(restaurant)
+
     GoogleReview.create(reviewer_image: "https://i.pravatar.cc/150?u=abasdad#{rand(0..1_000_000)}.jpg",
                           reviewer_username: Faker::Name.name,
                           reviewer_profile_url: "https://sp0tlight.herokuapp.com",
