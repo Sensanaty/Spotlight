@@ -66,7 +66,11 @@ class Restaurant < ApplicationRecord
   end
 
   def weeks_ratings_average(reviews)
-    (reviews.pluck(:rating).sum / reviews.count).round(1)
+    if reviews.empty?
+      "No reviews"
+    else
+      (reviews.pluck(:rating).sum / reviews.count).round(1)
+    end
   end
 
   def reviews_last_week
@@ -92,7 +96,11 @@ class Restaurant < ApplicationRecord
   end
 
   def week_review_average_comparision(week_reviews_average_one, week_reviews_average_two)
-    if week_reviews_average_one > week_reviews_average_two
+    if week_reviews_average_one == "No reviews"
+      "You didn't have any new reviews last week"
+    elsif week_reviews_average_two == "No reviews"
+      "You didn't have any new reviews in the previous week"
+    elsif week_reviews_average_one > week_reviews_average_two
       difference = (week_reviews_average_one - week_reviews_average_two).round(1)
       "Average rating was #{difference.to_s} points higher compared to the previous week"
     elsif week_reviews_average_one < week_reviews_average_two
