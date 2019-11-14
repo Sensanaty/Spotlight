@@ -3,10 +3,11 @@
 
 require 'open-uri'
 require 'json'
+require 'pry-byebug'
 
 class GoogleFetcherService
   def grab_place_id(restaurant)
-    formatted_name = restaurant.name.strip.gsub(/\s/, "%20") # All whitespace must be converted into %20 for the API to respond
+    formatted_name = restaurant.name.strip.gsub(/\s/, "%20").gsub(/\&/, "%20") # All whitespace must be converted into %20 for the API to respond
     parsed_id = URI.open("#{ENV['GOOGLE_BASE_URL']}#{formatted_name}&inputtype=textquery&location=#{restaurant.latitude},#{restaurant.longitude}&fields=place_id,photos&key=#{ENV['GOOGLE_API_KEY']}").read
     returned_place_id = JSON.parse(parsed_id)["candidates"]
     if returned_place_id[0]["photos"]
