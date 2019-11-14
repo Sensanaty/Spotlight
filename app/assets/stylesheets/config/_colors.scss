@@ -8,19 +8,25 @@ $light-pale-blue: #f7f9f9;
 $yellow: #FFC65A;
 $orange: #E67E22;
 $green: #1EDD88;
-$green-spotlight: #1EDD88;
+$spotlight-primary: #175a87;
+$spotlight-primary-hover: #09334f;
+$spotlight-secondary: #8BB0C9;
 $dark-green: #037971;
 $gray: #0E0000;
 $light-gray: #F4F4F4;
 
-.spotlight-green {
-  color: $green-spotlight;
+.spotlight-primary {
+  color: $spotlight-primary !important;
 }
 
-.spotlight-green-br {
-  background-color: $green-spotlight;
+.spotlight-primary-br {
+  background-color: $spotlight-primary !important;
 }
 
 .dark-blue {
   color: $dark-blue;
+}
+
+.white {
+  color: white !important;
 }
