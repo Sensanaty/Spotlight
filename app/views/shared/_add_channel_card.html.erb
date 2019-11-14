@@ -15,7 +15,7 @@
         </div>
       </div>
     <% end %>
-    <div class="add-channel-card-back dash-card" id="add-channel-back-<%= channel_name.downcase.gsub(' ','') %>" style='background-color: <%= channel_color %>'>
+    <div class="add-channel-card-back dash-card flex-column" id="add-channel-back-<%= channel_name.downcase.gsub(' ','') %>" style='background-color: <%= channel_color %>'>
       <% if channel_name == "Trip Advisor" %>
         <div style="width: 80%">
           <h6 class="my-3" style="padding-left: 0">Please add your Trip Advisor URL below</h6>
@@ -25,7 +25,10 @@
           <% end %>
         </div>
       <% else %>
-        <h6 id="search_result_<%= channel_name.downcase %>">Looking for <strong><%= restaurant.name %></strong> on <strong><%= channel_name %></strong>...</h6>
+        <div>
+          <%= image_tag channel_logo, class: 'logo-button-white-lg shadow-sm mb-4' %>
+          <h6 id="search_result_<%= channel_name.downcase %>" style="padding-left: 0px">Looking for <strong><%= restaurant.name %></strong> on <strong><%= channel_name %></strong>...</h6>
+        </div>
       <% end %>
     </div>
   </div>
