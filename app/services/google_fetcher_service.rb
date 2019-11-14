@@ -3,7 +3,6 @@
 
 require 'open-uri'
 require 'json'
-require 'pry-byebug'
 
 class GoogleFetcherService
   def grab_place_id(restaurant)
