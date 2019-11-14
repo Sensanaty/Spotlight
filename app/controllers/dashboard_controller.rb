@@ -36,4 +36,8 @@ class DashboardController < ApplicationController
     end
     @my_resto = [{ lat: @restaurant.latitude, lng: @restaurant.longitude, image_url: helpers.asset_url('homeicon.png'), infoWindow: render_to_string(partial: "restaurants/info_window", locals: { restaurant: @restaurant })} ]
   end
+
+  def refresh_reviews
+    # code here
+  end
 end

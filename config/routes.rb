@@ -1,6 +1,5 @@
 Rails.application.routes.draw do
-
-
+  
   get 'reviews/new'
   get 'reviews/create'
   devise_for :users, controllers: {registrations: 'users/registrations', omniauth_callbacks: 'users/omniauth_callbacks'}
@@ -40,4 +39,5 @@ Rails.application.routes.draw do
 
   # Temp route to view the themes dashboard
   get 'dashboard', to: 'pages#dashboard'
+  post 'dashboard', to: 'dashboard#refresh_review', as: 'refresh_review'
 end
