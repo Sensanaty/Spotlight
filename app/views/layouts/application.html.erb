@@ -8,7 +8,6 @@
     <title>Spotlight - <%= current_user.present? && current_user.restaurant.present? ? current_user.restaurant.name : "Shine a light on your restaurant performance" %></title>
     <%= csrf_meta_tags %>
     <%= action_cable_meta_tag %>
-    <%= stylesheet_pack_tag 'application', media: 'all' %>
     <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
 
     <!-- Favicon code -->
