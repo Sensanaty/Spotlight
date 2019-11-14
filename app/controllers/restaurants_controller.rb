@@ -98,9 +98,18 @@ class RestaurantsController < ApplicationController
   def find_foursquare_restaurant
     @restaurant = current_user.restaurant
     @search_match = FoursquareFetcherService.new.grab_place_id(@restaurant)
+
     if @search_match
       @restaurant.linked_channels.push("Foursquare")
-      @restaurant.save
+    end
+
+    @restaurant.channel_links_attempted.push("Foursquare") unless @restaurant.channel_links_attempted.include?("Foursquare")
+    @restaurant.save
+
+    # Runs javascript file 'find_foursquare_restaurant.js.erb' when fetcher is finished.
+    respond_to do |format|
+      format.html { redirect_to root_path }
+      format.js  # <-- will run `find_foursquare_restaurant.js.erb`
     end
   end
 

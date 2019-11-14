@@ -1,30 +1,18 @@
 <div class="navbar navbar-expand-sm navbar-light home-nav" >
-  <%= link_to root_path, class: 'navbar-brand' do %>
-    <%= image_tag 'spotlight-logo.svg' %>
-  <% end %>
-  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-    <span class="navbar-toggler-icon"></span>
-  </button>
-  <div class="collapse navbar-collapse" id="navbarSupportedContent">
-    <ul class="navbar-nav mr-auto">
-      <li class="nav-item mr-3">
-        <a href="#what-is-spotlight" class="nav-link">What's Spotlight?</a>
-        <%#= link_to "What's Spotlight?", landing_page_how_it_works_path, class: 'nav-link' %>
-      </li>
-      <li class="nav-item mr-3">
-        <a href="#how-it-works" class="nav-link">How it works</a>
-        <%#= link_to "How it works", landing_page_how_it_works_path, class: 'nav-link' %>
-      </li>
-      <li class="nav-item mr-3">
-        <a href="#pricing" class="nav-link">Pricing</a>
-        <%#= link_to "Pricing", landing_page_pricing_path, class: 'nav-link' %>
-      </li>
-      <li class="nav-item mr-3">
-        <%= link_to "Log in", new_user_session_path, class: 'nav-link' %>
-      </li>
-      <li class="nav-item">
-        <%= link_to "Sign Up", new_user_registration_path, class: 'btn btn-flat ml-3' %>
-      </li>
-    </ul>
+  <div class="container">
+    <div class="navbar-brand"></div>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav mr-auto">
+        <li class="nav-item mr-3">
+          <%= link_to "Log in", new_user_session_path, class: 'nav-link' %>
+        </li>
+        <li class="nav-item">
+          <%= link_to "Sign Up", new_user_registration_path, class: 'btn btn-flat ml-3' %>
+        </li>
+      </ul>
+    </div>
   </div>
 </div>
