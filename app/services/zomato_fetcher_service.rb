@@ -44,7 +44,6 @@ class ZomatoFetcherService
                           review_text: review["review"]["review_text"],
                           rating: review["review"]["rating"],
                           review_time: DateTime.strptime(review["review"]["timestamp"].to_s, "%s"),
-                          review_time: review["review"]["timestamp"],
                           restaurant_id: restaurant.id)
     end
   end
