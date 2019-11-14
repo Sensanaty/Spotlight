@@ -1,6 +1,12 @@
 <div class="navbar navbar-expand-sm navbar-light home-nav" >
   <div class="container">
-    <div class="navbar-brand"></div>
+    <% unless controller_name == "landing_page" %>
+      <%= link_to root_path, class: 'navbar-brand' do %>
+        <%= image_tag 'spotlight-logo.svg' %>
+      <% end %>
+    <% else %>
+      <div class="navbar-brand"></div>
+    <% end %>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
