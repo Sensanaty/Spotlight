@@ -5,8 +5,8 @@
   </div>
   <div class="sign-up-progress">
     <div class="row h-100">
-      <div class="col-4 sign-up-progress-element"><div class="sign-up-stage <%= 'current-stage' if controller_name == "registrations" %>">1</div>Create Account</div>
-      <div class="col-4 sign-up-progress-element"><div class="sign-up-stage <%= 'current-stage' if controller_name == "restaurants" %>">2</div>Find Your Restaurant</div>
+      <div class="col-4 sign-up-progress-element"><div class="sign-up-stage <%= 'current-stage' if controller_name == "registrations" %> <%= 'complete-stage' if controller_name == "restaurants" || action_name == "payment" %>">1</div>Create Account</div>
+      <div class="col-4 sign-up-progress-element"><div class="sign-up-stage <%= 'current-stage' if controller_name == "restaurants" %> <%= 'complete-stage' if action_name == "payment" %>">2</div>Find Your Restaurant</div>
       <div class="col-4 sign-up-progress-element"><div class="sign-up-stage <%= 'current-stage' if action_name == "payment" %>">3</div>Setup Payment</div>
     </div>
   </div>
