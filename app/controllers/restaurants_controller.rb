@@ -87,9 +87,9 @@ class RestaurantsController < ApplicationController
       @restaurant.tripadvisor_url = params[:tripadvisor_url]
       @restaurant.save # save restaurant if regex passes
       TripadvisorScraperService.first_scrape(@restaurant)
-      redirect_to dashboard_path
+      redirect_to root_path
     else #call appropriate first time scraping function
-      redirect_to dashboard_path
+      redirect_to root_path
     end
   end
 

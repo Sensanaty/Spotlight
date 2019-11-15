@@ -5,6 +5,7 @@ require 'open-uri'
 require 'watir'
 require 'webdrivers'
 require_relative '../models/tripadvisor_review'
+require 'date'
 
 class TripadvisorScraperService
   def self.first_scrape(restaurant)
@@ -36,7 +37,7 @@ class TripadvisorScraperService
       break if parsed_reviews.search('.review-container')[index].nil?
       remote_id = parsed_reviews.search('.review-container')[index].attributes['data-reviewid'].value.to_i
       break if TripadvisorReview.find_by(remote_id: remote_id)
-      review = TripadvisorReview.new(review_time: parsed_reviews.search('.ratingDate')[index].attributes['title'],
+      review = TripadvisorReview.new(review_time: DateTime.parse(parsed_reviews.search('.ratingDate')[index].attributes['title']),
                                rating: parsed_reviews.search('.ui_column.is-9')[index].children.first.attributes['class'].value[-2].to_i,
                                reviewer_username: parsed_reviews.search('.info_text.pointer_cursor > div')[index].text,
                                review_text: parsed_reviews.search('.partial_entry')[index].text,
