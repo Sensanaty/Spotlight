@@ -6,7 +6,7 @@ class TripadvisorReview < ApplicationRecord
   after_create :generate_restaurant_review
 
   def generate_restaurant_review
-    RestaurantReview.create(restaurant_id: restaurant_id, 
+    RestaurantReview.create(restaurant_id: restaurant_id,
                             review: self,
                             review_time: review_time, # check with Luca on new date name for google review
                             rating: rating # check for naming/type of rating in google review

@@ -12,9 +12,11 @@
     </button>
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav mr-auto">
-        <li class="nav-item mr-3">
-          <%= link_to "Log in", new_user_session_path, class: 'nav-link' %>
-        </li>
+        <% unless current_user %>
+          <li class="nav-item mr-3">
+            <%= link_to "Log in", new_user_session_path, class: 'nav-link' %>
+          </li>
+        <% end %>
         <li class="nav-item">
           <%= link_to "Sign Up", new_user_registration_path, class: 'btn btn-flat ml-3' %>
         </li>

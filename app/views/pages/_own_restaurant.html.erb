@@ -3,7 +3,7 @@
     <div>
       <div class= "position-absolute" style="bottom:-1px;right:-1px; width:46px; height:46px; background-color: #F3705B; border-bottom-right-radius: 10px; border-top-left-radius:10px;"></div>
       <img class= "position-absolute" style="bottom:0px;right:1px; width:40px; height:40px; "; src="https://image.flaticon.com/icons/svg/608/608671.svg" alt="">
-      <img style = "height: 140px; width:130px; border-top-left-radius: 10px; border-bottom-left-radius: 10px; object-fit: cover"src=<%= restaurant.photo_reference %> class="card-img" alt="...">
+      <img class="card-img" style = "height: 140px; width:130px; border-top-left-radius: 10px; border-bottom-left-radius: 10px; object-fit: cover"src=<%= restaurant.photo_reference %>>
     </div>
     <div class="col-md-8">
       <div class="card-body" style ="width: 400px;">
@@ -27,18 +27,18 @@
         </div>
         <div class = "d-flex align-items-center" style= "font-size: 12px;">
           <ul style = "list-style-type: none ; padding-left: 10px;">
-            <li>Rating = <%= restaurant.average_google_rating.round(1) %></li>
-            <li>Total ratings = <%= restaurant.google_reviews.count %></li>
+            <li>Rating: <%= restaurant.average_google_rating.round(1) %></li>
+            <li>Total ratings: <%= restaurant.google_reviews.count %></li>
             <% if restaurant.price_level == 1 %>
-              <li>Price level = $</li>
+              <li>Price level: $</li>
             <% elsif restaurant.price_level == 2 %>
-              <li>Price level = $$</li>
+              <li>Price level: $$</li>
             <% elsif restaurant.price_level == 3 %>
-              <li>Price level = $$$</li>
+              <li>Price level: $$$</li>
             <% elsif restaurant.price_level == 4 %>
-              <li>Price level = $$$$</li>
+              <li>Price level: $$$$</li>
             <% end %>
-            <li>Cuisine = <%=restaurant.cuisine%> </li>
+            <li>Cuisine: <%=restaurant.cuisine%> </li>
           </ul>
         </div>
       </div>

@@ -1,5 +1,5 @@
 class Restaurant < ApplicationRecord
-  CUISINES = %w[Italian French Pizza Western Turkish Greek Chinese Japanese Lebanese Indian Brazilian Thai Mexican Other] # rubocop:disable Metrics/LineLength
+  CUISINES = %w[Italian Indonesian French Pizza Western Turkish Greek Chinese Japanese Lebanese Indian Brazilian Thai Mexican Brunch Other] # rubocop:disable Metrics/LineLength
   mount_uploader :photo, PhotoUploader
 
   validates :name, :address, :cuisine, :price_level, presence: :true # rubocop:disable Lint/BooleanSymbol
@@ -9,6 +9,7 @@ class Restaurant < ApplicationRecord
   has_many :restaurant_reviews
   has_many :google_reviews, through: :restaurant_reviews, source: :review, source_type: 'GoogleReview'
   has_many :zomato_reviews, through: :restaurant_reviews, source: :review, source_type: 'ZomatoReview'
+  has_many :tripadvisor_reviews, through: :restaurant_reviews, source: :review, source_type: 'TripadvisorReview'
   has_many :yelp_reviews, through: :restaurant_reviews, source: :review, source_type: 'YelpReview'
   has_many :four_square_reviews, through: :restaurant_reviews, source: :review, source_type: 'FoursquareReview'
 
@@ -64,6 +65,14 @@ class Restaurant < ApplicationRecord
     end
     (all_ratings.sum / all_ratings.length).round(1) unless all_ratings == []
   end
+
+    def average_tripadvisor_rating
+      all_ratings = []
+      self.tripadvisor_reviews.each do |review|
+        all_ratings << review.rating
+      end
+      (all_ratings.sum / all_ratings.length).round(1) unless all_ratings == []
+    end
 
   def weeks_ratings_average(reviews)
     if reviews.empty?

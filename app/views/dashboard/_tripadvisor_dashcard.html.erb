@@ -22,7 +22,7 @@
     <div class="chart-left w-100 d-flex flex-column pl-4">
       <span class="text-xs font-weight-bold text-uppercase mb-2 text-gray-800">Reviews by month</span>
         <!-- tripadvisor Chart 1 -->
-        <canvas id="tripadvisorBarChart" width="160" height="130" data-reviewcountdata="<%= restaurant.last_six_months_review_count(tripadvisorReview) %>" data-reviewaveragedata="<%= restaurant.last_six_months_rating_average(tripadvisorReview) %>"></canvas>
+        <canvas id="tripadvisorBarChart" width="160" height="130" data-reviewcountdata="<%= restaurant.last_six_months_review_count(TripadvisorReview) %>" data-reviewaveragedata="<%= restaurant.last_six_months_rating_average(TripadvisorReview) %>"></canvas>
     </div>
   </div>
   <div class="col-6">

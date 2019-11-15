@@ -1,41 +1,27 @@
 import Chart from 'chart.js';
 import ChartDataLabels from 'chartjs-plugin-datalabels';
 
-// ---------------------- zomato CHART 1 ----------------------- //
-let zomatoPieChartDisplay = document.querySelector('#zomatoPieChart')
-let zomatoPieChartData = JSON.parse(zomatoPieChartDisplay.dataset.chartdata)
-let zomatoPieChartKeys = []
-let zomatoPieChartValues = []
-let zomatoPieChartcoloursArray = []
+// ---------------------- tripadvisor CHART 1 ----------------------- //
+let tripadvisorPieChartDisplay = document.querySelector('#tripadvisorPieChart')
+let tripadvisorPieChartData = JSON.parse(tripadvisorPieChartDisplay.dataset.chartdata)
+let tripadvisorPieChartKeys = []
+let tripadvisorPieChartValues = []
+let tripadvisorPieChartcoloursArray = ["rgba(217, 68, 61, 0.7)", "rgba(237, 123, 85,0.7)", "rgba(237, 202, 85,0.7)","rgba(166, 217, 89,0.7)", "rgba(95, 186, 74,0.7)"]
 
-zomatoPieChartData.forEach(function(rating, index) {
-  if (rating[0] > 4 && rating[0] <= 5) {
-    zomatoPieChartcoloursArray[index] = "rgba(95, 186, 74,0.7)"
-  } else if (rating[0] > 3 && rating[0] <= 4) {
-    zomatoPieChartcoloursArray[index] = "rgba(166, 217, 89,0.7)"
-  } else if (rating[0] > 2 && rating[0] <= 3) {
-    zomatoPieChartcoloursArray[index] = "rgba(237, 202, 85,0.7)"
-  } else if (rating[0] > 1 && rating[0] <= 2) {
-    zomatoPieChartcoloursArray[index] = "rgba(237, 123, 85,0.7)"
-  } else if (rating[0] > 0 && rating[0] <= 1) {
-    zomatoPieChartcoloursArray[index] = "rgba(217, 68, 61, 0.7)"
-  }
+Object.values(tripadvisorPieChartData).forEach(function(rating, index) {
+  tripadvisorPieChartKeys[index]=rating[0]
+  tripadvisorPieChartValues[index]=rating[1]
 });
 
-Object.values(zomatoPieChartData).forEach(function(rating, index) {
-  zomatoPieChartKeys[index]=rating[0]
-  zomatoPieChartValues[index]=rating[1]
-});
-
-// zomato Reviews Count chart code
-let zomatoPieChart = new Chart(zomatoPieChartDisplay, {
+// tripadvisor Reviews Count chart code
+let tripadvisorPieChart = new Chart(tripadvisorPieChartDisplay, {
     type: 'doughnut',
     data: {
-        labels: zomatoPieChartKeys,
+        labels: tripadvisorPieChartKeys,
         datasets: [{
             label: '# of reviews',
-            data: zomatoPieChartValues,
-            backgroundColor: zomatoPieChartcoloursArray,
+            data: tripadvisorPieChartValues,
+            backgroundColor: tripadvisorPieChartcoloursArray,
           }]
     },
     plugins: [ChartDataLabels],
@@ -68,43 +54,43 @@ let zomatoPieChart = new Chart(zomatoPieChartDisplay, {
     },
 });
 
-// ------------------- zomato CHART 2 ----------------------- //
+// ------------------- tripadvisor CHART 2 ----------------------- //
 
-let zomatoBarChartDisplay = document.querySelector('#zomatoBarChart')
-let zomatoBarChartReviewCountData = JSON.parse(zomatoBarChartDisplay.dataset.reviewcountdata)
-let zomatoBarChartReviewAverageData = JSON.parse(zomatoBarChartDisplay.dataset.reviewaveragedata)
-let zomatoBarChartcoloursArray = []
+let tripadvisorBarChartDisplay = document.querySelector('#tripadvisorBarChart')
+let tripadvisorBarChartReviewCountData = JSON.parse(tripadvisorBarChartDisplay.dataset.reviewcountdata)
+let tripadvisorBarChartReviewAverageData = JSON.parse(tripadvisorBarChartDisplay.dataset.reviewaveragedata)
+let tripadvisorBarChartcoloursArray = []
 
-zomatoBarChartReviewAverageData.forEach(function(rating, index) {
+tripadvisorBarChartReviewAverageData.forEach(function(rating, index) {
   if (rating > 4 && rating <= 5) {
-    zomatoBarChartcoloursArray[index] = "rgba(95, 186, 74,0.7)"
+    tripadvisorBarChartcoloursArray[index] = "rgba(95, 186, 74,0.7)"
   } else if (rating > 3 && rating <= 4) {
-    zomatoBarChartcoloursArray[index] = "rgba(166, 217, 89,0.7)"
+    tripadvisorBarChartcoloursArray[index] = "rgba(166, 217, 89,0.7)"
   } else if (rating > 2 && rating <= 3) {
-    zomatoBarChartcoloursArray[index] = "rgba(237, 202, 85,0.7)"
+    tripadvisorBarChartcoloursArray[index] = "rgba(237, 202, 85,0.7)"
   } else if (rating > 1 && rating <= 2) {
-    zomatoBarChartcoloursArray[index] = "rgba(237, 123, 85,0.7)"
+    tripadvisorBarChartcoloursArray[index] = "rgba(237, 123, 85,0.7)"
   } else if (rating > 0 && rating <= 1) {
-    zomatoBarChartcoloursArray[index] = "rgba(217, 68, 61, 0.7)"
+    tripadvisorBarChartcoloursArray[index] = "rgba(217, 68, 61, 0.7)"
   }
 });
 
-// zomato Reviews Count chart code
-let zomatoBarChart = new Chart(zomatoBarChartDisplay, {
+// tripadvisor Reviews Count chart code
+let tripadvisorBarChart = new Chart(tripadvisorBarChartDisplay, {
     type: 'bar',
     data: {
-        labels: Object.keys(zomatoBarChartReviewCountData),
+        labels: Object.keys(tripadvisorBarChartReviewCountData),
         datasets: [
           {
             label: 'Average review rating',
-            data: Object.values(zomatoBarChartReviewAverageData),
-            backgroundColor: zomatoBarChartcoloursArray,
+            data: Object.values(tripadvisorBarChartReviewAverageData),
+            backgroundColor: tripadvisorBarChartcoloursArray,
             options: { barThickness: 40 },
             yAxisID: 'right-y-axis'
           },
           {
             label: 'Number of reviews',
-            data: Object.values(zomatoBarChartReviewCountData),
+            data: Object.values(tripadvisorBarChartReviewCountData),
             type: 'line',
             fill: false,
             borderWidth: 2,
@@ -140,7 +126,9 @@ let zomatoBarChart = new Chart(zomatoBarChartDisplay, {
                   display: false,
                 },
               }],
-              yAxes: [{
+              yAxes: [
+              {
+                position: 'left',
                 scaleLabel: {
                   labelString: "Number of reviews (line)",
                   display: true,
@@ -169,7 +157,8 @@ let zomatoBarChart = new Chart(zomatoBarChartDisplay, {
                   display: false,
                   min: 0
                 }
-              }]
+              }
+              ],
             },
       title: {
         display: false,
