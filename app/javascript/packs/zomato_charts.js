@@ -6,7 +6,21 @@ let zomatoPieChartDisplay = document.querySelector('#zomatoPieChart')
 let zomatoPieChartData = JSON.parse(zomatoPieChartDisplay.dataset.chartdata)
 let zomatoPieChartKeys = []
 let zomatoPieChartValues = []
-let zomatoPieChartcoloursArray = ["rgba(217, 68, 61, 0.7)", "rgba(237, 123, 85,0.7)", "rgba(237, 202, 85,0.7)","rgba(166, 217, 89,0.7)", "rgba(95, 186, 74,0.7)"]
+let zomatoPieChartcoloursArray = []
+
+zomatoPieChartData.forEach(function(rating, index) {
+  if (rating[0] > 4 && rating[0] <= 5) {
+    zomatoPieChartcoloursArray[index] = "rgba(95, 186, 74,0.7)"
+  } else if (rating[0] > 3 && rating[0] <= 4) {
+    zomatoPieChartcoloursArray[index] = "rgba(166, 217, 89,0.7)"
+  } else if (rating[0] > 2 && rating[0] <= 3) {
+    zomatoPieChartcoloursArray[index] = "rgba(237, 202, 85,0.7)"
+  } else if (rating[0] > 1 && rating[0] <= 2) {
+    zomatoPieChartcoloursArray[index] = "rgba(237, 123, 85,0.7)"
+  } else if (rating[0] > 0 && rating[0] <= 1) {
+    zomatoPieChartcoloursArray[index] = "rgba(217, 68, 61, 0.7)"
+  }
+});
 
 Object.values(zomatoPieChartData).forEach(function(rating, index) {
   zomatoPieChartKeys[index]=rating[0]

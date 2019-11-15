@@ -1,3 +1,9 @@
+@media only screen and (min-width: 768px) {
+    /* tablets and desktop */
+    .landing-logo {
+  width: 210px;
+}
+
 .home-nav {
   justify-content: space-between;
   padding: 20px 0;
@@ -31,10 +37,6 @@
   position: absolute;
   left: 100px;
   top: 80px;
-}
-
-.landing-logo {
-  width: 300px;
 }
 
 .landing-content {
@@ -84,3 +86,26 @@
     margin: 0px 10px;
   }
 }
+}
+
+@media only screen and (max-width: 767px) {
+    /* phones */
+    .landing-logo {
+  width: 160px;
+  }
+
+  .logo-container {
+    text-align: center
+  }
+
+  .landing-section .row {
+    flex-direction: column-reverse;
+    margin-top: 1rem
+  }
+
+  .landing-section-image {
+    width: 100%;
+  }
+}
+
+
