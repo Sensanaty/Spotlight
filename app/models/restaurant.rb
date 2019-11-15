@@ -1,5 +1,5 @@
 class Restaurant < ApplicationRecord
-  CUISINES = %w[Italian French Pizza Western Turkish Greek Chinese Japanese Lebanese Indian Brazilian Thai Mexican Brunch Other] # rubocop:disable Metrics/LineLength
+  CUISINES = %w[Italian Indonesian French Pizza Western Turkish Greek Chinese Japanese Lebanese Indian Brazilian Thai Mexican Brunch Other] # rubocop:disable Metrics/LineLength
   mount_uploader :photo, PhotoUploader
 
   validates :name, :address, :cuisine, :price_level, presence: :true # rubocop:disable Lint/BooleanSymbol
