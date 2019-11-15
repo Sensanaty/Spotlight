@@ -18,7 +18,7 @@ class MapBoxCompetitionFetcherService
     competition = JSON.parse(parsed_id)
 
     markers = competition["results"].map do |result|
-      image = "https://image.flaticon.com/icons/svg/857/857755.svg"
+      image = "https://i.ibb.co/MNRnsLF/Screenshot-2019-11-15-at-10-13-43.png"
       if result["photos"]
         photo_reference = result['photos'][0]['photo_reference']
         image = "#{ENV['GOOGLE_IMAGE_URL']}maxwidth=200&photoreference=#{photo_reference}&key=#{ENV['GOOGLE_API_KEY']}"
@@ -26,12 +26,11 @@ class MapBoxCompetitionFetcherService
       {name: result['name'], lat: result['geometry']['location']['lat'], lng: result['geometry']['location']['lng'], cuisine: @cuisine, rating: result['rating'], price_level: result['price_level'], user_ratings_total: result['user_ratings_total'], photo: image }
 
     end
-
-    return markers.first(10)
+    sorted_markers = markers.sort_by { |k| k[:rating] }.reverse
+    return sorted_markers.first(10)
 
 
   end
-
 
 end
 
