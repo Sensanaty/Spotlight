@@ -27,18 +27,18 @@
         </div>
         <div class = "d-flex align-items-center" style= "font-size: 12px;">
           <ul style = "list-style-type: none ; padding-left: 10px;">
-            <li>Rating = <%= restaurant.average_google_rating.round(1) %></li>
-            <li>Total ratings = <%= restaurant.google_reviews.count %></li>
+            <li>Rating: <%= restaurant.average_google_rating.round(1) %></li>
+            <li>Total ratings: <%= restaurant.google_reviews.count %></li>
             <% if restaurant.price_level == 1 %>
-              <li>Price level = $</li>
+              <li>Price level: $</li>
             <% elsif restaurant.price_level == 2 %>
-              <li>Price level = $$</li>
+              <li>Price level: $$</li>
             <% elsif restaurant.price_level == 3 %>
-              <li>Price level = $$$</li>
+              <li>Price level: $$$</li>
             <% elsif restaurant.price_level == 4 %>
-              <li>Price level = $$$$</li>
+              <li>Price level: $$$$</li>
             <% end %>
-            <li>Cuisine = <%=restaurant.cuisine%> </li>
+            <li>Cuisine: <%=restaurant.cuisine%> </li>
           </ul>
         </div>
       </div>
