@@ -8,6 +8,7 @@ class DashboardController < ApplicationController
     @last_week_average = @restaurant.weeks_ratings_average(@reviews_last_week)
     @two_weeks_ago_average = @restaurant.weeks_ratings_average(@reviews_two_weeks_ago)
     @linked_channels = @restaurant.linked_channels
+    # raises
     @week_review_count_comparision = @restaurant.week_review_count_comparision(@reviews_last_week.count, @reviews_two_weeks_ago.count)
     @week_review_average_comparision = @restaurant.week_review_average_comparision(@last_week_average, @two_weeks_ago_average)
   end

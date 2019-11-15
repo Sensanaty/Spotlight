@@ -12,6 +12,8 @@ class TripadvisorScraperService
     TripadvisorScraperService.acquire_all_review_urls(restaurant).each do |url|
       scrape_tripadvisor(url, restaurant)
     end
+    restaurant.linked_channels << 'Tripadvisor'
+    restaurant.save
   end
 
   def self.update_scraped
